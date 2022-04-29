@@ -73,7 +73,7 @@ export default function Home(){
                     return( 
                         <Fragment>                      
                             <Link to={`/recipes/${el.id}`} key={'l' + el.id}>
-                                <Card key={el.id} id={el.id} img={el.image} name={el.name} /* diet={el.diets} */ Diets={el.diets}/>
+                                <Card key={el.id} id={el.id} img={el.image} name={el.name} Diet={el.Diets}  diets={el.diets}/>
                             </Link>   
                             </Fragment>                         
                     )})                               
