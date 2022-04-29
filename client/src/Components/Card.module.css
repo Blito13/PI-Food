@@ -1,0 +1,42 @@
+.contenedor{
+    background: rgba(234, 255, 0, 0.918);
+    margin-left: 20px;
+    margin-top: 25px;
+    height: 350px;
+    width: 350px;
+    backdrop-filter: blur(6px);
+    border: 10px solid #1c1d1c;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.096) 0px 7px 29px 0px;
+    border: 3px solid black;
+    color: #000000;
+    opacity: 100%;
+    align-items: center;
+    text-decoration: none;
+}
+
+.tiulo{
+    font-family: 'Square Peg', cursive;
+    font-size: 35px;
+    text-decoration: none;    
+    margin: 5px;
+    color: #000000;
+}
+
+.img{
+    height: 200px;
+    width: 230px;
+    border: 35px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+}
+
+.h4{
+    line-height: 1%;
+    font-family: 'Square Peg', cursive;
+    font-size: small;
+    text-decoration: none;   
+    color:#1c1d1c; 
+}

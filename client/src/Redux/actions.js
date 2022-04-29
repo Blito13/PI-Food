@@ -11,26 +11,85 @@ export const GET_DETAILS = 'GET_DETAILS'
 
 
 export function getRecipes (){
+return async function (dispatch){
+    var all =  await axios.get('http://localhost:3001/recipes')
+    return dispatch({
+    type : 'GET_ALL_REC', 
+    payload : all.data,   
+    })
+};
 
 }
-export function getNameRecipes (){
 
+export function getNameRecipes (name){
+    return async function (dispatch){
+        try{
+            let yeison = await axios.get(`http://localhost:3001/recipes?name=${name}`)
+            return dispatch({
+                type : 'GET_NAME_RECIPE',
+                payload : yeison.data
+            })
+        }catch(error){
+        console.log(error)}
+    }
 }
-export function filterByTypes (){
-
+export function filterByTypes (payload){
+    return{
+        type: 'FILTER_REC',
+        payload 
+    }
+    
 }
-export function orderByName (){
-
+export function orderByName (payload){
+    return{
+        type: 'ORDER_NAME',
+        payload
+    }
+    
 }
-export function orderByScore(){
-
+export function orderByScore(payload){
+    return {
+        type: 'ORDER_SCORE',
+        payload
+    }
+    
 }
 export function getTypes(){
-
+    return async function (dispatch){
+        let yeison = await axios.get('http://localhost:3001/diets')
+        return dispatch({
+            type: 'GET_TYPES',
+            payload : yeison.data
+        })
+    }
+    
 }
-export function postRecipe (){
+export function postRecipe (payload){
+    return async function(dispatch){
+        try{
 
+            var yeison = await axios.post("http://localhost:3001/recipe",payload)
+            return yeison;
+        }catch (error){
+            console.log(error)
+        console.log (yeison)
+        }
+    } 
+    
 }
-export function getDetail(){
+export function getDetail(id){
 
+    return async function(dispatch){
+        try{
+
+
+            var json = await axios.get(`http://localhost:3001/recipes/${id}`);
+        return dispatch( {
+            type : "GET_DETAILS",
+            payload: json.data
+        })
+        }catch(error){
+            console.log(json.data)
+        }
+    }
 }
