@@ -1,13 +1,12 @@
 require('dotenv').config();
-const express = require('express')
-const router = express.Router()
+const {Router} = require('express')
 const { Diet } = require('../db');
 const axios = require ('axios');
 const {YOUR_API_KEY} = process.env;
-
+const router = Router()
+  
 // trae la info de las recetas y guarda en dietas 
 // repasar
-
 
 router.get('/', async (req, res) => {
     const diets= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=10&addRecipeInformation=true&apiKey=${YOUR_API_KEY}`)

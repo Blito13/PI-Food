@@ -14,29 +14,32 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    sumary : {
+    summary : {
       type: DataTypes.TEXT,
       allowNull : false,
       },
     score : {
       type :DataTypes.FLOAT,
-      defaultValue : 0,
-      validate : {min : 0 , max :100},
     },
-    healthScore:{
+    healthScore : {
       type: DataTypes.FLOAT,
       
     },
     steps : {
-      type: DataTypes.ARRAY(DataTypes.JSON),
-      allowNull : true
+      type: DataTypes.TEXT,
     },
 
     image : {
-      type:DataTypes.TEXT
+      type:DataTypes.STRING,
+      allowNull : true
+    },
+    createdINBd: {                  
+      type: DataTypes.BOOLEAN,  
+      allowNull: false,  
+      defaultValue: true
     }
 
     
-  });
+  }, {timestamps:false});
 
 };

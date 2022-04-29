@@ -9,13 +9,13 @@ recipe.post('/', async (req, res)=>{
         summary,
         score,
         healthScore,
-        steps,
+        steps,   
         image,
         createdINBd 
     });
     const typesDb = await Diet.findAll({where: {name: diets}})       
-    
-    recipeCreated.addTypes(typesDb)
+    console.log(recipeCreated)
+    recipeCreated.addDiet(typesDb)
     res.send('Recipe created successfully')
 })
 

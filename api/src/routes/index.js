@@ -12,15 +12,15 @@ MiddleWares */
 /* router.use('/recipes' ,recipeRoute);
 router.use('/diets' , dietsRoute); */
 
-const recipes = require('./recipes.js');
-const diets = require('./diets.js');
-const recipe = require('./recipe.js');
+const recipes = require('./recipes');
+const diets = require('./diets');
+const recipe = require('./recipe');
 
 // Configurar los routers
 
 router.use('/recipes', recipes)
 router.use('/recipe', recipe)
-router.use('/types', diets)
+router.use('/diets', diets)
 
 
 
