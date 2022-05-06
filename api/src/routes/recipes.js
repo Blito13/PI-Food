@@ -7,7 +7,7 @@ const {YOUR_API_KEY} = process.env;
 
 
 const getApi = async () =>{
-    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=1&addRecipeInformation=true&apiKey=${YOUR_API_KEY}`)
+    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=5&addRecipeInformation=true&apiKey=${YOUR_API_KEY}`)
     //console.log(apiUrl)
 
     const apiInfo = await apiUrl.data.results.map((el) =>{
@@ -62,7 +62,7 @@ router.get('/', async (req, res)=>{
 router.get('/:id', async (req, res)=>{
     const {id} = req.params; //busca recetas x id 
     const recipesTotal = await getAllrecipes();
-console.log(recipesTotal)
+/* console.log(recipesTotal) */
     if(id){        
         const recipeId = recipesTotal.filter(el=>el.id == id)
         recipeId.length?
