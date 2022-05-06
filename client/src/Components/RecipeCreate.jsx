@@ -75,7 +75,7 @@ export default function RecipeCreate(){
         diets:[],
         })
     }   
-
+    console.log(input.diets)
     return(
         <div className={estilos.contenedor}>
             <Link to='/home'><button className={estilos.boton1}>Back</button></Link>            

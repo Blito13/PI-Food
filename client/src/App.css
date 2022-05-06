@@ -1,25 +1,5 @@
 .App {
-  background-image:  url("https://media0.giphy.com/media/l0HU0xG2VRQp0pFnO/giphy.gif?cid=ecf05e47htj8t5doo4g6x2xlrigdgktmy7n72njbbr60rgcj&rid=giphy.gif&ct=g"); 
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  background-color: #282c34;
-  background-size: cover;
-  color: white;
-  /* display: flex;
-  background-image: url('https://media0.giphy.com/media/l0HU0xG2VRQp0pFnO/giphy.gif?cid=ecf05e47htj8t5doo4g6x2xlrigdgktmy7n72njbbr60rgcj&rid=giphy.gif&ct=g');
-  min-height: 100vh;
-  min-width: 100vh;
-  background-position:  center;
-  background-repeat: no-repeat;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-self: center;  */
 }
 
 .App-logo {
@@ -33,8 +13,16 @@
   }
 }
 
-/* .App-header {
-} */
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 
 .App-link {
   color: #61dafb;

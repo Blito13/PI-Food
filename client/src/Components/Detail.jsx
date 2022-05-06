@@ -11,17 +11,17 @@ export default function Detail(){
   const dispatch = useDispatch() 
   useEffect (() => {dispatch(getDetail(id))} ,[]) // eslint-disable-line
   const detailstate = useSelector((state) => state.details)
-
-    return(
-      <div>
+  /* console.log(Object.keys(detailstate[0])) */
+  return(
+    <div>
      { 
        detailstate.length > 0 ? 
-       
+      
        <div className = {styles.container}> 
            <h1 className = {styles.title}> {detailstate[0].name} </h1>
            <h5 className = {styles.diets}>Diets: {
-           detailstate[0].Diets?
-           detailstate[0].Diets.map(e => e.name) : detailstate[0].diets}</h5>
+             
+             detailstate[0].diets.map(e => <h1>{Object.values(e)}</h1>)}</h5>
            <div className = {styles.innercontainer}>
            <h3 className = {styles.info}>HealthLevel: {detailstate[0].healtScore}</h3>
            <h3 className = {styles.info}>Score: {detailstate[0].score}</h3>
@@ -36,5 +36,5 @@ export default function Detail(){
       }
      </div>
          )
-     
-     }
+         
+        }

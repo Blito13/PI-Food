@@ -28,13 +28,23 @@ function rootR (state = initialState , action){
 
             }
         case FILTER_REC: //filtramos los tipos de dieta
-            const todos = state.allRecipes;
-            const filtrados = action.payload === 'All' ? todos :
-             [...todos]?.filter(el =>el.diets?.includes(action.payload))
+            const allRecipes= state.allRecipes
+            var fix =[]
+            allRecipes.map((e)=>{
+            let sol =e.diets.map((e)=>{
+             if(typeof e === 'object'){
+                return(e.name)
+                } else{
+                    return e
+                    }
+                    })
+             return sol.includes(action.payload) ===true? 
+                 fix.push(e):null})
+                console.log(fix)
             return{
-               ...state,
-               recipes : filtrados
-            } 
+                    ...state,
+                    recipes:action.payload === 'All'? allRecipes: fix 
+                }
         case ORDER_NAME :
             let arrayOrdenau = action.payload === 'asc'?
             state.recipes.sort(function(a,b){

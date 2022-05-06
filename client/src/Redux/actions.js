@@ -12,10 +12,10 @@ export const GET_DETAILS = 'GET_DETAILS'
 
 export function getRecipes (){
 return async function (dispatch){
-    var all =  await axios.get('http://localhost:3001/recipes')
+    var json =  await axios.get('http://localhost:3001/recipes',{});
     return dispatch({
     type : 'GET_ALL_REC', 
-    payload : all.data,   
+    payload :json.data,   
     })
 };
 
