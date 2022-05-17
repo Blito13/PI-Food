@@ -1,48 +1,57 @@
-.contenedor{
+.container{
     display: flex;
     flex-direction: column;
     background-color: rgb(231, 195, 248);
-    background-image: url('https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img/https://cocinaconmarco.com/wp-content/uploads/2015/05/v-e1529879505785.jpg');
-    background-position-x: center;
-    background-position-y: center; 
-    background-color: transparent;
+    background-attachment: fixed;
+    background-image: url('https://images.pexels.com/photos/326279/pexels-photo-326279.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+   /*  background-image: url('https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+    */
+   /*  background-image: url('https://i.pinimg.com/originals/35/97/6a/35976a472e0ae3152b39b080760909db.jpg'); */
+    text-align: left;
     
   }
   .h1{
       font-family: Verdana, Geneva, Tahoma, sans-serif;
+      text-align: left;
       font-size: 25px;
       font: italic;
       text-shadow: 1px 1px 2px rgb(243, 226, 226), 0 0 1em rgba(39, 39, 53, 0.808), 0 0 0.2em rgb(99, 99, 121);
   }
   
   .img{
+      margin-top: 2%;
       border-radius: 15px;
       opacity: 80%;
       max-width:300px;
       max-height: 300px;
-      display: flex;
+      display: left;
+      text-align: left;
       flex-direction: column;    
-      margin-left: 40%;
+      margin-left: 0%;
+      margin-block-end: 2%;
   }
   .h2{
       font-size: 15px;
       font-family:Verdana, Geneva, Tahoma, sans-serif;
+      text-align: left;
       text-decoration: underline;
       text-shadow: 1px 1px 2px rgb(243, 226, 226), 0 0 1em rgba(71, 71, 107, 0.808), 0 0 0.2em rgb(99, 99, 121);
       margin-bottom: 3px;
-      color: rgba(15, 15, 17, 0.644);
+      color: white;
   }
   
   .h5{
       font-size: 12px;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
-      color: rgba(15, 15, 17, 0.644);
+      color: rgb(255, 255, 255);
+      text-align: left;
   }
-  
+
   .p{
       font-size: 10px;
       margin-bottom: 3px;
-      font-family:Verdana, Geneva, Tahoma, sans-serif 
+      font-family:Verdana, Geneva, Tahoma, sans-serif ;
+      text-align: left;
   }
   
   .boton{
@@ -53,7 +62,7 @@
       cursor: pointer;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       font-size: medium;
-      text-align: center;
+      text-align: left;
       text-decoration: none;
       margin-bottom: 21px;
   }

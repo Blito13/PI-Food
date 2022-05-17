@@ -2,7 +2,7 @@ import React from "react";
 import estilos from './Card.module.css'
 
 export default function Card({img, name, diets}){
-    console.log(diets)
+   
     return(
         <div className={estilos.contenedor}>
             <h2 className={estilos.titulo}>{name}</h2>

@@ -1,9 +1,9 @@
 .contenedor{
-    background:  linear-gradient(#f00188, #88bf08);;
+    background:  linear-gradient(#f0f090, #f87474);;
     margin-left: 20px;
     margin-top: 25px;
-    height: 350px;
-    width: 350px;
+    height: 300px;
+    width: 300px;
     backdrop-filter: blur(6px);
     border: 10px solid #1c1d1c;
     border-radius: 18px;
@@ -14,14 +14,15 @@
     opacity: 100%;
     align-items: center;
     text-decoration: none;
+    background-image: url('https://images.pexels.com/photos/129731/pexels-photo-129731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
 }
 
 .tiulo{
     font-family: 'Square Peg', cursive;
-    font-size: 35px;
+    font-size:large;
     text-decoration: none;    
     margin: 5px;
-    color: #000000;
+    color: #ff0404;
 }
 
 .img{
@@ -36,7 +37,7 @@
 .h4{
     line-height: 1%;
     font-family: 'Square Peg', cursive;
-    font-size: small;
+    font-size: x-large;
     text-decoration: none;   
-    color:#1c1d1c; 
+    color:#000000; 
 }

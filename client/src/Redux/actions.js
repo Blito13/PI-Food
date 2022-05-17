@@ -8,6 +8,7 @@ export const GET_TYPES = 'GET_TYPES'
 export const POST_REC = 'POST_REC'
 export const ORDER_SCORE = 'ORDER_SCORE'
 export const GET_DETAILS = 'GET_DETAILS'
+export const ORDER_HEALTH = 'SORDER_HEALTHY'
 
 
 export function getRecipes (){
@@ -21,7 +22,7 @@ return async function (dispatch){
 
 }
 
-export function getNameRecipes (name){
+export function getNameRecipes (name){ //concatenamos lo que ingresemos en el input como nombre para buscar recetas
     return async function (dispatch){
         try{
             let yeison = await axios.get(`http://localhost:3001/recipes?name=${name}`)
@@ -29,6 +30,7 @@ export function getNameRecipes (name){
                 type : 'GET_NAME_RECIPE',
                 payload : yeison.data
             })
+            
         }catch(error){
         console.log(error)}
     }
@@ -39,6 +41,12 @@ export function filterByTypes (payload){
         payload 
     }
     
+}
+export function orderByhealthScore(payload){
+    return{
+        type : 'SORDER_HEALTHY',
+        payload
+    }
 }
 export function orderByName (payload){
     return{
@@ -81,9 +89,8 @@ export function getDetail(id){
 
     return async function(dispatch){
         try{
-
-
             var json = await axios.get(`http://localhost:3001/recipes/${id}`);
+            console.log(json.data)
         return dispatch( {
             type : "GET_DETAILS",
             payload: json.data

@@ -6,7 +6,8 @@ import{
     FILTER_REC ,
     ORDER_NAME ,
     ORDER_SCORE ,
-    POST_REC
+    POST_REC,
+    
 }from './actions'
 
     const initialState = {
@@ -17,8 +18,14 @@ import{
 }
 
 
+console.log(initialState)
+
+
+
 
 function rootR (state = initialState , action){
+console.log(action.type , action.payload)
+ 
     switch(action.type){
         case GET_ALL_REC :
             return{
@@ -27,7 +34,7 @@ function rootR (state = initialState , action){
                 allRecipes : action.payload
 
             }
-        case FILTER_REC: //filtramos los tipos de dieta
+        case FILTER_REC: 
             const allRecipes= state.allRecipes
             var fix =[]
             allRecipes.map((e)=>{
@@ -45,7 +52,7 @@ function rootR (state = initialState , action){
                     ...state,
                     recipes:action.payload === 'All'? allRecipes: fix 
                 }
-        case ORDER_NAME :
+        case ORDER_NAME : 
             let arrayOrdenau = action.payload === 'asc'?
             state.recipes.sort(function(a,b){
                 if(a.name > b.name){
@@ -69,33 +76,34 @@ function rootR (state = initialState , action){
                 recipes : arrayOrdenau
             }
         case ORDER_SCORE : 
-        let puntaje = action.payload === 'high'?
+       /* score= state.recipes.healthScore */
+        let puntaje = action.payload === 'low'?
         state.recipes.sort(function(a,b){
-            if(a.score> b.score){
+            if(a.healthScore> b.healthScore){
                 return 1;
             }
-            if(b.score>a.score){
+            if(b.healthScore>a.healthScore){
                 return -1;
             }
             return 0;
         }) :
         state.recipes.sort(function(a,b){
-            if(a.score>b.score){
+            if(a.healthScore>b.healtScore){
                 return -1;
             }
-            if(b.score> a.score){
+            if(b.healthScore> a.healtScore){
                 return 1;
             }
             return 0;
         })
-    return{    
-        ...state,
-        recipes: puntaje
-           }
+            return{    
+                ...state,
+                recipes: puntaje
+                }
            case GET_NAME_RECIPE:
             return{ 
                 ...state,
-                recipes:action.payload
+                recipes:action.payload 
             }
         case POST_REC:
             return{
