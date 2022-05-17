@@ -14,8 +14,12 @@ describe('Recipe model', () => {
           .then(() => done(new Error('It requires a valid name')))
           .catch(() => done());
       });
-      it('should work when its a valid name', () => {
+     it('should work when its a valid name', () => {
         Recipe.create({ name: 'Milanesa a la napolitana' });
+        it('the property steps must be a text', async()=>{
+          const recipe = await Recipe.findOne({where: {name:'hola'}})
+          expect(recipe.dataValues.steps).to.be.a('text');
+        })
       });
     });
   });
