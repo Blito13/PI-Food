@@ -173,3 +173,8 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 - [ ] Al menos tener un componente del frontend con sus tests respectivos
 - [ ] Al menos tener una ruta del backend con sus tests respectivos
 - [ ] Al menos tener un modelo de la base de datos con sus tests respectivos
+![image](https://user-images.githubusercontent.com/92063853/175062512-2086c989-f3f2-4b16-a9ed-07ebb149967b.png)
+![image](https://user-images.githubusercontent.com/92063853/175062850-07cb3ecc-ab2b-4f3a-b4eb-52377a9bd3b9.png)
+![image](https://user-images.githubusercontent.com/92063853/175062945-1557ca52-0ce2-44ff-920b-1b940df61178.png)
+![image](https://user-images.githubusercontent.com/92063853/175063365-20b90d55-5433-45ab-819e-432b76296158.png)
+
