@@ -88,9 +88,6 @@ return (
      <div className={estilos.darkBG} onClick={() => setIsOpen(false)} />
         <div className={estilos.centered}>
             <div className={estilos.modal}>
-                <div className={estilos.modalHeader}>
-                    <h5 className={estilos.heading}>Dialog</h5>
-                </div>
                 <button className={estilos.closeBtn} onClick={() => setIsOpen(false)}>
                 <RiCloseLine style={{ marginBottom: "-3px" }} />
                 </button>
@@ -143,13 +140,28 @@ return (
                     name='steps'
                     onChange={(e)=> handleChange(e)}/>                    
                     </div>
-                    <p className={estilos.p}>Type-Diets: </p>
-                    <select onChange={(e)=> handleSelect(e)} className={estilos.p}>
-                    {diets.map((d, index)=>(<option
-                    key={index}
-                    value={d.name}>{d.name}</option>))}
-                    </select>                               
+                    <div >
+                    {diets?diets.map (e => (
+                    <p className={estilos.diets}>
+                        
+                        <input className = {estilos.checks} type="checkbox" />
+                        <li className = {estilos.lista}>
+                        {e.name}
                     
+                        </li>
+                    
+                    </p>
+                        
+                    )):null}                           
+
+                    </div>
+                    <br></br>
+                    {input.diets.map(el=>
+                    <div>
+                        <p className={estilos.diets}>{el}</p>                        
+                        <button className={estilos.botonx} onClick={(e)=> handleDelete(e)}>x</button>
+                    </div>)}                   
+                    <br></br>
               <button className={estilos.boton2}>Create</button>  
                 </form>
                 </div>
@@ -158,11 +170,6 @@ return (
               <button className={estilos.deleteBtn} onClick={() => setIsOpen(false)}>
                 Delete
               </button>
-                    {input.diets.map(el=>
-                    <div>
-                        <p>{el}</p>                        
-                        <button className={estilos.botonx} onClick={(e)=> handleDelete(e)}>x</button>
-                    </div>)}                   
               <button
                 className={estilos.cancelBtn}
                 onClick={() => setIsOpen(false)}>
