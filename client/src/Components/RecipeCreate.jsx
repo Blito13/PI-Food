@@ -64,6 +64,7 @@ export default function RecipeCreate(){
 
     function handleSubmit(e){
         e.preventDefault();
+        console.log(input)
         dispatch(postRecipe(input))        
         setInput({
         name: '',
@@ -90,8 +91,8 @@ export default function RecipeCreate(){
                     onChange={(e)=>handleChange(e)}
                     />                    
                     {error.name && <p className={estilos.error}>{error.name}</p>}
-                </div>
-                <div>
+                    </div>
+                    <div>
                     <p className={estilos.p}>Summary: </p>
                     <textarea
                     type='text'
@@ -99,9 +100,9 @@ export default function RecipeCreate(){
                     name= 'summary'
                     onChange={(e)=>handleChange(e)}
                     />
-                    {error.summary && <p className={estilos.error}>{error.summary}</p>}
-                </div>
-                <div>
+                      {error.summary && <p className={estilos.error}>{error.summary}</p>}
+                    </div>
+                    <div>
                     <p className={estilos.p}>Score: </p>
                     <input
                     type= 'number'
@@ -109,16 +110,16 @@ export default function RecipeCreate(){
                     name='score'
                     onChange={(e)=> handleChange(e)}/>
                     {error.score && <p className={estilos.error}>{error.score}</p>}
-                </div>
-                <div>
+                    </div>
+                    <div>
                     <p className={estilos.p}>Health Score: </p>
                     <input
                     type= 'number'
                     value={input.healthScore}
                     name='healthScore'
                     onChange={(e)=> handleChange(e)}/>
-                </div>
-                <div>
+                    </div>
+                    <div>
                     <p className={estilos.p}>Steps: </p>
                     <textarea className={estilos.textarea}
                     type='textarea'

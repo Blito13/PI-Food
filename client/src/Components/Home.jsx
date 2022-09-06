@@ -8,6 +8,9 @@ import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 import estilos from './Home.module.css';
 
+import Modal from "./Modal";
+import RecipeCreate from "./RecipeCreate";
+
 export default function Home(){
     const dispatch = useDispatch();
     const allRecipes = useSelector((state)=> state.recipes)
@@ -18,13 +21,26 @@ export default function Home(){
     const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe) 
     const [orden, setOrden] = useState('') 
     const [orden1, setOrden1] = useState('') 
+    const [isOpen, setIsOpen] = useState(false);
+    console.log(allRecipes)
+    /* const [modalIsOpen, setIsOpen] = useState(false); */
+    function afterOpenModal() {
+        console.log("transa")
+      }
+    function openModal() {
+      setIsOpen(true);
+    }
+    function closeModal() {
+      setIsOpen(false);
+    }
 
     const paginado = (number) =>{ 
         setCurrentPage(number)
        
     }
     console.log(currentPage)
-    useEffect(()=>{
+    useEffect((e)=>{
+       
         dispatch(getRecipes());
         dispatch(getTypes());
     },[dispatch]) 
@@ -60,8 +76,21 @@ export default function Home(){
    
     return(
         <div className={estilos.contenedor}>
-            <Link to= '/recipe' className={estilos.recipeCreate}><button className={estilos.boton1}>Create Recipe</button></Link>
-            <h1 className={estilos.h1}>Recipes</h1>                       
+         {/*    <Link to= '/recipe' className={estilos.recipeCreate}><button className={estilos.boton1}>Create Recipe</button></Link>
+            <h1 className={estilos.h1}>Recipes</h1>    */}                    
+            <div className={estilos.check}>
+            <button className={estilos.primaryBtn} onClick={() => setIsOpen(true)}>
+             Open Modal
+            </button>
+        {isOpen &&<Fragment>
+            <div className={estilos.check}>
+
+          <Modal className={estilos.check} setIsOpen={setIsOpen} />
+            </div>
+          
+      </Fragment> 
+          }
+    </div>
             <div>            
             <select onChange={e=>handleSort(e)} className={estilos.select}>
                 <option value='asc'>A to Z</option>
@@ -79,6 +108,27 @@ export default function Home(){
                 <option value='highHealthScore'>High Healt Score</option>
                 <option value='lowHealtScore'>Low Score</option>                 
             </select> */}
+            <div >
+           
+                {/* <Modal
+               
+                  isOpen={modalIsOpen}
+                  onRequestClose={closeModal}
+                  contentLabel="Example Modal"
+                  onAfterOpen={afterOpenModal}
+                >
+                  <button onClick={closeModal}>close</button>
+                  <div>I am a modal</div>
+                  <div>
+                   <RecipeCreate
+                   ></RecipeCreate>
+                  </div>
+                </Modal>
+{/* 
+            <Modal >
+                <RecipeCreate></RecipeCreate>
+            </Modal> */} 
+            </div>
             
             <SearchBar className={estilos.boton1}/>
             
@@ -86,13 +136,14 @@ export default function Home(){
                 {currentRecipes?.map((el)=>{ //slice(0.9)
                     return( 
                         <Fragment>                      
-                            <Link to={`/recipes/${el.id}`} key={'l' + el.id}>
-                                <Card key={el.id} id={el.id} img={el.image} name={el.name} /* Diet={el.Diets} */  diets={el.diets} /* healtScore = {el.healthScore} *//>
-                            </Link>   
+                            <Link className={estilos.tyty} to={`/recipes/${el.id}`} key={'l' + el.id}>
+                            <Card key={el.id} id={el.id} img={el.image} name={el.name} /* Diet={el.Diets} */  diets={el.diets} /* healtScore = {el.healthScore} */>
+                            </Card>
+                                </Link>   
                             </Fragment>                         
                     )})                               
                 }
-            </div>
+                </div>
             <div>
             <Paginado key= {1} recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado} currentPage = {currentPage}/>
             </div>

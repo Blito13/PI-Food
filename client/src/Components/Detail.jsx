@@ -3,7 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../Redux/actions";
 import { useEffect } from "react";
+
 import styles from './Detail.module.css';
+import Modal from "./Modal";
 
 export default function Detail(){
   const {id} = useParams()
@@ -18,6 +20,9 @@ export default function Detail(){
  */
   return(
     <div>
+   {/*    <Modal className= {styles.button}>
+        mandadasd
+      </Modal> */}
      { 
        /* detailstate && detailstate  ?  */
        detailstate.length > 0 ? 

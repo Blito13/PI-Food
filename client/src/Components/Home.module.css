@@ -6,15 +6,16 @@
     background-size: 100%;
     -o-background-size: cover;
     background-size: cover;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     background-repeat: no-repeat;
     flex-direction: column;
     justify-content: center;
     align-self: center; 
-    background-image: url('https://img.freepik.com/foto-gratis/ingredientes-cocinar-pasta-sobre-fondo-madera_23-2147925943.jpg?t=st=1651870207~exp=1651870807~hmac=758da0bd68d0e0a51755aa451c58dfb7ca941af4cc6ccd9b0e9fe0c09562e4a4&w=996');
+    background:  linear-gradient(rgb(126, 1, 1), tomato);;
+  /*   background-image: url('https://img.freepik.com/foto-gratis/ingredientes-cocinar-pasta-sobre-fondo-madera_23-2147925943.jpg?t=st=1651870207~exp=1651870807~hmac=758da0bd68d0e0a51755aa451c58dfb7ca941af4cc6ccd9b0e9fe0c09562e4a4&w=996'); */
     -webkit-background-size: cover;
     -moz-background-size: cover;
-    
+    position: relative;
     /* background-image: url('../imgs/pexels-photo-370984.jpg'); */
    /*  background-image: url('https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'); */
  /*    background-image: url('https://i.pinimg.com/originals/35/97/6a/35976a472e0ae3152b39b080760909db.jpg'); */
@@ -26,8 +27,11 @@
     color: rgb(255, 242, 0);
     font-size: 105px;
     margin-top: 2px;    
-}    
-
+    position: relative;
+}
+.ñaña{
+   height: min-content ;
+}
 .select{
     font-family: 'Just Me Again Down Here', cursive;
     margin: 3px 3px;
@@ -36,6 +40,7 @@
     color: #5f5e99;
     border: 1px solid #5f5e99;
     border-radius: 5px;
+    position: relative;
 }
 
 .recipeCreate{
@@ -53,30 +58,59 @@
     margin-right: auto;
     margin-top: 30px;
     margin-bottom: 30px;
+    position: relative;
 }
 .boton1{
     font-family: 'Just Me Again Down Here', cursive;
     margin: 5px 5px;
     padding: 5px 5px;
     font-size: 25px;
-    color: #5f5e99;
-    border: 1px solid #5f5e99;
+    /* color: #5f5e99; */
+    /* border: 1px solid #5f5e99; */
     border-radius: 5px;
     align-items: center;
     cursor: pointer;
+    position: relative;
 }
-
+.tyty{
+    text-decoration: none;
+}
 
 .boton1:hover{
     font-family: 'Just Me Again Down Here', cursive;
     color:whitesmoke;
     background-color:#5f5e99;    
+    position: relative;
+}
+.check{
+    z-index: 1;
+    
 }
 
 .card{
-    font-family: 'Just Me Again Down Here', cursive;
+    font-family: 'Just Me Again Down Here';
     display: flex; 
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    position: relative;
 }
+.primaryBtn {
+    margin: 20px 10px;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 13px 25px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    border: none;
+    color: white;
+    background: #185adb;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  
+  .primaryBtn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px -10px rgba(24, 90, 219, 0.6);
+    position: relative ;
+  }
