@@ -9,7 +9,7 @@ import {postRecipe, getTypes} from '../Redux/actions'
 
 
 
-console.log ("elmerre")
+
 
 function validate (input){
     let error= {};
@@ -26,13 +26,14 @@ const Modal = ({ setIsOpen }) => {
     const dispatch= useDispatch();          
     
     useEffect(()=>{
+   
         dispatch(getTypes());
     }, []); //eslint-disable-line
-    console.log("elemrre")
+   
     const diets = useSelector((state)=> state.types)
 
     const [error, setError] = useState({})
-
+ 
     const [input, setInput] = useState({
         name: '',
         summary:'',
@@ -44,33 +45,49 @@ const Modal = ({ setIsOpen }) => {
     })
 
     function handleChange(e){
+        
         setInput({
             ...input,
             [e.target.name] : e.target.value
 
         })
         setError(validate({
+            
             ...input,
             [e.target.name] : e.target.value
         }));
     }
-
-    function handleSelect(e){
-        setInput({
-            ...input,
-            diets:[...input.diets, e.target.value]
-        })
+    
+    function handleSelect  (e) {
+        const {checked , value} = e.target
+        if(checked === false || input.diets.includes(value) === true){
+            setInput({
+                ...input,
+                diets : [...input.diets.filter(d=> d !== value)]
+                
+                
+             })
+            /* checked = true */
+            console.log(input.diets)
+             
+         } else {
+             setInput({
+                 ...input,
+                 diets:[... input.diets , value]
+             })
+             /* checked = false */
+             }
+   
+        
     } 
-    function handleDelete(e){
+    console.log(input.diets)
+    function handleDelete(e){ 
         setInput({
             ...input,
             diets: input.diets.filter(d=> d !== e)
         }) 
      }  
-console.log(input)
     function handleSubmit(e){
-        e.preventDefault();
-        console.log(input)
         dispatch(postRecipe(input))        
         setInput({
         name: '',
@@ -81,8 +98,8 @@ console.log(input)
         image:'',
         diets:[],
         })
-    }   
-    console.log(input.diets)
+    }  
+     
 return (
     <>
      <div className={estilos.darkBG} onClick={() => setIsOpen(false)} />
@@ -91,90 +108,76 @@ return (
                 <button className={estilos.closeBtn} onClick={() => setIsOpen(false)}>
                 <RiCloseLine style={{ marginBottom: "-3px" }} />
                 </button>
-                <div className={estilos.modalContent}>
+                    <div className={estilos.modalContent}>
                 
-                <form onSubmit={(e)=> handleSubmit(e)} className={estilos.form}>
-                <div>
-                    <h1 className={estilos.h1}>Be Creative</h1>
-                    <p className={estilos.p}>Name: </p>
-                    <input
-                    type='text'
-                    value={input.name}
-                    name='name'
-                    onChange={(e)=>handleChange(e)}
-                    />                    
-                    {error.name && <p className={estilos.error}>{error.name}</p>}
-                </div>
-                <div>
-                    <p className={estilos.p}>Summary: </p>
-                    <textarea
-                    type='text'
-                    value={input.summary}
-                    name= 'summary'
-                    onChange={(e)=>handleChange(e)}
-                    />
-                    {error.summary && <p className={estilos.error}>{error.summary}</p>}
-                </div>
-                <div>
-                    <p className={estilos.p}>Score: </p>
-                    <input
-                    type= 'number'
-                    value={input.score}
-                    name='score'
-                    onChange={(e)=> handleChange(e)}/>
-                    {error.score && <p className={estilos.error}>{error.score}</p>}
-                </div>
-                <div>
-                    <p className={estilos.p}>Health Score: </p>
-                    <input
-                    type= 'number'
-                    value={input.healthScore}
-                    name='healthScore'
-                    onChange={(e)=> handleChange(e)}/>
-                </div>
-                <div>
-                    <p className={estilos.p}>Steps: </p>
-                    <textarea className={estilos.textarea}
-                    type='textarea'
-                    value={input.steps}
-                    name='steps'
-                    onChange={(e)=> handleChange(e)}/>                    
-                    </div>
-                    <div >
-                    {diets?diets.map (e => (
-                    <p className={estilos.diets}>
-                        
-                        <input className = {estilos.checks} type="checkbox" />
-                        <li className = {estilos.lista}>
-                        {e.name}
-                    
-                        </li>
-                    
-                    </p>
-                        
-                    )):null}                           
+                        <form onSubmit={(e)=> handleSubmit(e)} /* className={estilos.modalContent}  *//* className={estilos.form} */>
+                        <div>
+                        <h1 /* className={estilos.h1} */>Be Creative</h1>
+                        <p /* className={estilos.p} */>Name: </p>
+                        <input
+                        type='text'
+                        value={input.name}
+                        name='name'
+                                onChange={(e)=>handleChange(e)}
+                                />                    
+                                {error.name && <p /* className={estilos.error} */>{error.name}</p>}
+                            </div>
+                            <div>
+                                <p className={estilos.p}>Summary: </p>
+                                <textarea
+                                type='text'
+                                value={input.summary}
+                                name= 'summary'
+                                onChange={(e)=>handleChange(e)}
+                                />
+                                {error.summary && <p /* className={estilos.error} */>{error.summary}</p>}
+                            </div>
+                            <div>
+                                <p /* className={estilos.p} */>Score: </p>
+                                <input
+                                type= 'number'
+                                value={input.score}
+                                name='score'
+                                onChange={(e)=> handleChange(e)}/>
+                                {error.score && <p /* className={estilos.error} */>{error.score}</p>}
+                            </div>
+                            <div>
+                                <p /* className={estilos.p} */>Health Score: </p>
+                                <input
+                                type= 'number'
+                                value={input.healthScore}
+                                name='healthScore'
+                                onChange={(e)=> handleChange(e)}/>
+                            </div>
+                            <div >
+                                <p className={estilos.p}>Steps: </p>
+                                <textarea  /* className={estilos.textarea} */
+                                type='textarea'
+                                value={input.steps}
+                                name='steps'
+                                onChange={(e)=> handleChange(e)}/>     
 
-                    </div>
-                    <br></br>
-                    {input.diets.map(el=>
-                    <div>
-                        <p className={estilos.diets}>{el}</p>                        
-                        <button className={estilos.botonx} onClick={(e)=> handleDelete(e)}>x</button>
-                    </div>)}                   
-                    <br></br>
-              <button className={estilos.boton2}>Create</button>  
+                                <div className={estilos.selecDiets}>
+                                {diets.map (e => (
+
+                                
+                                        <div className={estilos.listo}>
+                                            <input className = {estilos.checks} value={e.name} key={+1} onChange= {e=>handleSelect(e)} type="checkbox" />
+                                            {e.name}
+                                        
+                                   
+                                 </div>      ))}                           
+                                    <button className={estilos.deleteBtn}>Create</button>  
+                                    
+                                    </div>         
+                        
+
+                            </div>    
+                            
                 </form>
                 </div>
                 <div className={estilos.modalActions}>
                 <div className={estilos.actionsContainer}>
-              <button className={estilos.deleteBtn} onClick={() => setIsOpen(false)}>
-                Delete
-              </button>
-              <button
-                className={estilos.cancelBtn}
-                onClick={() => setIsOpen(false)}>
-                Cancel
-                </button>
                 </div>
             </div>
             </div>

@@ -111,8 +111,13 @@
     width: 170px;
     height: 3px;
     font-size: large;
-    /* display: list-item; */
+    display: list-item;
     
+  }
+  .selectDiets{
+
+    width: 170px;
+    height: 3px;
   }
   .lista
   {

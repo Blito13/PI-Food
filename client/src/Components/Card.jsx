@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { Link } from "react-router-dom";
 export default function Card({img, name, diets , id}){
-   console.log(id)
+
    const [diet ,setDiet] = useState([])
    const mostrar = (e) => {
     

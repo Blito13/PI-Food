@@ -22,10 +22,10 @@ export default function Home(){
     const [orden, setOrden] = useState('') 
     const [orden1, setOrden1] = useState('') 
     const [isOpen, setIsOpen] = useState(false);
-    console.log(allRecipes)
+
     /* const [modalIsOpen, setIsOpen] = useState(false); */
     function afterOpenModal() {
-        console.log("transa")
+       
       }
     function openModal() {
       setIsOpen(true);
@@ -38,8 +38,8 @@ export default function Home(){
         setCurrentPage(number)
        
     }
-    console.log(currentPage)
-    useEffect((e)=>{
+
+    useEffect(()=>{
        
         dispatch(getRecipes());
         dispatch(getTypes());
@@ -82,11 +82,13 @@ export default function Home(){
             <button className={estilos.primaryBtn} onClick={() => setIsOpen(true)}>
              Open Modal
             </button>
-        {isOpen &&<Fragment>
-            <div className={estilos.check}>
+        {isOpen &&
+        <Fragment>
+          
 
-          <Modal className={estilos.check} setIsOpen={setIsOpen} />
-            </div>
+          <Modal className={estilos.check} 
+          setIsOpen={setIsOpen} />
+            
           
       </Fragment> 
           }
