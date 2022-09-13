@@ -18,7 +18,9 @@ const getApi = async () =>{
                 diets: el.diets,
                 summary: el.summary,
                 healthScore: el.healthScore,
-                steps: el.analyzedInstructions[0]?.steps
+                steps: el.analyzedInstructions[0]?.steps,
+               
+
             }
         });   
         /* console.log(apiInfo) */

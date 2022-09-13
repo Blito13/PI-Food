@@ -77,80 +77,50 @@ export default function Home(){
     return(
         <div className={estilos.contenedor}>
          {/*    <Link to= '/recipe' className={estilos.recipeCreate}><button className={estilos.boton1}>Create Recipe</button></Link>
-            <h1 className={estilos.h1}>Recipes</h1>    */}                    
-            <div className={estilos.check}>
-            <button className={estilos.primaryBtn} onClick={() => setIsOpen(true)}>
-             Open Modal
-            </button>
-        {isOpen &&
-        <Fragment>
-          
-
-          <Modal className={estilos.check} 
-          setIsOpen={setIsOpen} />
-            
-          
-      </Fragment> 
-          }
-    </div>
-            <div>            
-            <select onChange={e=>handleSort(e)} className={estilos.select}>
+             <h1 className={estilos.h1}>Recipes</h1>    */}                    
+                <div className={estilos.check}>
+                 <button className={estilos.primaryBtn} onClick={() => setIsOpen(true)}>
+                Open Modal
+                </button>
+                    {isOpen &&
+                    <Fragment>
+                        <Modal 
+                             className={estilos.check} 
+                             setIsOpen={setIsOpen} />
+                    </Fragment> 
+                    }
+                </div>
+                <div>            
+                <select onChange={e=>handleSort(e)} className={estilos.select}>
                 <option value='asc'>A to Z</option>
                 <option value='desc'>Z to A</option>
-            </select>              
-            <select onChange={e=>handleFilterTypes(e)} className={estilos.select}> 
+             </select>              
+                <select onChange={e=>handleFilterTypes(e)} className={estilos.select}> 
                 <option value='All'>All Diets</option>
                 {types?.map(diet=> <option value={diet.name} key={diet.name}>{diet.name}</option> )}                                    
-            </select> 
-            <select onChange={e=> handleScore(e)} className={estilos.select}>
+                </select> 
+                <select onChange={e=> handleScore(e)} className={estilos.select}>
                 <option value='high'>High Score</option>
                 <option value='low'>Low Score</option>                 
-            </select>
-           {/*  <select onChange={e=> handleHealthScore(e)} className={estilos.select}>
-                <option value='highHealthScore'>High Healt Score</option>
-                <option value='lowHealtScore'>Low Score</option>                 
-            </select> */}
-            <div >
-           
-                {/* <Modal
-               
-                  isOpen={modalIsOpen}
-                  onRequestClose={closeModal}
-                  contentLabel="Example Modal"
-                  onAfterOpen={afterOpenModal}
-                >
-                  <button onClick={closeModal}>close</button>
-                  <div>I am a modal</div>
-                  <div>
-                   <RecipeCreate
-                   ></RecipeCreate>
-                  </div>
-                </Modal>
-{/* 
-            <Modal >
-                <RecipeCreate></RecipeCreate>
-            </Modal> */} 
-            </div>
-            
-            <SearchBar className={estilos.boton1}/>
-            
-            <div className={estilos.card}>                         
+                </select>
+                <SearchBar className={estilos.boton1}/>
+                <div className={estilos.card}>                         
                 {currentRecipes?.map((el)=>{ //slice(0.9)
                     return( 
                         <Fragment>                      
                             <Link className={estilos.tyty} to={`/recipes/${el.id}`} key={'l' + el.id}>
-                            <Card key={el.id} id={el.id} img={el.image} name={el.name} /* Diet={el.Diets} */  diets={el.diets} /* healtScore = {el.healthScore} */>
+                            <Card key={el.id} id={el.id} img={el.image} name={el.name} /* Diet={el.Diets} */  diets={el.diets} /* healtScore = {el.healthScore} */ >
                             </Card>
-                                </Link>   
+                            </Link>   
                             </Fragment>                         
                     )})                               
                 }
-                </div>
-            <div>
-            <Paginado key= {1} recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado} currentPage = {currentPage}/>
-            </div>
+                            </div>
+                            <div>
+                                 <Paginado key= {1} recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado} currentPage = {currentPage}/>
+                             </div>
                 
             </div>
-        </div>
+            </div>
     )
 }     

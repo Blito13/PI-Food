@@ -23,15 +23,15 @@ console.log(initialState)
 
 
 
-function rootR (state = initialState , action){
-console.log(action.type , action.payload)
+function rootR (state = initialState ,{type ,payload}){
+console.log(type ,payload)
  
-    switch(action.type){
+    switch(type){
         case GET_ALL_REC :
             return{
                 ...state,
-                recipes : action.payload,
-                allRecipes : action.payload
+                recipes : payload,
+                allRecipes :payload
 
             }
         case FILTER_REC: 
@@ -45,15 +45,15 @@ console.log(action.type , action.payload)
                     return e
                     }
                     })
-             return sol.includes(action.payload) ===true? 
+             return sol.includes(payload) ===true? 
                  fix.push(e):null})
                 console.log(fix)
             return{
                     ...state,
-                    recipes:action.payload === 'All'? allRecipes: fix 
+                    recipes:payload === 'All'? allRecipes: fix 
                 }
         case ORDER_NAME : 
-            let arrayOrdenau = action.payload === 'asc'?
+            let arrayOrd = payload === 'asc'?
             state.recipes.sort(function(a,b){
                 if(a.name > b.name){
                     return 1;
@@ -73,11 +73,11 @@ console.log(action.type , action.payload)
             })
             return {
                 ...state,
-                recipes : arrayOrdenau
+                recipes : arrayOrd
             }
         case ORDER_SCORE : 
        /* score= state.recipes.healthScore */
-        let puntaje = action.payload === 'low'?
+        let puntaje =payload === 'low'?
         state.recipes.sort(function(a,b){
             if(a.healthScore> b.healthScore){
                 return 1;
@@ -103,7 +103,7 @@ console.log(action.type , action.payload)
            case GET_NAME_RECIPE:
             return{ 
                 ...state,
-                recipes:action.payload 
+                recipes:payload 
             }
         case POST_REC:
             return{
@@ -112,12 +112,19 @@ console.log(action.type , action.payload)
         case GET_TYPES:
             return{
                 ...state,
-                types: action.payload 
+                types:payload 
             } 
         case GET_DETAILS:
+            const lax = []
+            const lex = payload
+            lex[0].steps.map((e , i)=> {
+           e.ingredients.map(e=> console.log((typeof e.image)))
+                   }
+            )
+            console.log(lax)
             return{
                 ...state,
-                details:action.payload
+                details:payload
                 }
         
         default :

@@ -63,23 +63,18 @@ const Modal = ({ setIsOpen }) => {
         if(checked === false || input.diets.includes(value) === true){
             setInput({
                 ...input,
-                diets : [...input.diets.filter(d=> d !== value)]
-                
-                
+                diets : [...input.diets.filter(d=> d !== value)] 
              })
-            /* checked = true */
             console.log(input.diets)
-             
          } else {
              setInput({
                  ...input,
                  diets:[... input.diets , value]
              })
-             /* checked = false */
+           
              }
-   
-        
     } 
+
     console.log(input.diets)
     function handleDelete(e){ 
         setInput({
@@ -157,23 +152,20 @@ return (
                                 name='steps'
                                 onChange={(e)=> handleChange(e)}/>     
 
-                                <div className={estilos.selecDiets}>
+                            <div className={estilos.selecDiets}>
                                 {diets.map (e => (
-
-                                
-                                        <div className={estilos.listo}>
-                                            <input className = {estilos.checks} value={e.name} key={+1} onChange= {e=>handleSelect(e)} type="checkbox" />
-                                            {e.name}
-                                        
-                                   
-                                 </div>      ))}                           
+                                    <div className={estilos.listo}>
+                                        <input
+                                        className = {estilos.checks} 
+                                        value={e.name} 
+                                        key={+1} 
+                                        onChange= {e=>handleSelect(e)}
+                                        type="checkbox" />
+                                        {e.name}
+                                </div> ))}                           
                                     <button className={estilos.deleteBtn}>Create</button>  
-                                    
-                                    </div>         
-                        
-
-                            </div>    
-                            
+                                    </div>  
+                                    </div>        
                 </form>
                 </div>
                 <div className={estilos.modalActions}>

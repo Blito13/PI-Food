@@ -25,10 +25,10 @@ return async function (dispatch){
 export function getNameRecipes (name){ //concatenamos lo que ingresemos en el input como nombre para buscar recetas
     return async function (dispatch){
         try{
-            let yeison = await axios.get(`http://localhost:3001/recipes?name=${name}`)
+            let json = await axios.get(`http://localhost:3001/recipes?name=${name}`)
             return dispatch({
                 type : 'GET_NAME_RECIPE',
-                payload : yeison.data
+                payload : json.data
             })
             
         }catch(error){

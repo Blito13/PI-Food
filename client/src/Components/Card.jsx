@@ -16,7 +16,7 @@ export default function Card({img, name, diets , id}){
     }
     return(
         <div className={estilos.contenedor} onMouseLeave = {e => ocultar(e)}>
-            <h2 className={estilos.titulo} onMouseMove= {e =>mostrar(e)}>{name}</h2>
+            <h2 className={estilos.titulo} onMouseMove= {e =>mostrar(e)} >{name}</h2>
             {/* <Link className={estilos.titulo} to={`/recipes/${id}`} key={'l' + id}></Link> */}   
             {diet?.map(e=> <h2 className={estilos.h4} key={e.name}>{Object.values(e)}</h2>)}
             <img className={estilos.img}src= {img} alt='img'>
