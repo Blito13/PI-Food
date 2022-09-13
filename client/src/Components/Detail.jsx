@@ -17,73 +17,51 @@ export default function Detail(){
   const detailstate = useSelector((state) => state.details)
   
   return(
-    <div className = {styles.container}>
+
+   <div  className = {styles.back}>
 
      {detailstate.length > 0 ?
-          <div className = {styles.container}> 
-          
-        {/* <img src={detailstate[0].image} alt = 'dish' className = {styles.img}/> */}
-            
-           <div  className = {styles.conta}>
-              <div className = {styles.span}>
-           <h1 className = {styles.h5}>
-            Diets: {
-             detailstate[0].diets.map(e => <li className={styles.die}>{Object.values(e)}</li>)}</h1>
-
-              <div className = {styles.span}>
-           <h1 className = {styles.h5}>
-              HealthLevel:
-            
-               <p>{detailstate[0].healthScore}</p>
-            </h1>
-              </div>
-              <div className = {styles.span}>
-           <h1 className = {styles.h5}>
-            
-          </h1>
-
-              </div>
-
-              </div>
-           
-            <br />
-
-
-           </div>
-          
-           
-
-           <div>
-           <h1 className = {styles.h1}> {detailstate[0].name} 
-           </h1>
-           <h3 className = {styles.h5}>Summary:</h3>
-           <p  className = {styles.h5}>{(detailstate[0].summary).replace(/<[^>]+>/g, '')}</p>
-           </div>
- 
-
-           
-           
-           <br></br>
-           <h3 className = {styles.h5}>Steps:</h3><p className = {styles.h5}>{detailstate[0].steps.map(e=> <li>
-
-
-              {e.step}
-           </li>
-            )}
-           
-           </p>
-           <div>
-
-              {/*  {detailstate[0].steps.map(e => e.ingredients.map(e => <li>{e.name}</li>))} */}
-               {detailstate[0].steps.map(e => e.ingredients.map(e => <img src = {e.image} alt = "fr"></img>))}
+         <div className = {styles.container}> 
+           <div  className = {styles.container}>
+              <div className = {styles.h1}>
+               <div className={styles.upText}>
+                     <h1 className = {styles.h5}>
+                     Diets: {
+                     detailstate[0].diets.map(e => <li className={styles.die}>{Object.values(e)}</li>)}
+                     </h1>
+                     <h1 className = {styles.h5}>
+                     Health Level:
+                     <li>{detailstate[0].healthScore}</li>
+                     </h1>
+                     <h1 className = {styles.h5}>
+                     Ingredients: {
+                            detailstate[0].steps.map(e => e.ingredients.map(e => <li>{e.name}</li>))}
+                     </h1>
+                     <h1 className = {styles.h5}>
+                     {<img src={detailstate[0].image} alt = 'dish' className = {styles.img}/>}
+                     </h1>
+               </div>
                
-           </div>
-           <Link to='/home'><button className = {styles.boton}>Back to Home </button> </Link>
+                     <h1 className = {styles.h1}> {detailstate[0].name} 
+                     </h1>
+                     <h3 className = {styles.h5}>
+                        Summary:</h3>
+                        <p className = {styles.h5}>{(detailstate[0].summary).replace(/<[^>]+>/g, '')}</p>
+                  
+                        <h3 className = {styles.h5}>
+                           Steps:
+                              </h3>
+                           <p className = {styles.h5}>
+                              {detailstate[0].steps.map(e=> 
+                              <li>
+                              {e.step}
+                              </li> )}</p>
+                        <Link to='/home'><button className = {styles.boton}>Back to Home </button> </Link>
+                  </div>
+                  </div>
+          
        </div> : 
        
        <div> <h2> loading... </h2> </div>
       }
-     </div>
-         )
-         
-        }
+     </div>)}
