@@ -9,62 +9,68 @@ import Modal from "./Modal";
 
 export default function Detail(){
   const {id} = useParams()
- 
+  
   const dispatch = useDispatch() 
   
-  useEffect (() => { 
-  dispatch(getDetail(id))} ,[id , dispatch]) 
   const detailstate = useSelector((state) => state.details)
-  
+  useEffect (() => { 
+     dispatch(getDetail(id))},[detailstate]) 
+     
   return(
 
-   <div  className = {styles.back}>
+   <article  >
 
-     {detailstate.length > 0 ?
+         {detailstate.length > 0 ?
          <div className = {styles.container}> 
            <div  className = {styles.container}>
-              <div className = {styles.h1}>
-               <div className={styles.upText}>
+              
+                  <div className={styles.column}>
+                     <h1 className = {styles.h1}> {detailstate[0].name} 
+                     </h1>
+                     <p className = {styles.text}>{(detailstate[0].summary).replace(/<[^>]+>/g, '')}</p>
+                     <h3 className = {styles.h1}>
+                     Steps:
+                     </h3>
+                              {detailstate[0].steps.map(e=> 
+                              <li className = {styles.h5}>
+                              {e.step}
+                              </li> )}
+                  </div>
+                  <div className = {styles.divisionBar}>
+
+                  </div>
+
+                  <div className={styles.column}>
                      
                      {<img src={detailstate[0].image} alt = 'image' className = {styles.img}/>}
                     
-                     <h1 className = {styles.h5}>
+                     <h1 className = {styles.h1}>
                      Diets: {
-                     detailstate[0].diets.map(e => <li className={styles.die}>{Object.values(e)}</li>)}
+                     detailstate[0].diets.map(e => <li className={styles.text}>{Object.values(e)}</li>)}
                      </h1>
-                     <h1 className = {styles.h5}>
+                     <h1 className = {styles.h1}>
                      Health Level:
-                     <li>{detailstate[0].healthScore}</li>
+                     <li className={styles.text}>{detailstate[0].healthScore}</li>
                      </h1>
-
-                     <h1 className = {styles.h5}>
+                     <h1 className = {styles.h1}>
                      Ingredients: {
-                            detailstate[0].steps.map(e => e.ingredients.map(e => <li>{e.name}</li>))}
+                        detailstate[0].steps.map(e => e.ingredients.map(e => 
+                        <li className={styles.text}>{e.name}</li>))}
                      </h1>
-                    
-                     
-               </div>
-               
-                     <h1 className = {styles.h1}> {detailstate[0].name} 
-                     </h1>
-                     <h3 className = {styles.h3}>
-                        </h3>
-                        <article className = {styles.text}>{(detailstate[0].summary).replace(/<[^>]+>/g, '')}</article>
-                  
-                        <h3 className = {styles.h5}>
-                           Steps:
-                              </h3>
-                           <p className = {styles.h5}>
-                              {detailstate[0].steps.map(e=> 
-                              <li>
-                              {e.step}
-                              </li> )}</p>
-                        <Link to='/home'><button className = {styles.boton}>Back to Home </button> </Link>
-                  </div>
-                  </div>
-          
+                     <br />
+                     <div className={styles.h1}>
+
+                     <Link to='/home'><button className = {styles.boton}>Back to Home </button> </Link>
+                     </div>
+                   </div>     
+         <div className={styles.column}>
+
+      </div>
+         </div>
        </div> : 
        
-       <div> <h2> loading... </h2> </div>
-      }
-     </div>)}
+       <div> 
+         <h2> loading... </h2> </div>
+      }              
+      
+   </article>)}

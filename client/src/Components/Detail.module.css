@@ -1,9 +1,23 @@
 
 .container{
-/*   display: flex;
-  flex-direction: column; */
-  /*  background-color: rgb(231, 195, 248); */
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin: auto;
+  
+  padding: 10px;
   background-color: green;
+
+}
+.button{
+    display : grid
+}
+.divisionBar {
+  display: flex;
+ /*  height: 30px; */
+  width: 300px;
+  justify-content: center;
+  
 }
 .h1{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -12,24 +26,18 @@
     font: italic;
     text-shadow: 1px 1px 2px rgb(243, 226, 226), 0 0 1em rgba(39, 39, 53, 0.808), 0 0 0.2em rgb(99, 99, 121);
 }
-.upText{
-  display: flex;
-  flex-direction: column;
-  /* margin-block-end: 800px; */
-  justify-content:end;
-  width: 300px;
-  text-align: left;
-  
- 
+.column{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 10px;
 }
 .img{
-    
     border-radius: 15px;
-    
     max-width:300px;
     max-height: 300px;
 
-    text-align: right;
+    /* text-align: right; */
      
     /* margin-left: 68%; */
     /* margin-block-end: 2%; */
@@ -50,13 +58,16 @@
   /*   text-align: left */;
    /*  text-decoration: underline; */
     /* text-shadow: 1px 1px 2px rgb(243, 226, 226), 0 0 1em rgba(71, 71, 107, 0.808), 0 0 0.2em rgb(99, 99, 121); */
-    margin-bottom: 3px;
+   /*  margin-bottom: 3px; */
     color: white;
+    text-align: left;
     /* display: grid; */
     justify-content: center;
     width: 400px;
+    margin : auto
 }
 .h5{
+    
     font-size: 12px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: rgb(255, 255, 255);
@@ -68,10 +79,11 @@
     font-size: 10px;
     margin-bottom: 3px;
     font-family:Verdana, Geneva, Tahoma, sans-serif ;
-    text-align: left;
+   /*  text-align: left; */
 }
 
 .boton{
+   /*  margin-bottom: 200px; */
     border: 1,5 solid rgba(27, 23, 23, 0.815);
     color: rgb(60, 71, 235);
     background-color: white;
@@ -79,9 +91,11 @@
     cursor: pointer;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: medium;
-    text-align: left;
+   /*  text-align: center; */
     text-decoration: none;
-    margin-bottom: 21px;
+    text-align: left;
+    
+    
 }
 
 .boton:hover{
