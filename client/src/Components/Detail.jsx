@@ -25,6 +25,9 @@ export default function Detail(){
            <div  className = {styles.container}>
               <div className = {styles.h1}>
                <div className={styles.upText}>
+                     
+                     {<img src={detailstate[0].image} alt = 'image' className = {styles.img}/>}
+                    
                      <h1 className = {styles.h5}>
                      Diets: {
                      detailstate[0].diets.map(e => <li className={styles.die}>{Object.values(e)}</li>)}
@@ -33,20 +36,20 @@ export default function Detail(){
                      Health Level:
                      <li>{detailstate[0].healthScore}</li>
                      </h1>
+
                      <h1 className = {styles.h5}>
                      Ingredients: {
                             detailstate[0].steps.map(e => e.ingredients.map(e => <li>{e.name}</li>))}
                      </h1>
-                     <h1 className = {styles.h5}>
-                     {<img src={detailstate[0].image} alt = 'dish' className = {styles.img}/>}
-                     </h1>
+                    
+                     
                </div>
                
                      <h1 className = {styles.h1}> {detailstate[0].name} 
                      </h1>
-                     <h3 className = {styles.h5}>
-                        Summary:</h3>
-                        <p className = {styles.h5}>{(detailstate[0].summary).replace(/<[^>]+>/g, '')}</p>
+                     <h3 className = {styles.h3}>
+                        </h3>
+                        <article className = {styles.text}>{(detailstate[0].summary).replace(/<[^>]+>/g, '')}</article>
                   
                         <h3 className = {styles.h5}>
                            Steps:
