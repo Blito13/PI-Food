@@ -1,29 +1,47 @@
 import React from "react";
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector,  } from "react-redux";
-import { getDetail } from "../Redux/actions";
+import { getDetail ,getRecipes } from "../Redux/actions";
 import { useEffect , useState } from "react";
 
 import styles from './Detail.module.css';
 import Modal from "./Modal";
 
 export default function Detail(){
-  const {id} = useParams()
-  
-  const dispatch = useDispatch() 
-  
-  const detailstate = useSelector((state) => state.details)
-  useEffect (() => { 
-     dispatch(getDetail(id))},[detailstate]) 
-     
-  return(
+   
+   var detailstate = useSelector((state) => state.details)
+   /* const [detailstate , setDetailstate] = useState() */
+   
+   const dispatch = useDispatch() 
+   const {id} = useParams()
+   
+   const clearCacheData = () => {
+      caches.keys().then((names) => {
+        names.forEach((name) => {
+          caches.delete(name);
+        });
+      });
+      alert('Complete Cache Cleared')
+    };
+   useEffect (function () {
+      
+      dispatch(getDetail(id))
+      return () => {
+         clearCacheData()
+      }
+      
+   },[]) 
+   /* function reset(){} */
+   
+   return(
+      <article  >
 
-   <article  >
-
-         {detailstate.length > 0 ?
+      
+         {detailstate.length >0 ? 
+         
          <div className = {styles.container}> 
            <div  className = {styles.container}>
-              
+           
                   <div className={styles.column}>
                      <h1 className = {styles.h1}> {detailstate[0].name} 
                      </h1>
@@ -60,7 +78,7 @@ export default function Detail(){
                      <br />
                      <div className={styles.h1}>
 
-                     <Link to='/home'><button className = {styles.boton}>Back to Home </button> </Link>
+                     <Link to='/home'><button className = {styles.boton} >Back to Home </button> </Link>
                      </div>
                    </div>     
          <div className={styles.column}>

@@ -64,10 +64,10 @@ export function orderByScore(payload){
 }
 export function getTypes(){
     return async function (dispatch){
-        let yeison = await axios.get('http://localhost:3001/diets')
+        let json = await axios.get('http://localhost:3001/diets')
         return dispatch({
             type: 'GET_TYPES',
-            payload : yeison.data
+            payload : json.data
         })
     }
     

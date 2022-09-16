@@ -18,13 +18,13 @@ import{
 }
 
 
-console.log(initialState)
 
 
 
 
-function rootR (state = initialState ,{type ,payload}){
-console.log(type ,payload)
+
+function rootR (state = initialState ,{payload ,type}){
+
  
     switch(type){
         case GET_ALL_REC :
@@ -32,7 +32,8 @@ console.log(type ,payload)
                 ...state,
                 recipes : payload,
                 allRecipes :payload
-
+                
+             
             }
         case FILTER_REC: 
             const allRecipes= state.allRecipes
@@ -47,7 +48,7 @@ console.log(type ,payload)
                     })
              return sol.includes(payload) ===true? 
                  fix.push(e):null})
-                console.log(fix)
+                
             return{
                     ...state,
                     recipes:payload === 'All'? allRecipes: fix 
@@ -76,7 +77,7 @@ console.log(type ,payload)
                 recipes : arrayOrd
             }
         case ORDER_SCORE : 
-       /* score= state.recipes.healthScore */
+       
         let puntaje =payload === 'low'?
         state.recipes.sort(function(a,b){
             if(a.healthScore> b.healthScore){
@@ -115,19 +116,11 @@ console.log(type ,payload)
                 types:payload 
             } 
         case GET_DETAILS:
-            const lax = []
-            const lex = payload
-            lex[0].steps.map((e , i)=> {
-           e.ingredients.map(e=> console.log((typeof e.image)))
-                   }
-            )
-            console.log(lax)
-            return{
-                ...state,
-                details:payload
-                }
+            /* state.details = undefined */
         
-        default :
+            return {...state, details : payload }
+            
+            default :
         return state;
     }
 
