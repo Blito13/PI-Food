@@ -9,6 +9,7 @@ export const POST_REC = 'POST_REC'
 export const ORDER_SCORE = 'ORDER_SCORE'
 export const GET_DETAILS = 'GET_DETAILS'
 export const ORDER_HEALTH = 'SORDER_HEALTHY'
+export const RESET_DETAILS = 'RESET_DETAILS'
 
 
 export function getRecipes (){
@@ -97,6 +98,20 @@ export function getDetail(id){
         })
         }catch(error){
             console.log(json.data)
+        }
+    }
+}
+export function resetDet(){
+
+    return async function(dispatch){
+        try{
+           
+        return dispatch( {
+            type : "RESET_DETAILS",
+            payload: []
+        })
+        }catch(error){
+            console.log("lis")
         }
     }
 }

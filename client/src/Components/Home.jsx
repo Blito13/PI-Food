@@ -108,7 +108,7 @@ export default function Home(){
                 {currentRecipes?.map((el)=>{ //slice(0.9)
                     return( 
                         <Fragment>                      
-                            <Link className={estilos.tyty} to={`/recipes/${el.id}`} key={'l' + el.id}>
+                            <Link className={estilos.tyty} to={`/recipes/${el.id}`} key={el.id}>
                             <Card key={el.id} id={el.id} img={el.image} name={el.name} /* Diet={el.Diets} */  diets={el.diets} /* healtScore = {el.healthScore} */ >
                             </Card>
                             </Link>   

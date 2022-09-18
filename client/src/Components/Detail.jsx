@@ -1,43 +1,39 @@
 import React from "react";
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector,  } from "react-redux";
-import { getDetail ,getRecipes } from "../Redux/actions";
-import { useEffect , useState } from "react";
+import { getDetail ,resetDet } from "../Redux/actions";
+import { useEffect } from "react";
 
 import styles from './Detail.module.css';
-import Modal from "./Modal";
+import { useState } from "react";
+
 
 export default function Detail(){
    
-   var detailstate = useSelector((state) => state.details)
    /* const [detailstate , setDetailstate] = useState() */
    
    const dispatch = useDispatch() 
    const {id} = useParams()
+   /* const [detailstate, setDetail] = useState(0) */
    
-   const clearCacheData = () => {
-      caches.keys().then((names) => {
-        names.forEach((name) => {
-          caches.delete(name);
-        });
-      });
-      alert('Complete Cache Cleared')
-    };
-   useEffect (function () {
+   var detailstate = useSelector((state) => state.details)
+   useEffect ( () => {
       
-      dispatch(getDetail(id))
-      return () => {
-         clearCacheData()
-      }
+      dispatch(resetDet())
+      dispatch(getDetail(id));
+
+      console.log(detailstate)
       
-   },[]) 
-   /* function reset(){} */
+      /* return () => detailstate = [] */
+   }
    
+   
+   ,[])    
    return(
       <article  >
 
       
-         {detailstate.length >0 ? 
+         {detailstate.length > 0 ? 
          
          <div className = {styles.container}> 
            <div  className = {styles.container}>
@@ -53,14 +49,12 @@ export default function Detail(){
                               <li className = {styles.h5}>
                               {e.step}
                               </li> )}
-                  </div>
-                  <div className = {styles.divisionBar}>
+                     </div>
+                     <div className = {styles.divisionBar}></div>
 
-                  </div>
-
-                  <div className={styles.column}>
+                     <div className={styles.column}>
                      
-                     {<img src={detailstate[0].image} alt = 'image' className = {styles.img}/>}
+                     {<img src={detailstate[0].image} alt = 'fot' className = {styles.img}/>}
                     
                      <h1 className = {styles.h1}>
                      Diets: {
@@ -81,14 +75,10 @@ export default function Detail(){
                      <Link to='/home'><button className = {styles.boton} >Back to Home </button> </Link>
                      </div>
                    </div>     
-         <div className={styles.column}>
-
-      </div>
-         </div>
-       </div> : 
+          </div>
+         </div> : 
        
        <div> 
-         <h2> loading... </h2> </div>
-      }              
+         <h2> loading... </h2> </div>}              
       
    </article>)}

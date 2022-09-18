@@ -69,7 +69,7 @@ const Modal = ({ setIsOpen }) => {
          } else {
              setInput({
                  ...input,
-                 diets:[... input.diets , value]
+                 diets:[...input.diets , value]
              })
            
              }
