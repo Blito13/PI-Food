@@ -77,11 +77,11 @@ export function postRecipe (payload){
     return async function(dispatch){
         try{
 
-            var yeison = await axios.post("http://localhost:3001/recipe",payload)
-            return yeison;
+            var json = await axios.post("http://localhost:3001/recipe",payload)
+            
+            return json;
         }catch (error){
             console.log(error)
-        console.log (yeison)
         }
     } 
     
@@ -91,13 +91,13 @@ export function getDetail(id){
     return async function(dispatch){
         try{
             var json = await axios.get(`http://localhost:3001/recipes/${id}`);
-            console.log(json.data)
+        
         return dispatch( {
             type : "GET_DETAILS",
             payload: json.data
         })
         }catch(error){
-            console.log(json.data)
+            
         }
     }
 }
@@ -111,7 +111,7 @@ export function resetDet(){
             payload: []
         })
         }catch(error){
-            console.log("lis")
+            console.log(error)
         }
     }
 }

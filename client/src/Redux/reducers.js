@@ -117,7 +117,7 @@ function rootR (state = initialState ,{payload ,type}){
                 types:payload 
             } 
         case GET_DETAILS:
-       
+     
            const reg = payload
              
         

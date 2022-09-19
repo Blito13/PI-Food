@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
     setDiet(diets)
     }
    const ocultar = (e) =>{
-        setDiet(null)
+        setDiet([])
     }
     return(
-        <div className={estilos.contenedor} onMouseLeave = {e => ocultar(e)}>
-            <h2 className={estilos.titulo} onMouseMove= {e =>mostrar(e)} >{name}</h2>
-            {diet?.map(e=> <h2 className={estilos.h4} /* key={id} */>{Object.values(e)}</h2>)}
+        <div className={estilos.contenedor}onMouseLeave = {e => ocultar(e)}>
+            <h2 className={estilos.titulo} key = {"2"+id} onMouseMove= {e =>mostrar(e)} >{name}</h2>
+            {diet?.map(e=> <h2 className={estilos.h4} key = {"9"+id}>{Object.values(e)}</h2>)}
                 
           {/*   <Link className={estilos.titulo} to={`/recipes/${id}`} key={id}> */}
 

@@ -16,19 +16,16 @@ export default function Detail(){
    const {id} = useParams()
    /* const [detailstate, setDetail] = useState(0) */
    
-   var detailstate = useSelector((state) => state.details)
+   const detailstate = useSelector((state) => state.details)
    useEffect ( () => {
       
       dispatch(resetDet())
       dispatch(getDetail(id));
-
-      console.log(detailstate)
-      
-      /* return () => detailstate = [] */
    }
    
    
    ,[])    
+
    return(
       <article  >
 
@@ -46,7 +43,7 @@ export default function Detail(){
                      Steps:
                      </h3>
                               {detailstate[0].steps.map(e=> 
-                              <li className = {styles.h5}>
+                              <li className = {styles.h5} key =  {e.name}>
                               {e.step}
                               </li> )}
                      </div>
@@ -58,7 +55,7 @@ export default function Detail(){
                     
                      <h1 className = {styles.h1}>
                      Diets: {
-                     detailstate[0].diets.map(e => <li className={styles.text}>{Object.values(e)}</li>)}
+                     detailstate[0].diets.map(e => <li className={styles.text} key={"p" +e.name}>{Object.values(e)}</li>)}
                      </h1>
                      <h1 className = {styles.h1}>
                      Health Level:
@@ -67,7 +64,7 @@ export default function Detail(){
                      <h1 className = {styles.h1}>
                      Ingredients: {
                         detailstate[0].steps.map(e => e.ingredients.map(e => 
-                        <li className={styles.text}>{e.name}</li>))}
+                        <li className={styles.text} key = {e.name}>{e.name}</li>))}
                      </h1>
                      <br />
                      <div className={styles.h1}>
@@ -76,9 +73,11 @@ export default function Detail(){
                      </div>
                    </div>     
           </div>
-         </div> : 
+         </div> :
        
-       <div> 
-         <h2> loading... </h2> </div>}              
+       <div className={styles.divLoading}>
+       <img src="https://thumbs.gfycat.com/PepperyMediumBrahmancow-size_restricted.gif" />
+     </div> 
+        }          
       
    </article>)}
