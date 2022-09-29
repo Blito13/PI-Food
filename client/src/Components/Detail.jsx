@@ -43,7 +43,7 @@ export default function Detail(){
                      Steps:
                      </h3>
                               {detailstate[0].steps.map(e=> 
-                              <li className = {styles.h5} key =  {e.name}>
+                              <li className = {styles.h5} key = {e.name}>
                               {e.step}
                               </li> )}
                      </div>
