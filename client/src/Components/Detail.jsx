@@ -9,30 +9,23 @@ import Modal from "./Modal";
 
 export default function Detail(){
    
-   var detailstate = useSelector((state) => state.details)
-   /* const [detailstate , setDetailstate] = useState() */
+   const detail = useSelector((state) => state.details)
+   const [detailstate , setDetailstate] = useState([])
    
    const dispatch = useDispatch() 
    const {id} = useParams()
    
-   const clearCacheData = () => {
-      caches.keys().then((names) => {
-        names.forEach((name) => {
-          caches.delete(name);
-        });
-      });
-      alert('Complete Cache Cleared')
-    };
+   
    useEffect (function () {
       
       dispatch(getDetail(id))
       return () => {
-         clearCacheData()
+         setDetailstate([])
       }
       
    },[]) 
    /* function reset(){} */
-   
+   setDetailstate(detail)
    return(
       <article  >
 
