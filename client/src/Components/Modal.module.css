@@ -8,6 +8,14 @@
     transform: translate(-50%, -50%);
     position: absolute;
 }
+.buttonStep{
+  background: rgb(8, 238, 131);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+ margin-top: 0;
+
+}
   .form{
     display: grid;
   }
@@ -19,8 +27,8 @@
   }
   
   .modal {
-    width: 300px;
-    height: 500px;
+    width: 19.250rem;
+    height: 37rem;
     background: white;
     color: white;
     z-index: 0;

@@ -68,7 +68,12 @@ export default function Home(){
         setCurrentPage(1);
         setOrden1(`ordenado ${e.target.value}`)
     }
-  
+    /* function handleHealthScore(e){
+        e.preventDefault();
+        dispatch(orderByhealthScore(e.target.value))
+        setCurrentPage(1);
+        setOrden1(`ordenado ${e.target.value}`)
+    } */
    console.log(allRecipes)
     return(
         <div className={estilos.contenedor}>

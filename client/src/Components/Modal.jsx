@@ -41,7 +41,7 @@ const Modal = ({ setIsOpen }) => {
         summary:'',
         score:0,
         healthScore:0,
-        steps:'',
+        steps:[],
         image:'',
         diets:[],
     })
@@ -86,12 +86,21 @@ const Modal = ({ setIsOpen }) => {
         summary:'',
         score:0,
         healthScore:0,
-        steps:'',
+        steps:[],
         image:'',
         diets:[],
         })
-    }  
-     
+    } 
+    function handleChangeStep(e){
+        const {name , value } = e.target
+        name === 'steps' &&  
+        setInput({
+            ...input,
+              name: [{step : value}] 
+
+        })
+        console.log(input)&&++count}
+     const count = 79
 return (
     <>
      <div className={estilos.darkBG} onClick={() => setIsOpen(false)} />
@@ -147,7 +156,8 @@ return (
                                 type='textarea'
                                 value={input.steps}
                                 name='steps'
-                                onChange={(e)=> handleChange(e)}/>     
+                                onChange={(e)=> handleChangeStep(e)}/>     
+                                <button className={estilos.buttonStep} onClick= {(e => {handleChangeStep(e)})}>step {`${count}`}</button>
 
                             <div className={estilos.selecDiets}>
                                 {diets.map (e => (

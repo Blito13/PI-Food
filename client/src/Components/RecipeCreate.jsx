@@ -33,16 +33,22 @@ export default function RecipeCreate(){
         summary:'',
         score:0,
         healthScore:0,
-        steps:'',
+        steps:[],
         image:'',
         diets:[],
     })
 
     function handleChange(e){
-        setInput({
+        const {value , name} = e.target
+    name === 'steps' && setInput({
+        ...input,
+    
+        name : [{step : value}]
+    })
+       /*  setInput({
             ...input,
             [e.target.name] : e.target.value
-        })
+        }) */
         setError(validate({
             ...input,
             [e.target.name] : e.target.value
@@ -77,6 +83,7 @@ export default function RecipeCreate(){
         })
     }   
     console.log(input.diets)
+    const count = 12
     return(
         <div className={estilos.contenedor}>
             <Link to='/home'><button className={estilos.boton1}>Back</button></Link>            
@@ -125,7 +132,8 @@ export default function RecipeCreate(){
                     type='textarea'
                     value={input.steps}
                     name='steps'
-                    onChange={(e)=> handleChange(e)}/>                    
+                    onChange={(e)=> handleChange(e)}/> 
+                    <button className={estilos.buttonStep}>step {`${count}`}</button>                   
                 </div>
                 <p className={estilos.p}>Type-Diets: </p>
                 <select onChange={(e)=> handleSelect(e)} className={estilos.p}>
