@@ -43,7 +43,7 @@ export default function Home(){
        
         dispatch(getRecipes());
         dispatch(getTypes());
-        return () => setIsOpen(false) && alert("carrado")
+        return () => setIsOpen(true) && alert("carrado")
     },[dispatch]) 
 
     const types = useSelector(state=> state.types)

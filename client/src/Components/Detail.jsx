@@ -19,8 +19,9 @@ export default function Detail(){
    const detailstate = useSelector((state) => state.details)
    useEffect ( () => {
       
-      dispatch(resetDet())
+     /*  dispatch(resetDet()) */
       dispatch(getDetail(id));
+      return () =>  dispatch(resetDet())
    }
    
    

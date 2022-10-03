@@ -10,7 +10,7 @@ recipe.post('/', async (req, res)=>{
         summary,
         score,
         healthScore,
-        steps,   
+        steps ,   
         image,
         createdINBd 
     });

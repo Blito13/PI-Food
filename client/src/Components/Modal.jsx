@@ -34,8 +34,9 @@ const Modal = ({ setIsOpen }) => {
    
     const diets = useSelector((state)=> state.types)
 
+    var countr = 79
     const [error, setError] = useState({})
- 
+    const [step , setStep] = useState("")
     const [input, setInput] = useState({
         name: '',
         summary:'',
@@ -78,7 +79,25 @@ const Modal = ({ setIsOpen }) => {
     } 
 
     /* console.log(input.diets) */
-     
+    function handleChangeStep(e){
+   
+        const {name , value } = e.target;
+     setStep(...value)
+        console.log(step)
+       /* name === "steps" && setInput({...input.steps ,  step }) */
+       /* console.log(step ) */
+      /*  conos */
+    }
+    function handleStep () {
+        setInput({
+            ...input,
+            steps : [step]
+         
+            
+            
+        })
+        console.log(input)
+    }
     function handleSubmit(e){
         dispatch(postRecipe(input))        
         setInput({
@@ -91,16 +110,6 @@ const Modal = ({ setIsOpen }) => {
         diets:[],
         })
     } 
-    function handleChangeStep(e){
-        const {name , value } = e.target
-        name === 'steps' &&  
-        setInput({
-            ...input,
-              name: [{step : value}] 
-
-        })
-        console.log(input)&&++count}
-     const count = 79
 return (
     <>
      <div className={estilos.darkBG} onClick={() => setIsOpen(false)} />
@@ -156,8 +165,8 @@ return (
                                 type='textarea'
                                 value={input.steps}
                                 name='steps'
-                                onChange={(e)=> handleChangeStep(e)}/>     
-                                <button className={estilos.buttonStep} onClick= {(e => {handleChangeStep(e)})}>step {`${count}`}</button>
+                                onChange={(e)=>handleChangeStep(e)}/>     
+                               <button type = "button"  onClick={handleStep}></button>
 
                             <div className={estilos.selecDiets}>
                                 {diets.map (e => (

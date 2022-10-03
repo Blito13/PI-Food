@@ -29,6 +29,14 @@ const getApi = async () =>{
 };
 
   const getDB = async () =>{ 
+  /*  const lex= await Recipe.findAll({
+      
+
+           attributes: ['steps'],
+           
+     
+    })
+    console.log(lex) */
     return await Recipe.findAll({  
         include: { 
             model: Diet, 
