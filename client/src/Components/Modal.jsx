@@ -34,14 +34,15 @@ const Modal = ({ setIsOpen }) => {
    
     const diets = useSelector((state)=> state.types)
 
+    var countr = 79
     const [error, setError] = useState({})
- 
+    const [step , setStep] = useState([])
     const [input, setInput] = useState({
         name: '',
         summary:'',
         score:0,
         healthScore:0,
-        steps:'',
+        steps:[],
         image:'',
         diets:[],
     })
@@ -53,6 +54,7 @@ const Modal = ({ setIsOpen }) => {
             [e.target.name] : e.target.value
 
         })
+        console.log(input)
         setError(validate({
             
             ...input,
@@ -67,18 +69,35 @@ const Modal = ({ setIsOpen }) => {
                 ...input,
                 diets : [...input.diets.filter(d=> d !== value)] 
              })
-          /*   console.log(input.diets) */
-         } else {
-             setInput({
-                 ...input,
-                 diets:[...input.diets , value]
-             })
+            } else {
+                setInput({
+                    ...input,
+                    diets:[...input.diets , value]
+                })
+                console.log(input.diets)
            
              }
     } 
 
-    /* console.log(input.diets) */
-     
+
+    function handleChangeStep(e){
+ 
+    const {name , value } = e.target ; 
+    setStep(value)
+
+        console.log(step)   
+       
+    }
+    function handleStep (e) {
+        e.preventDefault()
+        setInput({
+            ...input,
+            steps :[...input.steps ,step]
+            
+        })
+      
+        console.log(input)
+    }
     function handleSubmit(e){
         dispatch(postRecipe(input))        
         setInput({
@@ -86,12 +105,11 @@ const Modal = ({ setIsOpen }) => {
         summary:'',
         score:0,
         healthScore:0,
-        steps:'',
+        steps:[],
         image:'',
         diets:[],
         })
-    }  
-     
+    } 
 return (
     <>
      <div className={estilos.darkBG} onClick={() => setIsOpen(false)} />
@@ -145,9 +163,10 @@ return (
                                 <p className={estilos.p}>Steps: </p>
                                 <textarea  /* className={estilos.textarea} */
                                 type='textarea'
-                                value={input.steps}
+                                value={step}
                                 name='steps'
-                                onChange={(e)=> handleChange(e)}/>     
+                                onChange={(e) =>handleChangeStep(e)}/>     
+                               <button type = "button"  onClick={(e) =>handleStep(e)}></button>
 
                             <div className={estilos.selecDiets}>
                                 {diets.map (e => (
