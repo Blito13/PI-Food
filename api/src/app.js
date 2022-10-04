@@ -6,7 +6,7 @@ const morgan = require('morgan');
 
 /* require('./db.js'); */
 const diets = require('./routes/diets.js')
-const recipe = require('./routes/recipe.js')
+/* const recipe = require('./routes/recipe.js') */
 const recipes = require('./routes/recipes.js')
 const server = express();
 
@@ -25,7 +25,7 @@ server.use((req, res, next) => {
 });
 
 server.use(diets);
-server.use(recipe);
+/* server.use(recipe); */
 server.use(recipes);
 
 // Error catching endware.

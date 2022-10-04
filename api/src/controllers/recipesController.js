@@ -41,22 +41,24 @@ const getDB = async () =>{
               },
           }
       })
-      }   
-const getAllrecipes = async ( req , res)=>{
+}   
+const getAllrecipes = async ()=>{
         const apInfo = await getApi();
         const dbInfo = await getDB();
         const infoTotal = [...apInfo, ...dbInfo]; 
-       res.send(infoTotal)/*  infoTotal; */
-       
-    };
-
-
+     
+        /* res.status(200).send(infoTotal)  */
+       return(infoTotal)
+        /* return infoTotal */
+};
 const getById =  async (req, res)=>{
+    /* DRYDRYDRY */
     const {id} = req.params; 
+   
     const recipesTotal = await getAllrecipes();
-    /* console.log(recipesTotal) */
+    
     if(id){        
-        const recipeId = recipesTotal.filter(el=>el.id == id)
+        const recipeId = infoTotal.filter(el=>el.id == id)
         recipeId.length?
         res.status(200).send(recipeId) :
         res.status(404).send('Recipe not found') 
@@ -72,11 +74,32 @@ const getByName =  async (req, res)=>{
             res.status(200).send(recipeName) :
             res.status(404).send("Recipe doesn't exist")
         } else {
-        res.status(200).json(recipesTotal) /////////////cambio
+        res.status(200).send(recipesTotal) /////////////cambio
     }
 }
-module.exports = {
+const postRecipe = async (req , res) =>{
+    
+    const { name, summary, score, healthScore, steps, diets, image, createdINBd } = req.body;
 
+    const recipeCreated = await Recipe.create({                
+        name,
+        summary,
+        score,
+        healthScore,
+        steps,   
+        image,
+        createdINBd 
+    });
+    const typesDb = await Diet.findAll({where: {name: diets}}) 
+    console.log(recipeCreated)
+    recipeCreated.addDiet(typesDb)
+    res.send('Recipe created successfully')
+
+}
+module.exports = {
     getAllrecipes,
+    getById,
+    getByName,
+    postRecipe
 } 
   
