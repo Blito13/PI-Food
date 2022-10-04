@@ -1,16 +1,14 @@
-require('dotenv').config(); 
-const { Router } = require("express");
+/* require('dotenv').config();  */
+/* const { Router } = require("express"); */
 const axios = require ('axios');
-const {Recipe , Diet} = require ('../db');
-const { getById, 
-        getByName,
-        getAllrecipes,
-        getDB , 
-        getApi,
-     } = require('../controllers/recipesControler');
-const router = Router();
-const {YOUR_API_KEY} = process.env;
+/* const {Recipe , Diet} = require ('../db'); */
+const {getAllrecipes} = require('../controllers/recipesController.js');
+/* const router = Router(); */
+var express = require('express');
+var router = express.Router();
+router.get('/recipes',getAllrecipes)
 
+module.exports = router;    
 
 /* const getApi = async () =>{
     const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${YOUR_API_KEY}`)
@@ -63,7 +61,7 @@ const {YOUR_API_KEY} = process.env;
 /*  router.get('/' , getApi)
  router.get('/' ,getDB) */
 /* router.get('/recipes',getAllrecipes) */
-router.get('/recipes',getAllrecipes)
+
 
 
 
@@ -98,7 +96,7 @@ router.get('/recipes',getAllrecipes)
 
 
 
-router.get('/recipes/:id' , getById)
+/* router.get('/recipes/:id' , getById) */
 
 
 
@@ -123,5 +121,3 @@ router.get('/recipes/:id' , getById)
     res.send ('soy delete home')
 })
  */
-
-module.exports = router;    

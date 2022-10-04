@@ -20,4 +20,6 @@ const getDiets  = async (req ,res ) =>{
     })
     res.send(allTypes)
 }
-module.exports = getDiets;
+module.exports ={
+    getDiets
+}; 

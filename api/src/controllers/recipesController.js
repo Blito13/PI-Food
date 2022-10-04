@@ -1,8 +1,8 @@
 require('dotenv').config(); 
-const { Router } = require("express");
+/* const { Router } = require("express"); */
 const axios = require ('axios');
 const {Recipe , Diet} = require ('../db')
-const router = Router();
+/* const router = Router(); */
 const {YOUR_API_KEY} = process.env;
 
 
@@ -10,7 +10,7 @@ const getApi = async () =>{
     try {
         const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${YOUR_API_KEY}`)
     
-    const apiInfo = await apiUrl.data.results.map((el) =>{
+        const apiInfo = await apiUrl.data.results.map((el) =>{
             return {
                 id: el.id,                         
                 name: el.title,
@@ -20,8 +20,6 @@ const getApi = async () =>{
                 summary: el.summary,
                 healthScore: el.healthScore,
                 steps: el.analyzedInstructions[0]?.steps,
-               
-
             }
         });   
        
@@ -33,6 +31,7 @@ const getApi = async () =>{
 
 };
 const getDB = async () =>{ 
+
       return await Recipe.findAll({  
           include: { 
               model: Diet, 
@@ -43,11 +42,12 @@ const getDB = async () =>{
           }
       })
       }   
-const getAllrecipes = async ()=>{
+const getAllrecipes = async ( req , res)=>{
         const apInfo = await getApi();
         const dbInfo = await getDB();
         const infoTotal = [...apInfo, ...dbInfo]; 
-        return infoTotal;
+       res.send(infoTotal)/*  infoTotal; */
+       
     };
 
 
@@ -76,9 +76,7 @@ const getByName =  async (req, res)=>{
     }
 }
 module.exports = {
+
     getAllrecipes,
-    getById,
-    getByName,
-    getDB,
-    getApi
-}
+} 
+  

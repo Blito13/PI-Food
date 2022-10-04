@@ -1,7 +1,7 @@
 const {Router} = require ('express');
 const {Recipe, Diet} = require ('../db');
+const {postRecipe} =require ('../controllers/recipeController.js')
 const recipe = Router();
-const postRecipe =require ('../controllers/recipeControler.js')
 
 recipe.post('/recipe',postRecipe)
 /* recipe.post('/', async (req, res)=>{

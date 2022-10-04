@@ -21,4 +21,6 @@ const postRecipe = async (req , res) =>{
         res.send('Recipe created successfully')
     
 }
-module.exports = postRecipe
+module.exports ={
+    postRecipe
+};
