@@ -7,6 +7,7 @@ import{
     ORDER_NAME ,
     ORDER_SCORE ,
     POST_REC,
+    RESET_DETAILS
     
 }from './actions'
 
@@ -116,9 +117,17 @@ function rootR (state = initialState ,{payload ,type}){
                 types:payload 
             } 
         case GET_DETAILS:
-            /* state.details = undefined */
+     
+           const reg = payload
+             console.log(reg[0].createdINBd)
         
-            return {...state, details : payload }
+            return {...state, details :reg}
+        case RESET_DETAILS:
+       
+           
+             
+        
+            return {...state, details :payload}
             
             default :
         return state;

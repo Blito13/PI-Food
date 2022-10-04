@@ -28,6 +28,8 @@ const Modal = ({ setIsOpen }) => {
     useEffect(()=>{
    
         dispatch(getTypes());
+        return () => setIsOpen(false) && alert("reset")
+        
     }, []); //eslint-disable-line
    
     const diets = useSelector((state)=> state.types)
@@ -65,23 +67,18 @@ const Modal = ({ setIsOpen }) => {
                 ...input,
                 diets : [...input.diets.filter(d=> d !== value)] 
              })
-            console.log(input.diets)
+          /*   console.log(input.diets) */
          } else {
              setInput({
                  ...input,
-                 diets:[... input.diets , value]
+                 diets:[...input.diets , value]
              })
            
              }
     } 
 
-    console.log(input.diets)
-    function handleDelete(e){ 
-        setInput({
-            ...input,
-            diets: input.diets.filter(d=> d !== e)
-        }) 
-     }  
+    /* console.log(input.diets) */
+     
     function handleSubmit(e){
         dispatch(postRecipe(input))        
         setInput({
@@ -158,12 +155,15 @@ return (
                                         <input
                                         className = {estilos.checks} 
                                         value={e.name} 
-                                        key={+1} 
+                                        
                                         onChange= {e=>handleSelect(e)}
                                         type="checkbox" />
                                         {e.name}
                                 </div> ))}                           
-                                    <button className={estilos.deleteBtn}>Create</button>  
+                                    <button className={estilos.deleteBtn} >
+                                        botones acciones etc
+                                      
+                                        Create</button>  
                                     </div>  
                                     </div>        
                 </form>

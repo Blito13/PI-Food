@@ -43,6 +43,7 @@ export default function Home(){
        
         dispatch(getRecipes());
         dispatch(getTypes());
+        return () => setIsOpen(false) && alert("carrado")
     },[dispatch]) 
 
     const types = useSelector(state=> state.types)
@@ -73,7 +74,7 @@ export default function Home(){
         setCurrentPage(1);
         setOrden1(`ordenado ${e.target.value}`)
     } */
-   
+   console.log(allRecipes)
     return(
         <div className={estilos.contenedor}>
          {/*    <Link to= '/recipe' className={estilos.recipeCreate}><button className={estilos.boton1}>Create Recipe</button></Link>
@@ -106,13 +107,12 @@ export default function Home(){
                 <SearchBar className={estilos.boton1}/>
                 <div className={estilos.card}>                         
                 {currentRecipes?.map((el)=>{ //slice(0.9)
-                    return( 
-                        <Fragment>                      
-                            <Link className={estilos.tyty} to={`/recipes/${el.id}`} key={'l' + el.id}>
-                            <Card key={el.id} id={el.id} img={el.image} name={el.name} /* Diet={el.Diets} */  diets={el.diets} /* healtScore = {el.healthScore} */ >
+                    return(                   
+                            <Link className={estilos.tyty} to={`/recipes/${el.id}`} key={'p'+el.id}>
+                            <Card id={el.id} img={el.image}  key = {el.name} name={el.name} /* Diet={el.Diets} */  diets={el.diets} /* healtScore = {el.healthScore} */ >
                             </Card>
                             </Link>   
-                            </Fragment>                         
+                                              
                     )})                               
                 }
                             </div>

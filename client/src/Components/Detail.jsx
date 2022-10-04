@@ -1,36 +1,36 @@
 import React from "react";
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector,  } from "react-redux";
-import { getDetail ,getRecipes } from "../Redux/actions";
-import { useEffect , useState } from "react";
+import { getDetail ,resetDet } from "../Redux/actions";
+import { useEffect } from "react";
 
 import styles from './Detail.module.css';
-import Modal from "./Modal";
+import { useState } from "react";
+
 
 export default function Detail(){
    
-   const detail = useSelector((state) => state.details)
-   const [detailstate , setDetailstate] = useState([])
+
    
    const dispatch = useDispatch() 
    const {id} = useParams()
    
    
-   useEffect (function () {
+   const detailstate = useSelector((state) => state.details)
+   useEffect ( () => {
       
-      dispatch(getDetail(id))
-      return () => {
-         setDetailstate([])
-      }
-      
-   },[]) 
-   /* function reset(){} */
-   setDetailstate(detail)
+      dispatch(resetDet())
+      dispatch(getDetail(id));
+   }
+   
+   
+   ,[])    
+
    return(
       <article  >
 
       
-         {detailstate.length >0 ? 
+         {detailstate.length > 0 ? 
          
          <div className = {styles.container}> 
            <div  className = {styles.container}>
@@ -42,31 +42,29 @@ export default function Detail(){
                      <h3 className = {styles.h1}>
                      Steps:
                      </h3>
-                              {detailstate[0].steps.map(e=> 
-                              <li className = {styles.h5}>
+                             {/*  {detailstate[0].steps.map(e=> 
+                              <li className = {styles.h5} key = {e.name}>
                               {e.step}
-                              </li> )}
-                  </div>
-                  <div className = {styles.divisionBar}>
+                              </li> )} */}
+                     </div>
+                     <div className = {styles.divisionBar}></div>
 
-                  </div>
-
-                  <div className={styles.column}>
+                     <div className={styles.column}>
                      
-                     {<img src={detailstate[0].image} alt = 'image' className = {styles.img}/>}
+                     {<img src={detailstate[0].image} alt = 'fot' className = {styles.img}/>}
                     
                      <h1 className = {styles.h1}>
                      Diets: {
-                     detailstate[0].diets.map(e => <li className={styles.text}>{Object.values(e)}</li>)}
+                     detailstate[0].diets.map(e => <li className={styles.text} key={"p" +e.name}>{Object.values(e)}</li>)}
                      </h1>
                      <h1 className = {styles.h1}>
                      Health Level:
                      <li className={styles.text}>{detailstate[0].healthScore}</li>
                      </h1>
                      <h1 className = {styles.h1}>
-                     Ingredients: {
+                     Ingredients: {/* {
                         detailstate[0].steps.map(e => e.ingredients.map(e => 
-                        <li className={styles.text}>{e.name}</li>))}
+                        <li className={styles.text} key = {e.name}>{e.name}</li>))} */}
                      </h1>
                      <br />
                      <div className={styles.h1}>
@@ -74,14 +72,12 @@ export default function Detail(){
                      <Link to='/home'><button className = {styles.boton} >Back to Home </button> </Link>
                      </div>
                    </div>     
-         <div className={styles.column}>
-
-      </div>
-         </div>
-       </div> : 
+          </div>
+         </div> :
        
-       <div> 
-         <h2> loading... </h2> </div>
-      }              
+       <div className={styles.divLoading}>
+       <img src="https://thumbs.gfycat.com/PepperyMediumBrahmancow-size_restricted.gif" />
+     </div> 
+        }          
       
    </article>)}
