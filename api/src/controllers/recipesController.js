@@ -58,7 +58,7 @@ const getById =  async (req, res)=>{
     const recipesTotal = await getAllrecipes();
     
     if(id){        
-        const recipeId = infoTotal.filter(el=>el.id == id)
+        const recipeId = recipesTotal.filter(el=>el.id == id)
         recipeId.length?
         res.status(200).send(recipeId) :
         res.status(404).send('Recipe not found') 
@@ -93,6 +93,7 @@ const postRecipe = async (req , res) =>{
     const typesDb = await Diet.findAll({where: {name: diets}}) 
     console.log(recipeCreated)
     recipeCreated.addDiet(typesDb)
+    /* recipeCreated.addStep(steps) */
     res.send('Recipe created successfully')
 
 }
