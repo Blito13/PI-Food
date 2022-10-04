@@ -1,14 +1,20 @@
 require('dotenv').config(); 
 const { Router } = require("express");
 const axios = require ('axios');
-const {Recipe , Diet} = require ('../db')
+const {Recipe , Diet} = require ('../db');
+const { getById, 
+        getByName,
+        getAllrecipes,
+        getDB , 
+        getApi,
+     } = require('../controllers/recipesControler');
 const router = Router();
 const {YOUR_API_KEY} = process.env;
 
 
-const getApi = async () =>{
+/* const getApi = async () =>{
     const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${YOUR_API_KEY}`)
-    //console.log(apiUrl)
+ 
     const apiInfo = await apiUrl.data.results.map((el) =>{
             return {
                 id: el.id,                         
@@ -23,20 +29,20 @@ const getApi = async () =>{
 
             }
         });   
-        /* console.log(apiInfo) */
+        console.log(apiInfo)
     return apiInfo;
 
-};
+}; */
 
-  const getDB = async () =>{ 
-  /*  const lex= await Recipe.findAll({
+  /* const getDB = async () =>{ 
+   const lex= await Recipe.findAll({
       
 
            attributes: ['steps'],
            
      
     })
-    console.log(lex) */
+    console.log(lex)
     return await Recipe.findAll({  
         include: { 
             model: Diet, 
@@ -46,16 +52,24 @@ const getApi = async () =>{
             },
         }
     })
-    }   
+    }   */ 
    
-const getAllrecipes = async ()=>{
+/* const getAllrecipes = async ()=>{
     const apInfo = await getApi();
     const dbInfo = await getDB();
     const infoTotal = [...apInfo, ...dbInfo]; 
     return infoTotal;
-};
- 
-router.get('/', async (req, res)=>{
+}; */
+/*  router.get('/' , getApi)
+ router.get('/' ,getDB) */
+/* router.get('/recipes',getAllrecipes) */
+router.get('/recipes',getAllrecipes)
+
+
+
+
+
+/* async (req, res)=>{
     const {name} = req.query
     const recipesTotal = await getAllrecipes() 
     if (name) { 
@@ -67,9 +81,9 @@ router.get('/', async (req, res)=>{
         } else {
         res.status(200).send(recipesTotal) 
     }
-})
+}) */
 
-router.get('/edit', async(req , res )=> {
+/* router.get('/edit', async(req , res )=> {
     
     try{
         const fix = getAllrecipes();
@@ -80,21 +94,26 @@ router.get('/edit', async(req , res )=> {
     catch(error){
         console.log('aeeeea')
     }
-  })
+  }) */
 
 
 
-router.get('/:id', async (req, res)=>{
+router.get('/recipes/:id' , getById)
+
+
+
+
+/* , async (req, res)=>{
     const {id} = req.params; 
     const recipesTotal = await getAllrecipes();
-    /* console.log(recipesTotal) */
+    console.log(recipesTotal)
     if(id){        
         const recipeId = recipesTotal.filter(el=>el.id == id)
         recipeId.length?
         res.status(200).send(recipeId) :
         res.status(404).send('Recipe not found') 
     }
-});
+}); */
 
 /* router.post('/', (req , res )=> {
   const resultApi = apiSpoonacular.data.results

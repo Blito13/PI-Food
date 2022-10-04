@@ -108,6 +108,7 @@ function rootR (state = initialState ,{payload ,type}){
                 recipes:payload 
             }
         case POST_REC:
+            
             return{
                 ...state
             }
@@ -121,8 +122,9 @@ function rootR (state = initialState ,{payload ,type}){
            const reg = payload
            
         if(reg[0].hasOwnProperty("createdINBd")){
-            
+           
             reg[0].steps = [{step:reg[0].steps}]
+        
         }
         else {
 
