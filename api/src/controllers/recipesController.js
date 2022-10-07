@@ -1,7 +1,8 @@
 require('dotenv').config(); 
 /* const { Router } = require("express"); */
 const axios = require ('axios');
-const {Recipe , Diet} = require ('../db')
+const e = require('express');
+const {Recipe , Diet ,Instructions } = require ('../db')
 /* const router = Router(); */
 const {YOUR_API_KEY} = process.env;
 
@@ -32,14 +33,16 @@ const getApi = async () =>{
 };
 const getDB = async () =>{ 
 
-      return await Recipe.findAll({  
-          include: { 
-              model: Diet, 
-              attributes: ['name'],
-              through: {
-                  attributes: [],   
-              },
-          }
+      return await Recipe.findAll({
+     
+      /*   attributes: {
+            exclude: ['createdAt', 'updatedAt']
+        }, */
+        include: {
+            model: Instructions,
+            attributes:['step', 'number'],
+            
+        }
       })
 }   
 const getAllrecipes = async ()=>{
@@ -91,10 +94,22 @@ const postRecipe = async (req , res) =>{
         createdINBd 
     });
     const typesDb = await Diet.findAll({where: {name: diets}}) 
-    console.log(recipeCreated)
     recipeCreated.addDiet(typesDb)
-    /* recipeCreated.addStep(steps) */
-    res.send('Recipe created successfully')
+    /*  recipeCreated.addInstructions(s) */
+    const rec = await recipeCreated.id
+    const lef = await steps.map(e => {
+    const lcomi = Instructions.create({
+        RecipeId : rec,
+        step : e.step,
+        number : e.number,
+      
+    })
+/*    it brings only the last one of all the steps  */
+   /*  recipeCreated.addInstructions(lcomi) */
+})  
+
+   res.send('Recipe created successfully')
+
 
 }
 module.exports = {
