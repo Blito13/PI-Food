@@ -36,6 +36,7 @@ const Modal = ({ setIsOpen }) => {
 
     var countr = 79
     const [error, setError] = useState({})
+    const [numberStep , setNumber] = useState(1)
     const [step , setStep] = useState([])
     const [input, setInput] = useState({
         name: '',
@@ -94,6 +95,7 @@ const Modal = ({ setIsOpen }) => {
             ...input,
             steps :[...input.steps ,{step}]
         })
+        setNumber(numberStep+1)
       setStep('')
         console.log(input)
     }
@@ -166,7 +168,7 @@ return (
                                 value={step}
                                 name='steps'
                                 onChange={(e) =>handleChangeStep(e)}/>     
-                               <button type = "button"  onClick={(e) =>handleStep(e)}></button>
+                               <button type = "button" className={estilos.boton1} onClick={(e) =>handleStep(e)}>step{`${numberStep}`}</button>
 
                             <div className={estilos.selecDiets}>
                                 {diets.map (e => (

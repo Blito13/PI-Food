@@ -74,6 +74,19 @@
     justify-content: space-around;
     align-items: center;
   }
+  .boton1{
+    font-family: 'Just Me Again Down Here', cursive;
+    margin: 5px 5px;
+    padding: 5px 5px;
+    font-size: 15px;
+    /* color: #5f5e99; */
+    /* border: 1px solid #5f5e99; */
+    border-radius: 5px;
+    
+    align-items: center;
+    cursor: pointer;
+   /*  position: relative; */
+}
   
   .closeBtn {
     cursor: pointer;
