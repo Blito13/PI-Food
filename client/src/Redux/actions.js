@@ -15,7 +15,7 @@ export const RESET_DETAILS = 'RESET_DETAILS'
 export function getRecipes (){
 return async function (dispatch){
     var json =  await axios.get('http://localhost:3001/recipes',{});
-    console.log(JSON.stringify(json.data))
+    
     return dispatch({
     type : 'GET_ALL_REC', 
     payload :json.data,   
@@ -78,7 +78,7 @@ export function postRecipe (payload){
     return async function(dispatch){
         try{
 
-            var json = await axios.post("http://localhost:3001/recipe",payload)
+            var json = await axios.post("http://localhost:3001/recipes",payload)
             console.log(json)
             return dispatch({json});
         }catch (error){

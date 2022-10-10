@@ -92,13 +92,13 @@ const Modal = ({ setIsOpen }) => {
         e.preventDefault()
         setInput({
             ...input,
-            steps :[...input.steps ,step]
-            
+            steps :[...input.steps ,{step}]
         })
-      
+      setStep('')
         console.log(input)
     }
     function handleSubmit(e){
+        console.log(input)
         dispatch(postRecipe(input))        
         setInput({
         name: '',

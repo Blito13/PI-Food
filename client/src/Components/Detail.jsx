@@ -17,6 +17,7 @@ export default function Detail(){
    
    
    const detailstate = useSelector((state) => state.details)
+   console.log(detailstate)
    useEffect ( () => {
       
      /*  dispatch(resetDet()) */
