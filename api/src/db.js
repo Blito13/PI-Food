@@ -41,7 +41,7 @@ Diet.belongsToMany(Recipe , {through : "Recipe-Diet"})
 /* Product.hasMany(Review, { foreignKey: "productId", sourceKey: "id" });
 Review.belongsTo(Product, { foreignKey: "productId", targetId: "id" });
  */
-Recipe.hasOne(Instructions)
+Recipe.hasMany(Instructions)
 Instructions.belongsTo(Recipe)
 /* Recipe.belongsToMany(Instructions ,  { foreignKey: "RecipeId", sourceKey: "id" })
 Instructions.belongsToMany(Recipe , {foreignKey: "RecipeId", targetId: "id" }) */

@@ -29,20 +29,15 @@ const getApi = async () =>{
         console.log(error)
     }
     
-
+    /* where: {id_moneda: db.sequelize.literal('(select id_moneda from cuentas where id_tienda = 4)') }, */
 };
 const getDB = async () =>{ 
 
       return await Recipe.findAll({
-     
-      /*   attributes: {
-            exclude: ['createdAt', 'updatedAt']
-        }, */
-        include: {
+        include: [{
             model: Instructions,
-            attributes:['step', 'number'],
-            
-        }
+           }]
+
       })
 }   
 const getAllrecipes = async ()=>{
@@ -96,16 +91,13 @@ const postRecipe = async (req , res) =>{
     const typesDb = await Diet.findAll({where: {name: diets}}) 
     recipeCreated.addDiet(typesDb)
     /*  recipeCreated.addInstructions(s) */
-    const rec = await recipeCreated.id
+    const id = await recipeCreated.id
     const lef = await steps.map(e => {
     const lcomi = Instructions.create({
-        RecipeId : rec,
-        step : e.step,
-        number : e.number,
-      
+        RecipeId : id,
+        step:e.step,
+        number : e.number
     })
-/*    it brings only the last one of all the steps  */
-   /*  recipeCreated.addInstructions(lcomi) */
 })  
 
    res.send('Recipe created successfully')
