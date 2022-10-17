@@ -1,7 +1,7 @@
 require('dotenv').config(); 
 /* const { Router } = require("express"); */
 const axios = require ('axios');
-const {Recipe , Diet} = require ('../db')
+const {Recipe , Diet , Step} = require ('../db')
 /* const router = Router(); */
 const {YOUR_API_KEY} = process.env;
 
@@ -36,6 +36,13 @@ const getDB = async () =>{
           include: { 
               model: Diet, 
               attributes: ['name'],
+              through: {
+                  attributes: [],   
+              },
+          },
+          include: { 
+              model: Step, 
+              attributes: ['name' ],
               through: {
                   attributes: [],   
               },
