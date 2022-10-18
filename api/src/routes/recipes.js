@@ -2,14 +2,14 @@
 /* const { Router } = require("express"); */
 const axios = require ('axios');
 /* const {Recipe , Diet} = require ('../db'); */
-const {getAllrecipes , getById , getByName , postRecipe} = require('../controllers/recipesController.js');
+const {getAllrecipes , getById , getByName , postRecipe, updateRec} = require('../controllers/recipesController.js');
 /* const router = Router(); */
 var express = require('express');
 var router = express.Router();
 router.get('/recipes',getByName)
 router.get('/recipes/:id',getById)
 router.get('/recipes?name=',getByName)
-
+router.put('/recipes/update/:id' , updateRec)
 router.post('/recipes',postRecipe)
 /* router.post('recipes' ) 
 router.put("" , )

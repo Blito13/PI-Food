@@ -104,10 +104,35 @@ const postRecipe = async (req , res) =>{
 
 
 }
+const updateRec = async (req , res) => {
+    const {id} = req.params;
+    const {name , steps , diets , sumary ,score ,healthScore ,image } =req.body;
+   const back = await Recipe.findAll({
+        where: {
+          id: id
+        }
+      });
+      console.log(name ,steps, diets ,score , sumary ,healthScore )
+      res.send(back)
+}
+// Way 1
+/* const user= await User.findOne({ where: { firstName: 'John' } });
+await user.update({ lastName: "Jackson" }
+//or
+await User.update({ lastName: "Jackson" }, {
+  where: {
+    lastName: null
+  }
+}); */
+// Way 2
+/* const user= await User.findOne({ where: { firstName: 'John' } });
+user.lastName = "Jackson" 
+await user.save() */
 module.exports = {
     getAllrecipes,
     getById,
     getByName,
-    postRecipe
+    postRecipe,
+    updateRec
 } 
   
