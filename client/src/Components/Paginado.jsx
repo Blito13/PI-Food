@@ -10,12 +10,14 @@ export default function Paginado({recipesPerPage, allRecipes , paginado , curren
     return(
         <nav className={estilos.nav}>
             <ul className={estilos.ul}>
-               {/*  {pageNumbers && pageNumbers.map(number=>( 
+                <button className={estilos.boton}onClick={()=>paginado(currentPage-1)}>{'<<'}</button>
+               {/* {pageNumbers && pageNumbers.map(number=>( 
                     <li key={number} className={estilos.li}>
-                    <button className={estilos.boton}onClick={()=>paginado(number)}>{number}</button>
+                    <button className={estilos.boton}onClick={()=>paginado(number)}>{currentPage}</button>
                     </li>
                 ))} */}
-                <button className={estilos.boton}onClick={()=>paginado(currentPage-1)}>{'<<'}</button>
+
+                <button className={estilos.boton}onClick={()=>paginado()}>{currentPage}</button>
                 <button className={estilos.boton}onClick={()=>paginado(currentPage+1)}>{'>>'}</button>
             </ul>
         </nav>

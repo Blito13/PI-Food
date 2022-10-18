@@ -17,6 +17,7 @@ export default function Detail(){
    
    
    const detailstate = useSelector((state) => state.details)
+   console.log(detailstate)
    useEffect ( () => {
       
      /*  dispatch(resetDet()) */
@@ -63,9 +64,9 @@ export default function Detail(){
                      <li className={styles.text}>{detailstate[0].healthScore}</li>
                      </h1>
                      <h1 className = {styles.h1}>
-                     Ingredients: {/*  {
+                     Ingredients: { 
                         detailstate[0].steps.map(e => e.ingredients.map(e => 
-                        <li className={styles.text} key = {e.name}>{e.name}</li>))} */}
+                        <li className={styles.text} key = {e.name}>{e.name}</li>))}
                      </h1>
                      <br />
                      <div className={styles.h1}>

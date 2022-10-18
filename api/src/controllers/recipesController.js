@@ -38,15 +38,9 @@ const getDB = async () =>{
               attributes: ['name'],
               through: {
                   attributes: [],   
-              },
+              }
           },
-          include: { 
-              model: Step, 
-              attributes: ['name' ],
-              through: {
-                  attributes: [],   
-              },
-          }
+         
       })
 }   
 const getAllrecipes = async ()=>{
@@ -104,10 +98,34 @@ const postRecipe = async (req , res) =>{
     res.send('Recipe created successfully')
 
 }
+const updateRec = async (req , res) =>{
+    const {...newBody} =req.body;
+       let back = await Recipe.findByPk(newBody.id);
+        back.set(newBody)
+        back = await back.save();
+          console.log(back)
+          console.log(newBody)
+          res.send(back)
+}
+
+// Way 1
+/* const user= await User.findOne({ where: { firstName: 'John' } });
+await user.update({ lastName: "Jackson" }
+//or
+await User.update({ lastName: "Jackson" }, {
+  where: {
+    lastName: null
+  }
+}); */
+// Way 2
+/* const user= await User.findOne({ where: { firstName: 'John' } });
+user.lastName = "Jackson" 
+await user.save() */
 module.exports = {
     getAllrecipes,
     getById,
     getByName,
-    postRecipe
+    postRecipe,
+    updateRec,
 } 
   

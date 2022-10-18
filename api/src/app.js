@@ -3,11 +3,11 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 /* const routes = require('./routes/index.js'); */
-
 /* require('./db.js'); */
 const diets = require('./routes/diets.js')
 /* const recipe = require('./routes/recipe.js') */
 const recipes = require('./routes/recipes.js')
+const steps = require('./routes/steps.js')
 const server = express();
 
 server.name = 'API';
@@ -27,6 +27,7 @@ server.use((req, res, next) => {
 server.use(diets);
 /* server.use(recipe); */
 server.use(recipes);
+server.use(steps);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

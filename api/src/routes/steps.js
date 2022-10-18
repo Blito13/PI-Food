@@ -1,5 +1,6 @@
-import { Router } from "express";
+const { Router } = require( "express");
+const { createStep } = require ("../controllers/stepsController.js");
 const route = Router();
 
-route.get('/')
-export default route
+route.get('/steps' ,createStep )
+module.exports =  route;

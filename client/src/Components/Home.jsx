@@ -23,19 +23,24 @@ export default function Home(){
     const [orden1, setOrden1] = useState('') 
     const [isOpen, setIsOpen] = useState(false);
 
-    /* const [modalIsOpen, setIsOpen] = useState(false); */
+   
     function afterOpenModal() {
        
       }
-    function openModal() {
-      setIsOpen(true);
-    }
-    function closeModal() {
-      setIsOpen(false);
-    }
+
 
     const paginado = (number) =>{ 
-        setCurrentPage(number)
+        if(number > 12){
+            number = 12
+        }
+        else if (
+            number <1
+        ) { number = 1
+
+        } else {
+
+            setCurrentPage(number)
+        }
        
     }
 
@@ -68,12 +73,7 @@ export default function Home(){
         setCurrentPage(1);
         setOrden1(`ordenado ${e.target.value}`)
     }
-    /* function handleHealthScore(e){
-        e.preventDefault();
-        dispatch(orderByhealthScore(e.target.value))
-        setCurrentPage(1);
-        setOrden1(`ordenado ${e.target.value}`)
-    } */
+    
    console.log(allRecipes)
     return(
         <div className={estilos.contenedor}>

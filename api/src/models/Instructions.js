@@ -1,14 +1,15 @@
 const {DataTypes} = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('step',{
+    sequelize.define('instructions',{
+   
         number:{
             type : DataTypes.INTEGER,
-            allowNull : false
-        },
+            allowNull : true},
+            
         step : {
             type: DataTypes.TEXT,
-            allowNull : false
+            allowNull : true
         }
     } )
 }
