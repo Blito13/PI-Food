@@ -1,8 +1,6 @@
 require('dotenv').config(); 
-/* const { Router } = require("express"); */
 const axios = require ('axios');
 const {Recipe , Diet , Step} = require ('../db')
-/* const router = Router(); */
 const {YOUR_API_KEY} = process.env;
 
 
@@ -46,6 +44,7 @@ const getDB = async () =>{
 const getAllrecipes = async ()=>{
         const apInfo = await getApi();
         const dbInfo = await getDB();
+        console.log(dbInfo)
         const infoTotal = [...apInfo, ...dbInfo]; 
      
         /* res.status(200).send(infoTotal)  */
@@ -108,25 +107,26 @@ const updateRec = async (req , res) =>{
           console.log(newBody)
           res.send(back)
 }
+const deleteRec = async (req, res) => {
+    try {
+      const { id } = req.params;
+      await Recipe.destroy({ where: { id } });
+  
+      // return message "No content"
+      res.sendStatus(204);
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  };
+  
 
-// Way 1
-/* const user= await User.findOne({ where: { firstName: 'John' } });
-await user.update({ lastName: "Jackson" }
-//or
-await User.update({ lastName: "Jackson" }, {
-  where: {
-    lastName: null
-  }
-}); */
-// Way 2
-/* const user= await User.findOne({ where: { firstName: 'John' } });
-user.lastName = "Jackson" 
-await user.save() */
+
 module.exports = {
     getAllrecipes,
     getById,
     getByName,
     postRecipe,
     updateRec,
+    deleteRec
 } 
   
