@@ -4,7 +4,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { useState, useEffect } from "react";
 import { Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {postRecipe, getTypes} from '../Redux/actions'
+import {postRecipe, getTypes ,putRec} from '../Redux/actions'
 
 
 
@@ -22,9 +22,9 @@ function validate (input){
     }
     return error;
 }
-const Modal = ({ setIsOpen }) => {
+const Modal = ({ setIsOpen ,recipe }) => {
     const dispatch= useDispatch();          
-    
+    console.log(recipe)
     useEffect(()=>{
    
         dispatch(getTypes());
@@ -33,11 +33,13 @@ const Modal = ({ setIsOpen }) => {
     }, []); //eslint-disable-line
    
     const diets = useSelector((state)=> state.types)
-
-    var countr = 79
+    const details = useSelector((state)=> state.details)
+console.log(details)
     const [error, setError] = useState({})
     const [numberStep , setNumber] = useState(1)
     const [step , setStep] = useState([])
+    const [input1 ,setInput1]= useState(details[0])
+    console.log(input1)
     const [input, setInput] = useState({
         name: '',
         summary:'',
@@ -101,7 +103,11 @@ const Modal = ({ setIsOpen }) => {
     }
     function handleSubmit(e){
         console.log(input)
-        dispatch(postRecipe(input))        
+        details.length > 0 &&  dispatch(putRec(input1))
+        console.log(input1)
+       /*  input.length > 0 &&
+        dispatch(postRecipe(input)) 
+        console.log(input1)        */
         setInput({
         name: '',
         summary:'',

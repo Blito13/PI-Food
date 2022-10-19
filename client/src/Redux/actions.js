@@ -116,3 +116,15 @@ export function resetDet(){
         }
     }
 }
+
+export function putRec (payload){
+    return async function (dispatch){
+        try{
+            var update = await axios.put('http://localhost:3001/recipes/uppdate',payload)
+            console.log(update)
+            return dispatch({update})
+        }catch(error){
+            console.log(error)
+        }
+    }
+}

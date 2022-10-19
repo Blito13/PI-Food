@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector,  } from "react-redux";
 import { getDetail ,resetDet } from "../Redux/actions";
 import { useEffect } from "react";
+import Modal from "./Modal";
+import { Fragment } from "react";
 
 import styles from './Detail.module.css';
 import { useState } from "react";
@@ -16,7 +18,8 @@ export default function Detail(){
    const {id} = useParams()
    
    
-   const detailstate = useSelector((state) => state.details)
+   const detailstate = useSelector((state) => state.details);
+   const [isOpen, setIsOpen] = useState(false);
    console.log(detailstate)
    useEffect ( () => {
       
@@ -64,15 +67,27 @@ export default function Detail(){
                      <li className={styles.text}>{detailstate[0].healthScore}</li>
                      </h1>
                      <h1 className = {styles.h1}>
-                     Ingredients: { 
+                     Ingredients: {/* { 
                         detailstate[0].steps.map(e => e.ingredients.map(e => 
-                        <li className={styles.text} key = {e.name}>{e.name}</li>))}
+                        <li className={styles.text} key = {e.name}>{e.name}</li>))} */}
                      </h1>
                      <br />
                      <div className={styles.h1}>
 
-                     <Link to='/home'><button className = {styles.boton} >Back to Home </button> </Link>
+                     <Link to='/home'><button className = {styles.boton} >Back to Home </button></Link>
+                     <button className = {styles.boton} onClick={() => setIsOpen(true)}>Update</button>
+                  
+                     
+                     <button className = {styles.boton}>Update</button>
                      </div>
+                    { isOpen &&
+                    <Fragment>
+                        <Modal 
+                             className={styles.check} 
+                             setIsOpen={setIsOpen}/>
+                             
+                    </Fragment> 
+                    }
                    </div>     
           </div>
          </div> :
