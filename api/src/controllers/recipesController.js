@@ -1,8 +1,7 @@
 require('dotenv').config(); 
 /* const { Router } = require("express"); */
 const axios = require ('axios');
-const e = require('express');
-const {Recipe , Diet ,Instructions } = require ('../db')
+const {Recipe , Diet , Step} = require ('../db')
 /* const router = Router(); */
 const {YOUR_API_KEY} = process.env;
 
@@ -29,15 +28,19 @@ const getApi = async () =>{
         console.log(error)
     }
     
-    /* where: {id_moneda: db.sequelize.literal('(select id_moneda from cuentas where id_tienda = 4)') }, */
+
 };
 const getDB = async () =>{ 
 
-      return await Recipe.findAll({
-        include: [{
-            model: Instructions,
-           }]
-
+      return await Recipe.findAll({  
+          include: { 
+              model: Diet, 
+              attributes: ['name'],
+              through: {
+                  attributes: [],   
+              }
+          },
+         
       })
 }   
 const getAllrecipes = async ()=>{
@@ -89,38 +92,41 @@ const postRecipe = async (req , res) =>{
         createdINBd 
     });
     const typesDb = await Diet.findAll({where: {name: diets}}) 
+    console.log(recipeCreated)
     recipeCreated.addDiet(typesDb)
-    /*  recipeCreated.addInstructions(s) */
-    const id = await recipeCreated.id
-    const lef = await steps.map(e => {
-    const lcomi = Instructions.create({
-        RecipeId : id,
-        step:e.step,
-        number : e.number
-    })
-})  
-
-   res.send('Recipe created successfully')
-
+    /* recipeCreated.addStep(steps) */
+    res.send('Recipe created successfully')
 
 }
-const updateRec = async (req , res) => {
-    const {id} = req.params;
-    const {name , steps , diets , sumary ,score ,healthScore ,image } =req.body;
-   const back = await Recipe.findAll({
-        where: {
-          id: id
-        }
-      });
-      console.log(name ,steps, diets ,score , sumary ,healthScore )
-      res.send(back)
+const updateRec = async (req , res) =>{
+    const {...newBody} =req.body;
+    console.log(newBody)
+       let back = await Recipe.findByPk(newBody.id);
+        back.set(newBody)
+        back = await back.save();
+          console.log(back)
+          console.log(newBody)
+          res.send(back)
 }
 
+// Way 1
+/* const user= await User.findOne({ where: { firstName: 'John' } });
+await user.update({ lastName: "Jackson" }
+//or
+await User.update({ lastName: "Jackson" }, {
+  where: {
+    lastName: null
+  }
+}); */
+// Way 2
+/* const user= await User.findOne({ where: { firstName: 'John' } });
+user.lastName = "Jackson" 
+await user.save() */
 module.exports = {
     getAllrecipes,
     getById,
     getByName,
     postRecipe,
-    updateRec
+    updateRec,
 } 
   
