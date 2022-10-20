@@ -103,6 +103,7 @@ console.log(details)
     }
     function handleSubmit(e){
         console.log(input)
+        /* si tengo detail input es igual a input 1 */
         details.length > 0 &&  dispatch(putRec(input1))
         console.log(input1)
        /*  input.length > 0 &&
@@ -134,7 +135,7 @@ return (
                         <p /* className={estilos.p} */>Name: </p>
                         <input
                         type='text'
-                        value={input.name}
+                        value={details?details[0].name:input.name}
                         name='name'
                                 onChange={(e)=>handleChange(e)}
                                 />                    
@@ -144,7 +145,7 @@ return (
                                 <p className={estilos.p}>Summary: </p>
                                 <textarea
                                 type='text'
-                                value={input.summary}
+                                value={details?details[0].summary:input.summary}
                                 name= 'summary'
                                 onChange={(e)=>handleChange(e)}
                                 />
@@ -154,7 +155,7 @@ return (
                                 <p /* className={estilos.p} */>Score: </p>
                                 <input
                                 type= 'number'
-                                value={input.score}
+                                value={details?details[0].score:input.score}
                                 name='score'
                                 onChange={(e)=> handleChange(e)}/>
                                 {error.score && <p /* className={estilos.error} */>{error.score}</p>}
@@ -163,7 +164,7 @@ return (
                                 <p /* className={estilos.p} */>Health Score: </p>
                                 <input
                                 type= 'number'
-                                value={input.healthScore}
+                                value={details?details[0].healthScore:input.healthScore}
                                 name='healthScore'
                                 onChange={(e)=> handleChange(e)}/>
                             </div>
@@ -171,7 +172,7 @@ return (
                                 <p className={estilos.p}>Steps: </p>
                                 <textarea  /* className={estilos.textarea} */
                                 type='textarea'
-                                value={step}
+                                value={details?details[0].steps.map((e)=> e.step):step}
                                 name='steps'
                                 onChange={(e) =>handleChangeStep(e)}/>     
                                <button type = "button" className={estilos.boton1} onClick={(e) =>handleStep(e)}>step{`${numberStep}`}</button>
