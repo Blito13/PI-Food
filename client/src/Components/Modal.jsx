@@ -22,7 +22,7 @@ function validate (input){
     }
     return error;
 }
-const Modal = ({ setIsOpen }) => {
+const Modal = ({ setIsOpen , put , post }) => {
     const dispatch= useDispatch();          
     
     useEffect(()=>{
@@ -34,7 +34,7 @@ const Modal = ({ setIsOpen }) => {
    
     const diets = useSelector((state)=> state.types)
 
-    var countr = 79
+    
     const [error, setError] = useState({})
     const [numberStep , setNumber] = useState(1)
     const [step , setStep] = useState([])
@@ -84,10 +84,7 @@ const Modal = ({ setIsOpen }) => {
     function handleChangeStep(e){
  
     const {name , value } = e.target ; 
-    setStep(value)
-
-        console.log(step)   
-       
+    setStep(value)  
     }
     function handleStep (e) {
         e.preventDefault()
@@ -96,7 +93,7 @@ const Modal = ({ setIsOpen }) => {
             steps :[...input.steps ,{step}]
         })
         setNumber(numberStep+1)
-      setStep('')
+        setStep('')
         console.log(input)
     }
     function handleSubmit(e){
@@ -182,8 +179,6 @@ return (
                                         {e.name}
                                 </div> ))}                           
                                     <button className={estilos.deleteBtn} >
-                                        botones acciones etc
-                                      
                                         Create</button>  
                                     </div>  
                                     </div>        
