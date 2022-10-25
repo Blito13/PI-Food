@@ -18,16 +18,8 @@ export default function Detail(){
    const {id} = useParams()
    
    
-<<<<<<< HEAD
-   const detailstate = useSelector((state) => state.details)
-   const [isOpen, setIsOpen] = useState(false);
-   
-   
-
-=======
    const detailstate = useSelector((state) => state.details);
    const [isOpen, setIsOpen] = useState(false);
->>>>>>> 40ac36280b9dd645a605c52a6bc05e6aa1069936
    console.log(detailstate)
    useEffect ( () => {
       
@@ -40,6 +32,7 @@ export default function Detail(){
    ,[])    
 
    return(
+   <div>
       <article  >
 
       
@@ -75,28 +68,18 @@ export default function Detail(){
                      <li className={styles.text}>{detailstate[0].healthScore}</li>
                      </h1>
                      <h1 className = {styles.h1}>
-<<<<<<< HEAD
-{/*                      Ingredients: { 
-=======
                      Ingredients: {/* { 
->>>>>>> 40ac36280b9dd645a605c52a6bc05e6aa1069936
                         detailstate[0].steps.map(e => e.ingredients.map(e => 
                         <li className={styles.text} key = {e.name}>{e.name}</li>))} */}
                      </h1>
                      <br />
                      <div className={styles.h1}>
 
-<<<<<<< HEAD
-                     <Link to='/home'><button className = {styles.boton} >Back to Home </button> </Link>
-                     <Link to='/recipes/update'><button className = {styles.boton}>Update </button> </Link>
-                     <button className = {styles.boton} >Delete </button>
-=======
                      <Link to='/home'><button className = {styles.boton} >Back to Home </button></Link>
                      <button className = {styles.boton} onClick={() => setIsOpen(true)}>Update</button>
                   
                      
                      <button className = {styles.boton}>Update</button>
->>>>>>> 40ac36280b9dd645a605c52a6bc05e6aa1069936
                      </div>
                     { isOpen &&
                     <Fragment>
@@ -112,7 +95,7 @@ export default function Detail(){
           {isOpen &&
          <Fragment>
              <Modal 
-                  className={estilos.check} 
+                  className={styles.check} 
                   setIsOpen={setIsOpen} />
          </Fragment> 
          }
@@ -124,5 +107,6 @@ export default function Detail(){
        <img src="https://thumbs.gfycat.com/PepperyMediumBrahmancow-size_restricted.gif" />
      </div> 
         }          
-      
-   </article>)}
+   </article>
+</div>
+   )}
