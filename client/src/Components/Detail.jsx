@@ -32,7 +32,7 @@ export default function Detail(){
    ,[])    
 
    return(
-      <article  >
+      <div className = {styles.container}>
 
       
          {detailstate.length > 0 ? 
@@ -97,4 +97,4 @@ export default function Detail(){
      </div> 
         }          
       
-   </article>)}
+   </div>)}
