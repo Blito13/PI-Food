@@ -37,8 +37,10 @@ const Modal = ({ setIsOpen  }) => {
 
     const [error, setError] = useState({})
     const [numberStep , setNumber] = useState(1)
+    const [positionStep , setPositionStep]  =  useState(0)
     const [step , setStep] = useState([])
-    const [stepEdit , setStepEdit] = useState([])
+    const [stepToShow , setstepToShow] = useState([7])
+    const [stepEdited , setStepEdited] = useState([])
     const [input1 ,setInput1]= useState(details[0])
 
     const [input, setInput] = useState({
@@ -90,32 +92,38 @@ const Modal = ({ setIsOpen  }) => {
     } 
     const showStep = (e) => {
        var {name , value  } = e.target;
-       console.log(Object.values(input1.steps[1]))
-       setStepEdit(Object.values(input1.steps[value]))
+    
+       setstepToShow(Object.values(input1.steps[value]));
+       /* setStepEdited() */
+       setPositionStep(value);
+       console.log(positionStep)
     }
 
     function handleChangeStep(e){
  
     var {name , value } = e.target ; 
-      input1 ? setStepEdit(value) :  
+    console.log(value)
+      input1 ? setstepToShow(value):  
     setStep(value)  
     /* aca se te van a enviar los steps todos juntos  se deben editar en la posicion exacta del array */
     }
     function handleStep (e) {
-        e.preventDefault()
+        e.preventDefault();
+       
         input1? 
-        setInput({
-            ...input1,
-            steps :[...input1.steps ,{stepEdit}]
-        })
-      :
+       
+       input1.steps[positionStep] = {step :stepToShow}
+        
+        
+        
+        :
         setInput({
             ...input,
             steps :[...input.steps ,{step}]
         })
         setNumber(numberStep+1)
-        setStep('')
-        console.log(input)
+      /*   setStep('') */
+        console.log(input1)
     }
     function handleSubmit(e){
        
@@ -186,14 +194,16 @@ return (
                                 <p className={estilos.p}>Steps: </p>
                                 <textarea 
                                 type='textarea'
-                                value={stepEdit?stepEdit:step}
+                                value={stepToShow?stepToShow:step}
                                 name='steps'
                                 onChange={(e) =>handleChangeStep(e)}/>   
                                     <div>
 
-                                {input1.steps?.map((e , i)=> <button type = "button" value ={i}className={estilos.boton1} onClick={(e) =>showStep(e)}>step{`${[i+1]}`}</button>)}
+                                {input1.steps?.map((e , i)=> <button type = "button" value ={i}className={estilos.boton1} onClick={(e) =>showStep(e)}>step{`${[i+1]}`}
+                                </button>)}
+                                <button type = "button" value={"ok"} className={estilos.boton1} onClick = {e=> handleStep(e)}>OK</button>
                                     </div>
-                               <button type = "button" className={estilos.boton1} onClick={(e) =>handleStep(e)}>step{`${numberStep}`}</button>
+                               {/* <button type = "button" className={estilos.boton1} onClick={(e) =>handleStep(e)}>step{`${numberStep}`}</button> */}
                             </div>        
 
                             <div className={estilos.selecDiets}>
