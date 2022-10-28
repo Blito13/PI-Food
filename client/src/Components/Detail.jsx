@@ -32,7 +32,8 @@ export default function Detail(){
    ,[])    
 
    return(
-      <div className = {styles.container}>
+   <div>
+      <article  >
 
       
          {detailstate.length > 0 ? 
@@ -90,11 +91,22 @@ export default function Detail(){
                     }
                    </div>     
           </div>
+          <div>
+          {isOpen &&
+         <Fragment>
+             <Modal 
+                  className={styles.check} 
+                  setIsOpen={setIsOpen} />
+         </Fragment> 
+         }
+
+          </div>
          </div> :
        
        <div className={styles.divLoading}>
        <img src="https://thumbs.gfycat.com/PepperyMediumBrahmancow-size_restricted.gif" />
      </div> 
         }          
-      
-   </div>)}
+   </article>
+</div>
+   )}

@@ -22,9 +22,9 @@ function validate (input){
     }
     return error;
 }
-const Modal = ({ setIsOpen ,recipe }) => {
+const Modal = ({ setIsOpen  }) => {
     const dispatch= useDispatch();          
-    console.log(recipe)
+    
     useEffect(()=>{
    
         dispatch(getTypes());
@@ -34,12 +34,15 @@ const Modal = ({ setIsOpen ,recipe }) => {
    
     const diets = useSelector((state)=> state.types)
     const details = useSelector((state)=> state.details)
-console.log(details)
+
     const [error, setError] = useState({})
     const [numberStep , setNumber] = useState(1)
+    const [positionStep , setPositionStep]  =  useState(0)
     const [step , setStep] = useState([])
+    const [stepToShow , setstepToShow] = useState([])
+    const [stepEdited , setStepEdited] = useState([])
     const [input1 ,setInput1]= useState(details[0])
-    console.log(input1)
+
     const [input, setInput] = useState({
         name: '',
         summary:'',
@@ -49,13 +52,19 @@ console.log(details)
         image:'',
         diets:[],
     })
+    
 
     function handleChange(e){
-        
+        e.preventDefault();
+        const {name , value }= e.target
+   input1 ? 
+        setInput1({
+            ...input1,
+            [name] : value
+        }):
         setInput({
             ...input,
-            [e.target.name] : e.target.value
-
+            [name] : value
         })
         console.log(input)
         setError(validate({
@@ -81,34 +90,52 @@ console.log(details)
            
              }
     } 
-
+    const showStep = (e) => {
+       var {name , value  } = e.target;
+    
+       setstepToShow(Object.values(input1.steps[value]));
+       /* setStepEdited() */
+       setPositionStep(value);
+       console.log(positionStep)
+    }
+  
 
     function handleChangeStep(e){
  
-    const {name , value } = e.target ; 
-    setStep(value)
-
-        console.log(step)   
-       
+    var {name , value } = e.target ; 
+   /*  console.log(value) */
+      input1?
+      setstepToShow(value)
+      :  
+      setStep(value)  
+      console.log(input)
+      console.log(input1)
+    /* aca se te van a enviar los steps todos juntos  se deben editar en la posicion exacta del array */
     }
     function handleStep (e) {
-        e.preventDefault()
+        e.preventDefault();
+       
+        input1? 
+       
+       input1.steps[positionStep] = {step :stepToShow}
+        
+        
+        
+        :
         setInput({
             ...input,
             steps :[...input.steps ,{step}]
         })
         setNumber(numberStep+1)
-      setStep('')
-        console.log(input)
+        setStep('')
+        console.log(input1)
     }
     function handleSubmit(e){
-        console.log(input)
-        /* si tengo detail input es igual a input 1 */
-        details.length > 0 &&  dispatch(putRec(input1))
-        console.log(input1)
-       /*  input.length > 0 &&
-        dispatch(postRecipe(input)) 
-        console.log(input1)        */
+       
+        details.length > 0?dispatch(putRec(input1))
+        : dispatch(postRecipe(input))
+        console.log(input1 , input)
+      
         setInput({
         name: '',
         summary:'',
@@ -129,53 +156,92 @@ return (
                 </button>
                     <div className={estilos.modalContent}>
                 
-                        <form onSubmit={(e)=> handleSubmit(e)} /* className={estilos.modalContent}  *//* className={estilos.form} */>
+                        <form onSubmit={(e)=> handleSubmit(e)} >
                         <div>
-                        <h1 /* className={estilos.h1} */>Be Creative</h1>
-                        <p /* className={estilos.p} */>Name: </p>
+                        <h1 >Be Creative</h1>
+                        <p >Name: </p>
                         <input
                         type='text'
-                        value={details?details[0].name:input.name}
+                        value={input1 ? input1.name : input.name}
                         name='name'
-                                onChange={(e)=>handleChange(e)}
+                        onChange={(e)=>handleChange(e)}
                                 />                    
-                                {error.name && <p /* className={estilos.error} */>{error.name}</p>}
+                                {error.name && <p >{error.name}</p>}
                             </div>
                             <div>
                                 <p className={estilos.p}>Summary: </p>
                                 <textarea
                                 type='text'
-                                value={details?details[0].summary:input.summary}
+                                value={input1? input1.summary:input.summary}
                                 name= 'summary'
                                 onChange={(e)=>handleChange(e)}
                                 />
-                                {error.summary && <p /* className={estilos.error} */>{error.summary}</p>}
+                                {error.summary && <p >{error.summary}</p>}
                             </div>
                             <div>
-                                <p /* className={estilos.p} */>Score: </p>
+                                <p>Score: </p>
                                 <input
-                                type= 'number'
-                                value={details?details[0].score:input.score}
+                                type= 'text'
+                                value={input1 ? input1.score:input.score}
                                 name='score'
                                 onChange={(e)=> handleChange(e)}/>
-                                {error.score && <p /* className={estilos.error} */>{error.score}</p>}
+                                {error.score && <p >{error.score}</p>}
                             </div>
                             <div>
-                                <p /* className={estilos.p} */>Health Score: </p>
+                                <p >Health Score: </p>
                                 <input
                                 type= 'number'
-                                value={details?details[0].healthScore:input.healthScore}
+                                value={input1?input1.healthScore:input.healthScore} 
                                 name='healthScore'
                                 onChange={(e)=> handleChange(e)}/>
                             </div>
                             <div >
                                 <p className={estilos.p}>Steps: </p>
-                                <textarea  /* className={estilos.textarea} */
+                                <textarea 
                                 type='textarea'
-                                value={details?details[0].steps.map((e)=> e.step):step}
+                                value={stepToShow?stepToShow:step}
                                 name='steps'
-                                onChange={(e) =>handleChangeStep(e)}/>     
-                               <button type = "button" className={estilos.boton1} onClick={(e) =>handleStep(e)}>step{`${numberStep}`}</button>
+                                onChange={(e) =>handleChangeStep(e)}/>   
+                                <div>
+
+                                {input1?
+                                input1.steps.map((e , i)=> <button
+                                                 type = "button"
+                                                 value ={i}
+                                                 key={i} 
+                                                 className={estilos.boton1} 
+                                                 onClick={(e) =>showStep(e)}
+                                                 >step{`${[i+1]}`}
+                                                </button>
+                                                
+                                                
+                                                
+                                                
+                                                ) /* &&
+                                    <div>
+                                    
+                                <button 
+                                key={1} 
+                                type = "button" 
+                                value={"ok"} 
+                                className={estilos.boton1} 
+                                onClick = {e=> handleStep(e)}
+                                >OK
+                                    </button> 
+                                    </div> */
+                                                
+                            
+                                
+                                :<button 
+                                type = "button" 
+                                className={estilos.boton1} 
+                                onClick={(e) =>handleStep(e)}
+                                >step{`${numberStep}`}
+                                    </button>
+                                }
+                                    </div>
+                               {/* {<button type = "button" className={estilos.boton1} onClick={(e) =>handleStep(e)}>step{`${numberStep}`}</button>} */}
+                            </div>        
 
                             <div className={estilos.selecDiets}>
                                 {diets.map (e => (
@@ -183,17 +249,13 @@ return (
                                         <input
                                         className = {estilos.checks} 
                                         value={e.name} 
-                                        
                                         onChange= {e=>handleSelect(e)}
                                         type="checkbox" />
                                         {e.name}
                                 </div> ))}                           
                                     <button className={estilos.deleteBtn} >
-                                        botones acciones etc
-                                      
                                         Create</button>  
                                     </div>  
-                                    </div>        
                 </form>
                 </div>
                 <div className={estilos.modalActions}>
