@@ -26,7 +26,7 @@ const Modal = ({ setIsOpen  }) => {
     const dispatch= useDispatch();          
     
     useEffect(()=>{
-   
+        /* setSelected(); */
         dispatch(getTypes());
         return () => setIsOpen(false) && alert("reset")
         
@@ -74,17 +74,12 @@ const Modal = ({ setIsOpen  }) => {
         }));
     }
     const setSelected = () => {
-        diets.map(e => {
-            
-        })
-    }
+        document.getElementById('dairy free').checked = true;
+     }
     function handleSelect  (e) {
-        var {checked , value , name} = e.target
-      /*   input1.diets.map(e=>{
-            if(e.name=== name){
-                checked === true
-            }})
- */ console.log(input1.diets.map(e => e.name.includes(value)? checked =true : checked = false))
+        var {checked , value , name} = e.target;
+        document.getElementById('dairy free').checked;
+       console.log(input1.diets.map(e => e.name.includes(value)? checked =true : checked = false))
         if(checked === false || input.diets.includes(value) === true){
             setInput({
                 ...input,
@@ -152,6 +147,21 @@ const Modal = ({ setIsOpen  }) => {
         diets:[],
         })
     } 
+    function myForm() {
+        var inputs = document.getElementsByTagName("input");
+        for(var i = 0; i < inputs.length; i++) {
+            if(inputs[i].type == "checkbox") { 
+                if(inputs[i].checked = false) {
+                    inputs[i].checked = true; 
+                } else {
+                    if(inputs[i].checked = true) {
+                        inputs[i].checked = false; 
+                    }   
+                }
+            }  
+        } 
+    }
+    console.log(diets)
 return (
     <>
      <div className={estilos.darkBG} onClick={() => setIsOpen(false)} />
@@ -229,38 +239,48 @@ return (
                                                 }
                                 </div>
                                 {input1? 
-                                <div>
-                                <button 
-                                    key={1} 
-                                    type = "button" 
-                                    value={"ok"} 
-                                    className={estilos.boton1} 
-                                    onClick = {e=> handleStep(e)}
-                                    >Done
-                                </button> 
-                                 </div> : 
-                                 null
-                            }
+                                            <div>
+                                                <button 
+                                                key={1} 
+                                                type = "button" 
+                                                value={"ok"} 
+                                                className={estilos.boton1} 
+                                                onClick = {e=> handleStep(e)}
+                                                >Done
+                                                </button> 
+                                            </div> : 
+                                            null
+                                                 }
                                                 
                             
                                 
                                {/* {<button type = "button" className={estilos.boton1} onClick={(e) =>handleStep(e)}>step{`${numberStep}`}</button>} */}
-                            </div>        
+                            </div> 
+                            <div>
+                                
+                                
+                            {
                             
+                        
                             <div className={estilos.selecDiets}>
                                 {diets.map (e => (
                                     <div className={estilos.listo}>
                                         <input
                                         className = {estilos.checks} 
-                                        value={e.name} 
+                                        value={e.name}
+                                        id={e.name} 
                                         name={e.name}
                                         onChange= {e=>handleSelect(e)}
                                         type="checkbox" />
                                         {e.name}
-                                </div> ))}                           
+                                        </div> ))}  
+                                        <button type = "button"onClick={setSelected()}></button>                         
                                     <button className={estilos.deleteBtn} >
                                         Create</button>  
                                     </div>  
+                        
+                        }
+                                </div>       
                 </form>
                 </div>
                 <div className={estilos.modalActions}>
