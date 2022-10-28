@@ -73,9 +73,18 @@ const Modal = ({ setIsOpen  }) => {
             [e.target.name] : e.target.value
         }));
     }
-    
+    const setSelected = () => {
+        diets.map(e => {
+            
+        })
+    }
     function handleSelect  (e) {
-        const {checked , value} = e.target
+        var {checked , value , name} = e.target
+      /*   input1.diets.map(e=>{
+            if(e.name=== name){
+                checked === true
+            }})
+ */ console.log(input1.diets.map(e => e.name.includes(value)? checked =true : checked = false))
         if(checked === false || input.diets.includes(value) === true){
             setInput({
                 ...input,
@@ -110,7 +119,7 @@ const Modal = ({ setIsOpen  }) => {
       setStep(value)  
       console.log(input)
       console.log(input1)
-    /* aca se te van a enviar los steps todos juntos  se deben editar en la posicion exacta del array */
+    
     }
     function handleStep (e) {
         e.preventDefault();
@@ -118,9 +127,6 @@ const Modal = ({ setIsOpen  }) => {
         input1? 
        
        input1.steps[positionStep] = {step :stepToShow}
-        
-        
-        
         :
         setInput({
             ...input,
@@ -199,7 +205,7 @@ return (
                                 <p className={estilos.p}>Steps: </p>
                                 <textarea 
                                 type='textarea'
-                                value={stepToShow?stepToShow:step}
+                                value={stepToShow.length > 0?stepToShow:step}
                                 name='steps'
                                 onChange={(e) =>handleChangeStep(e)}/>   
                                 <div>
@@ -213,42 +219,41 @@ return (
                                                  onClick={(e) =>showStep(e)}
                                                  >step{`${[i+1]}`}
                                                 </button>
-                                                
-                                                
-                                                
-                                                
-                                                ) /* &&
-                                    <div>
-                                    
+                                                ) 
+                                                :<button 
+                                                type = "button" 
+                                                className={estilos.boton1} 
+                                                onClick={(e) =>handleStep(e)}
+                                                >step{`${numberStep}`}
+                                                    </button>
+                                                }
+                                </div>
+                                {input1? 
+                                <div>
                                 <button 
-                                key={1} 
-                                type = "button" 
-                                value={"ok"} 
-                                className={estilos.boton1} 
-                                onClick = {e=> handleStep(e)}
-                                >OK
-                                    </button> 
-                                    </div> */
+                                    key={1} 
+                                    type = "button" 
+                                    value={"ok"} 
+                                    className={estilos.boton1} 
+                                    onClick = {e=> handleStep(e)}
+                                    >Done
+                                </button> 
+                                 </div> : 
+                                 null
+                            }
                                                 
                             
                                 
-                                :<button 
-                                type = "button" 
-                                className={estilos.boton1} 
-                                onClick={(e) =>handleStep(e)}
-                                >step{`${numberStep}`}
-                                    </button>
-                                }
-                                    </div>
                                {/* {<button type = "button" className={estilos.boton1} onClick={(e) =>handleStep(e)}>step{`${numberStep}`}</button>} */}
                             </div>        
-
+                            
                             <div className={estilos.selecDiets}>
                                 {diets.map (e => (
                                     <div className={estilos.listo}>
                                         <input
                                         className = {estilos.checks} 
                                         value={e.name} 
+                                        name={e.name}
                                         onChange= {e=>handleSelect(e)}
                                         type="checkbox" />
                                         {e.name}
