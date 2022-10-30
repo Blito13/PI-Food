@@ -42,6 +42,12 @@ const Modal = ({ setIsOpen  }) => {
     const [stepToShow , setstepToShow] = useState([])
     const [stepEdited , setStepEdited] = useState([])
     const [input1 ,setInput1]= useState(details[0])
+    const [dietsInput , setDietsInput] = useState(input1.diets)
+   console.log(input1.diets.map(e=> e.name))
+    /* const [selectedItem ] */
+    var [checkedState , setCheckedState] = useState(
+        new Array(diets.length).fill(false)
+     )
 
     const [input, setInput] = useState({
         name: '',
@@ -73,13 +79,20 @@ const Modal = ({ setIsOpen  }) => {
             [e.target.name] : e.target.value
         }));
     }
-    const setSelected = () => {
-        document.getElementById('dairy free').checked = true;
-     }
-    function handleSelect  (e) {
+    const handleChancla =() =>{
+        diets.map((e, i )=>{
+            e.name === dietsInput[i].name ? checkedState[i] = true :console.log("todavia no!")
+        })
+ console.log(dietsInput[1].name)
+    }
+    function handleSelect  (e ,i) {
         var {checked , value , name} = e.target;
-        document.getElementById('dairy free').checked;
-       console.log(input1.diets.map(e => e.name.includes(value)? checked =true : checked = false))
+       /*  console.log(input1.diets.map(e=> e.name.includes(name))) */
+      /*   console.log(i)
+        console.log(input1.diets.map(e=>e.name)) */
+        /* const grr =  diets.map((e , i ) => {}) */
+       /* console.log(input1.diets.map(e => e.name.includes(value)? checked =true : checked = false)) */
+       console.log(checked , value , i)
         if(checked === false || input.diets.includes(value) === true){
             setInput({
                 ...input,
@@ -147,21 +160,9 @@ const Modal = ({ setIsOpen  }) => {
         diets:[],
         })
     } 
-    function myForm() {
-        var inputs = document.getElementsByTagName("input");
-        for(var i = 0; i < inputs.length; i++) {
-            if(inputs[i].type == "checkbox") { 
-                if(inputs[i].checked = false) {
-                    inputs[i].checked = true; 
-                } else {
-                    if(inputs[i].checked = true) {
-                        inputs[i].checked = false; 
-                    }   
-                }
-            }  
-        } 
-    }
-    console.log(diets)
+    handleChancla();
+    /* console.log(diets) */
+    /* setCheckedState() */
 return (
     <>
      <div className={estilos.darkBG} onClick={() => setIsOpen(false)} />
@@ -245,7 +246,7 @@ return (
                                                 type = "button" 
                                                 value={"ok"} 
                                                 className={estilos.boton1} 
-                                                onClick = {e=> handleStep(e)}
+                                                /* onClick = {e=> handleStep(e)} */
                                                 >Done
                                                 </button> 
                                             </div> : 
@@ -263,18 +264,21 @@ return (
                             
                         
                             <div className={estilos.selecDiets}>
-                                {diets.map (e => (
+                                {diets.map ((e , i ) => (
                                     <div className={estilos.listo}>
                                         <input
                                         className = {estilos.checks} 
                                         value={e.name}
-                                        id={e.name} 
+                                        key = {e.name +3}
+                                        id={e.name + i} 
                                         name={e.name}
-                                        onChange= {e=>handleSelect(e)}
+                                        onChange= {/* input1 ? e=> handleChancla(e, i) : */e=>handleSelect(e)}
+                                        checked = {input1?checkedState[i] : null}
+                                       
                                         type="checkbox" />
                                         {e.name}
                                         </div> ))}  
-                                        <button type = "button"onClick={setSelected()}></button>                         
+                                                             
                                     <button className={estilos.deleteBtn} >
                                         Create</button>  
                                     </div>  
