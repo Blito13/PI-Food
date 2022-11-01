@@ -42,11 +42,11 @@ const Modal = ({ setIsOpen  }) => {
     const [stepToShow , setstepToShow] = useState([])
     const [stepEdited , setStepEdited] = useState([])
     const [input1 ,setInput1]= useState(details[0])
-    const [dietsInput , setDietsInput] = useState(input1.diets)
-   console.log(input1.diets.map(e=> e.name))
+    const [dietsInput , setDietsInput] = useState(input1.diets.map(e => e.name))
+   console.log(dietsInput)
     /* const [selectedItem ] */
     var [checkedState , setCheckedState] = useState(
-        new Array(diets.length).fill(false)
+        new Array(diets.length).fill(false)//null para que no se pisen con las otras
      )
 
     const [input, setInput] = useState({
@@ -80,9 +80,18 @@ const Modal = ({ setIsOpen  }) => {
         }));
     }
     const handleChancla =() =>{
-        diets.map((e, i )=>{
-            e.name === dietsInput[i].name ? checkedState[i] = true :console.log("todavia no!")
-        })
+        //crear un objeto de key y valor 
+        const mySet =  new Set();//almacena valores unicos de un array
+        const myMap = new Map();//es igual a un objeto
+        diets.includes()
+       
+       /*  diets.map((e, i )=>{
+            dietsInput[0].name?
+            e.name !== dietsInput[i].name ? checkedState[i] = false :checkedState[i] = true
+
+
+            : console.log("lacucaracha")
+        }) */
  console.log(dietsInput[1].name)
     }
     function handleSelect  (e ,i) {
@@ -160,7 +169,7 @@ const Modal = ({ setIsOpen  }) => {
         diets:[],
         })
     } 
-    handleChancla();
+    /* handleChancla(); */
     /* console.log(diets) */
     /* setCheckedState() */
 return (
@@ -273,7 +282,7 @@ return (
                                         id={e.name + i} 
                                         name={e.name}
                                         onChange= {/* input1 ? e=> handleChancla(e, i) : */e=>handleSelect(e)}
-                                        checked = {input1?checkedState[i] : null}
+                                        defaultChecked = {/* input1?checkedState[i] : null */ e.name === dietsInput[i] ? true : false}
                                        
                                         type="checkbox" />
                                         {e.name}
