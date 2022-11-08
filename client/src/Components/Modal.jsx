@@ -27,8 +27,10 @@ const Modal = ({ setIsOpen  }) => {
     
     useEffect(()=>{
         /* setSelected(); */
+     
+        console.log(JSON.stringify(input1))
         dispatch(getTypes());
-        return () => setIsOpen(false) && alert("reset")
+        return () => setIsOpen(false) && alert("reset" )
         
     }, []); //eslint-disable-line
    
@@ -41,13 +43,9 @@ const Modal = ({ setIsOpen  }) => {
     const [step , setStep] = useState([])
     const [stepToShow , setstepToShow] = useState([])
     const [stepEdited , setStepEdited] = useState([])
-    const [input1 ,setInput1]= useState(details[0])
-    const [dietsInput , setDietsInput] = useState(input1.diets.map(e => e.name))
-   console.log(dietsInput)
-    /* const [selectedItem ] */
-    var [checkedState , setCheckedState] = useState(
-        new Array(diets.length).fill(false)//null para que no se pisen con las otras
-     )
+    const [input1 ,setInput1]= useState(details[0])//las diets vienen de otra forma aca
+    const [dietsInput , setDietsInput] = useState( details.length > 0 ? details[0].diets.map(e => e.name): null)
+
 
     const [input, setInput] = useState({
         name: '',
@@ -59,8 +57,8 @@ const Modal = ({ setIsOpen  }) => {
         diets:[],
     })
     
-
     function handleChange(e){
+        console.log(input1)
         e.preventDefault();
         const {name , value }= e.target
    input1 ? 
@@ -79,30 +77,15 @@ const Modal = ({ setIsOpen  }) => {
             [e.target.name] : e.target.value
         }));
     }
-    const handleChancla =() =>{
-        //crear un objeto de key y valor 
-        const mySet =  new Set();//almacena valores unicos de un array
-        const myMap = new Map();//es igual a un objeto
-        diets.includes()
-       
-       /*  diets.map((e, i )=>{
-            dietsInput[0].name?
-            e.name !== dietsInput[i].name ? checkedState[i] = false :checkedState[i] = true
-
-
-            : console.log("lacucaracha")
-        }) */
- console.log(dietsInput[1].name)
-    }
+   /*  const handleDiet = () => {
+        const leg = input1.diets.map(e => e.name)
+        setInput1(input1.diets = [leg])
+        console.log(input1)
+    } */
     function handleSelect  (e ,i) {
-        var {checked , value , name} = e.target;
-       /*  console.log(input1.diets.map(e=> e.name.includes(name))) */
-      /*   console.log(i)
-        console.log(input1.diets.map(e=>e.name)) */
-        /* const grr =  diets.map((e , i ) => {}) */
-       /* console.log(input1.diets.map(e => e.name.includes(value)? checked =true : checked = false)) */
-       console.log(checked , value , i)
-        if(checked === false || input.diets.includes(value) === true){
+        
+        var {defaultChecked , checked , value , name} = e.target;
+       /*  if(checked === false || input.diets.includes(value) === true){
             setInput({
                 ...input,
                 diets : [...input.diets.filter(d=> d !== value)] 
@@ -114,13 +97,38 @@ const Modal = ({ setIsOpen  }) => {
                 })
                 console.log(input.diets)
            
-             }
+             } */
+   
+        
+        console.log(input1.diets)
+       
+        console.log(checked )
+        console.log(input1)
+        if(checked === false ){
+            
+            
+            console.log(input1.diets , )
+            setInput1({
+                ...input1, 
+                diets : [...input1.diets.filter(e => e.name !== value)]
+            })
+            
+     } else {
+        setInput1({
+            ...input1,
+            diets:[...input1.diets ,{ name : value}] 
+        })
     } 
+        
+    const leg = input1.diets.map(e => e.name)
+    input1.diets = leg
+    console.log(input1)
+     }
+     
     const showStep = (e) => {
        var {name , value  } = e.target;
     
-       setstepToShow(Object.values(input1.steps[value]));
-       /* setStepEdited() */
+       setstepToShow(Object.values(input1.steps[value]))
        setPositionStep(value);
        console.log(positionStep)
     }
@@ -142,8 +150,10 @@ const Modal = ({ setIsOpen  }) => {
         e.preventDefault();
        
         input1? 
+
+
+           input1.steps[positionStep] = {step :stepToShow}
        
-       input1.steps[positionStep] = {step :stepToShow}
         :
         setInput({
             ...input,
@@ -154,9 +164,14 @@ const Modal = ({ setIsOpen  }) => {
         console.log(input1)
     }
     function handleSubmit(e){
+      
+       if(details.length>0){
+        /* const leg = input1.diets.map(e => e.name)
+       input1.diets = leg
+        && */ dispatch(putRec(input1))
        
-        details.length > 0?dispatch(putRec(input1))
-        : dispatch(postRecipe(input))
+       }else {
+        dispatch(postRecipe(input))
         console.log(input1 , input)
       
         setInput({
@@ -168,10 +183,23 @@ const Modal = ({ setIsOpen  }) => {
         image:'',
         diets:[],
         })
+       }
+        /* details.length > 0? setInput1({...input1, diets : [...input1.diets.map(e => e.name )]}) &&dispatch(putRec(input1)) 
+        : dispatch(postRecipe(input))
+        console.log(input1 , input)
+      
+        setInput({
+        name: '',
+        summary:'',
+        score:0,
+        healthScore:0,
+        steps:[],
+        image:'',
+        diets:[],
+        }) */
+      
     } 
-    /* handleChancla(); */
-    /* console.log(diets) */
-    /* setCheckedState() */
+/* handleDiet(); */
 return (
     <>
      <div className={estilos.darkBG} onClick={() => setIsOpen(false)} />
@@ -229,8 +257,7 @@ return (
                                 name='steps'
                                 onChange={(e) =>handleChangeStep(e)}/>   
                                 <div>
-
-                                {input1?
+                               { input1?
                                 input1.steps.map((e , i)=> <button
                                                  type = "button"
                                                  value ={i}
@@ -255,7 +282,7 @@ return (
                                                 type = "button" 
                                                 value={"ok"} 
                                                 className={estilos.boton1} 
-                                                /* onClick = {e=> handleStep(e)} */
+                                                onClick = {e=> handleStep(e)}
                                                 >Done
                                                 </button> 
                                             </div> : 
@@ -278,11 +305,11 @@ return (
                                         <input
                                         className = {estilos.checks} 
                                         value={e.name}
-                                        key = {e.name +3}
+                                      
                                         id={e.name + i} 
                                         name={e.name}
                                         onChange= {/* input1 ? e=> handleChancla(e, i) : */e=>handleSelect(e)}
-                                        defaultChecked = {/* input1?checkedState[i] : null */ e.name === dietsInput[i] ? true : false}
+                                        defaultChecked = {/* input1?checkedState[i] : null */input1? e.name === dietsInput[i] ? true : false : null}
                                        
                                         type="checkbox" />
                                         {e.name}

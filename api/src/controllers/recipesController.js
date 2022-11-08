@@ -1,5 +1,6 @@
 require('dotenv').config(); 
 const axios = require ('axios');
+const { types } = require('pg');
 const {Recipe , Diet , Step} = require ('../db')
 const {YOUR_API_KEY} = process.env;
 
@@ -98,14 +99,22 @@ const postRecipe = async (req , res) =>{
 
 }
 const updateRec = async (req , res) =>{
-    const {...newBody} =req.body;
-    console.log(newBody)
-       let back = await Recipe.findByPk(newBody.id);
-        back.set(newBody)
-        back = await back.save();
-          console.log(back)
-          console.log(newBody)
-          res.send(back)
+    const {diets ,id , ...newBody} =req.body;
+    
+    try{
+       
+        let recipeToUpdate= await Recipe.findByPk(id)
+        recipeToUpdate.set(newBody)
+         recipeToUpdate.save();
+         if(diets){
+            const typesDb = await Diet.findAll({where: {name: diets}})
+            const gol = await recipeToUpdate.setDiets(typesDb)
+         }
+        res.send(recipeToUpdate)
+
+
+    } catch (error)
+    {console.log(error)}
 }
 const deleteRec = async (req, res) => {
     try {

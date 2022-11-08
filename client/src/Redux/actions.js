@@ -10,7 +10,7 @@ export const ORDER_SCORE = 'ORDER_SCORE'
 export const GET_DETAILS = 'GET_DETAILS'
 export const ORDER_HEALTH = 'SORDER_HEALTHY'
 export const RESET_DETAILS = 'RESET_DETAILS'
-
+export const GET_DB_DETAILS = 'GET_DB_DETAILS'
 
 export function getRecipes (){
 return async function (dispatch){
@@ -118,6 +118,7 @@ export function resetDet(){
 }
 
 export function putRec (payload){
+    console.log(payload)
     return async function (dispatch){
         try{
             var update = await axios.put('http://localhost:3001/recipes/uppdate',payload)
@@ -128,3 +129,4 @@ export function putRec (payload){
         }
     }
 }
+

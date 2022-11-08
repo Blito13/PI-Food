@@ -7,8 +7,8 @@ import{
     ORDER_NAME ,
     ORDER_SCORE ,
     POST_REC,
-    RESET_DETAILS
-    
+    RESET_DETAILS,
+    GET_DB_DETAILS
 }from './actions'
 
     const initialState = {
@@ -117,18 +117,13 @@ function rootR (state = initialState ,{payload ,type}){
                 ...state,
                 types:payload 
             } 
-        case GET_DETAILS:
-     
-           const reg = payload
-
-            return {...state, details :reg}
+        case GET_DETAILS: 
+            const det = payload;
+            return {...state, details :det}
         case RESET_DETAILS:
-       
-           
-             
-        
             return {...state, details :payload}
-            
+        
+    
             default :
         return state;
     }
