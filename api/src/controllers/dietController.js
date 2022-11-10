@@ -18,7 +18,9 @@ const getDiets  = async (req ,res ) =>{
     const allTypes = await Diet.findAll({
         attributes:['name'] 
     })
+    console.log(allTypes)
     res.send(allTypes)
+
 }
 module.exports ={
     getDiets

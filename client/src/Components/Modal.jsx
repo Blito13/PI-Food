@@ -85,7 +85,7 @@ const Modal = ({ setIsOpen  }) => {
     function handleSelect  (e ,i) {
         
         var {defaultChecked , checked , value , name} = e.target;
-       /*  if(checked === false || input.diets.includes(value) === true){
+        if(checked === false || input.diets.includes(value) === true){
             setInput({
                 ...input,
                 diets : [...input.diets.filter(d=> d !== value)] 
@@ -97,17 +97,17 @@ const Modal = ({ setIsOpen  }) => {
                 })
                 console.log(input.diets)
            
-             } */
+             }
    
         
-        console.log(input1.diets)
+        /* console.log(input1.diets)
        
         console.log(checked )
-        console.log(input1)
-        if(checked === false ){
+        console.log(input1) */
+       /*  if(checked === false ){
             
             
-            console.log(input1.diets , )
+            
             setInput1({
                 ...input1, 
                 diets : [...input1.diets.filter(e => e.name !== value)]
@@ -118,11 +118,11 @@ const Modal = ({ setIsOpen  }) => {
             ...input1,
             diets:[...input1.diets ,{ name : value}] 
         })
-    } 
+    }  */
         
-    const leg = input1.diets.map(e => e.name)
+/*     const leg = input1.diets.map(e => e.name)
     input1.diets = leg
-    console.log(input1)
+    console.log(input1) */
      }
      
     const showStep = (e) => {
