@@ -98,31 +98,21 @@ const Modal = ({ setIsOpen  }) => {
                 console.log(input.diets)
            
              }
-   
-        
-        /* console.log(input1.diets)
-       
-        console.log(checked )
-        console.log(input1) */
-       /*  if(checked === false ){
-            
-            
-            
+     }
+     const handleUpdate = (e) => {
+        var {defaultChecked , checked , value , name} = e.target;
+        if(checked === false ){    
             setInput1({
                 ...input1, 
                 diets : [...input1.diets.filter(e => e.name !== value)]
             })
             
-     } else {
-        setInput1({
-            ...input1,
-            diets:[...input1.diets ,{ name : value}] 
-        })
-    }  */
-        
-/*     const leg = input1.diets.map(e => e.name)
-    input1.diets = leg
-    console.log(input1) */
+        } else {
+            setInput1({
+                ...input1,
+                diets:[...input1.diets ,{ name : value}] 
+            })
+        } 
      }
      
     const showStep = (e) => {
@@ -150,7 +140,7 @@ const Modal = ({ setIsOpen  }) => {
         e.preventDefault();
        
         input1? 
-
+        /* setInput1({...input1.steps[positionStep] = {step : stepToShow}}) */
 
            input1.steps[positionStep] = {step :stepToShow}
        
@@ -308,8 +298,8 @@ return (
                                       
                                         id={e.name + i} 
                                         name={e.name}
-                                        onChange= {/* input1 ? e=> handleChancla(e, i) : */e=>handleSelect(e)}
-                                        defaultChecked = {/* input1?checkedState[i] : null */input1? e.name === dietsInput[i] ? true : false : null}
+                                        onChange= {input1 ? e=> handleUpdate(e, i) :e=>handleSelect(e)}
+                                        defaultChecked = {input1? e.name === dietsInput[i] ? true : false : null}
                                        
                                         type="checkbox" />
                                         {e.name}
