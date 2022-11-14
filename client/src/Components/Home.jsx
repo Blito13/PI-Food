@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState  , useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { getRecipes, orderByName, orderByScore, filterByTypes, getTypes } from "../Redux/actions";
 import {Link} from "react-router-dom";
@@ -7,29 +7,36 @@ import Card from "../Components/Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 import estilos from './Home.module.css';
-
 import Modal from "./Modal";
 import RecipeCreate from "./RecipeCreate";
-
+let PageSize = 9;
 export default function Home(){
     const dispatch = useDispatch();
+    useEffect(()=>{
+       
+        dispatch(getRecipes());
+        dispatch(getTypes());
+        return () => setIsOpen(true) && alert("carrado")
+    },[dispatch]) 
     const allRecipes = useSelector((state)=> state.recipes)
-    const [currentPage, setCurrentPage] = useState(1)
-    const [recipesPerPage, setRecipesPerPage]= useState(9) 
-    const indexOfLastRecipe = currentPage * recipesPerPage 
-    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage 
-    const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe) 
+    const [currentPage, setCurrentPage] = useState(0);
+    const currentTableData = useMemo(() => {
+      const firstPageIndex = currentPage * PageSize;
+      const lastPageIndex = firstPageIndex + PageSize;
+      return  allRecipes.slice(firstPageIndex, lastPageIndex);
+      
+    }, [currentPage , allRecipes]);
     const [orden, setOrden] = useState('') 
     const [orden1, setOrden1] = useState('') 
     const [isOpen, setIsOpen] = useState(false);
 
    
-    function afterOpenModal() {
+   /*  function afterOpenModal() {
        
-      }
+      } */
 
 
-    const paginado = (number) =>{ 
+    /* const paginado = (number) =>{ 
         if(number > 12){
             number = 12
         }
@@ -42,27 +49,21 @@ export default function Home(){
             setCurrentPage(number)
         }
        
-    }
+    } */
 
-    useEffect(()=>{
-       
-        dispatch(getRecipes());
-        dispatch(getTypes());
-        return () => setIsOpen(true) && alert("carrado")
-    },[dispatch]) 
 
     const types = useSelector(state=> state.types)
 
     function handleFilterTypes(e){
         e.preventDefault();
         dispatch(filterByTypes(e.target.value))
-        paginado(1);
+       /*  paginado(1); */
     }
 
     function handleSort(e){
         e.preventDefault();
         dispatch(orderByName(e.target.value))
-        setCurrentPage(1);
+        /* setCurrentPage(1); */
         setOrden(`ordenado ${e.target.value}`)
         
     }
@@ -70,7 +71,7 @@ export default function Home(){
     function handleScore(e){
         e.preventDefault();
         dispatch(orderByScore(e.target.value))
-        setCurrentPage(1);
+       /*  setCurrentPage(1); */
         setOrden1(`ordenado ${e.target.value}`)
     }
     
@@ -106,7 +107,7 @@ export default function Home(){
                 </select>
                 <SearchBar className={estilos.boton1}/>
                 <div className={estilos.card}>                         
-                {currentRecipes?.map((el)=>{ //slice(0.9)
+                {currentTableData.map((el)=>{ //slice(0.9)
                     return(                   
                             <Link className={estilos.tyty} to={`/recipes/${el.id}`} key={'p'+el.id}>
                             <Card id={el.id} img={el.image}  key = {el.name} name={el.name} /* Diet={el.Diets} */  diets={el.diets} /* healtScore = {el.healthScore} */ >
@@ -117,7 +118,14 @@ export default function Home(){
                 }
                             </div>
                             <div>
-                                 <Paginado key= {1} recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado} currentPage = {currentPage}/>
+                                
+                            <Paginado
+                                className={estilos.pagination}
+                                currentPage={currentPage}
+                                totalCount={allRecipes.length}
+                                pageSize={PageSize}
+                                onPageChange={page => setCurrentPage(page)}
+                                    />
                              </div>
                 
             </div>

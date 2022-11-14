@@ -299,7 +299,7 @@ return (
                                         id={e.name + i} 
                                         name={e.name}
                                         onChange= {input1 ? e=> handleUpdate(e, i) :e=>handleSelect(e)}
-                                        defaultChecked = {input1? e.name === dietsInput[i] ? true : false : null}
+                                        defaultChecked = {input1?  dietsInput[i] === e.name ? true : false : null}
                                        
                                         type="checkbox" />
                                         {e.name}

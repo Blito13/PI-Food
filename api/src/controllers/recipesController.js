@@ -107,7 +107,7 @@ const updateRec = async (req , res) =>{
         recipeToUpdate.set(newBody)
          recipeToUpdate.save();
          if(diets){
-            console.log(diets ,"!!!!!")
+           
             const typesDb = await Diet.findAll({where: {name: diets.map(e => e.name)}})
             const gol = await recipeToUpdate.setDiets(typesDb)
             
