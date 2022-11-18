@@ -136,9 +136,9 @@ const Modal = ({ setIsOpen  }) => {
         e.preventDefault();
        
         input1? 
-        /* setInput1({...input1.steps[positionStep] = {step : stepToShow}}) */
+        setInput1(...input1.steps[positionStep] = {step : stepToShow})
 
-           input1.steps[positionStep] = {step :stepToShow}
+           /* input1.steps[positionStep] = {step :stepToShow} */
        
         :
         setInput({

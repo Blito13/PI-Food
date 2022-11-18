@@ -119,6 +119,7 @@ function rootR (state = initialState ,{payload ,type}){
             } 
         case GET_DETAILS: 
             const det = payload;
+            console.log(det)
             return {...state, details :det}
         case RESET_DETAILS:
             return {...state, details :payload}

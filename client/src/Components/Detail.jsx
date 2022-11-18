@@ -48,10 +48,10 @@ export default function Detail(){
                      <h3 className = {styles.h1}>
                      Steps:
                      </h3>
-                             {detailstate[0].steps.map(e=> 
+                             {/* {detailstate[0].steps.map(e=> 
                               <li className = {styles.h5}>
                               {e.step}
-                              </li> )} 
+                              </li> )} */} 
                      </div>
                      <div className = {styles.divisionBar}></div>
 
@@ -76,10 +76,19 @@ export default function Detail(){
                      <div className={styles.h1}>
 
                      <Link to='/home'><button className = {styles.boton} >Back to Home </button></Link>
-                     <button className = {styles.boton} onClick={() => setIsOpen(true)}>Update</button>
                   
-                     
-                     <button className = {styles.boton}>Update</button>
+                     {
+                        detailstate[0].createdINBd?
+                        <button className = {styles.boton} onClick={() => setIsOpen(true)}>Update</button>
+                       
+                         :
+                        null
+                        
+                     }
+                     {detailstate[0].createdINBd?
+                         <button className = {styles.boton}>Delete Recipe</button> :
+                         null
+                     }
                      </div>
                     { isOpen &&
                     <Fragment>
@@ -92,13 +101,7 @@ export default function Detail(){
                    </div>     
           </div>
           <div>
-          {isOpen &&
-         <Fragment>
-             <Modal 
-                  className={styles.check} 
-                  setIsOpen={setIsOpen} />
-         </Fragment> 
-         }
+    
 
           </div>
          </div> :

@@ -29,7 +29,7 @@ export default function Home(){
     const [orden, setOrden] = useState('') 
     const [orden1, setOrden1] = useState('') 
     const [isOpen, setIsOpen] = useState(false);
-
+    console.log(currentTableData)
    
    /*  function afterOpenModal() {
        
@@ -82,7 +82,7 @@ export default function Home(){
              <h1 className={estilos.h1}>Recipes</h1>    */}                    
                 <div className={estilos.check}>
                  <button className={estilos.primaryBtn} onClick={() => setIsOpen(true)}>
-                Open Modal
+                Create!
                 </button>
                     {isOpen &&
                     <Fragment>
