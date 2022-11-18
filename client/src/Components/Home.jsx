@@ -19,9 +19,9 @@ export default function Home(){
         return () => setIsOpen(true) && alert("carrado")
     },[dispatch]) 
     const allRecipes = useSelector((state)=> state.recipes)
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const currentTableData = useMemo(() => {
-      const firstPageIndex = currentPage * PageSize;
+      const firstPageIndex = (currentPage -1) * PageSize;
       const lastPageIndex = firstPageIndex + PageSize;
       return  allRecipes.slice(firstPageIndex, lastPageIndex);
       

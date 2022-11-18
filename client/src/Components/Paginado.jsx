@@ -18,6 +18,7 @@ const Paginado = props => {
     siblingCount,
     pageSize
   });
+  console.log(paginationRange  )
 
   // If there are less than 2 times in pagination range we shall not render the component
   /* if (currentPage === 0 || paginationRange.length < 2) {
@@ -38,14 +39,15 @@ const Paginado = props => {
       className={styles.container}
     >
        {/* Left navigation arrow identar este boton por id para despues  cuando la pag sea la 1 que se ocuullte el boton */}
-       {currentPage !== 1 ? 
+       {currentPage ===1  ? 
+       null
+       :
       <button
         className={styles.container__item}
         onClick={onPrevious}
       >
         <div className={styles.left} />
       </button>
-       : null
       }
       {
       

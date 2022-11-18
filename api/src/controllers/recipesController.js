@@ -110,7 +110,7 @@ const updateRec = async (req , res) =>{
            
             const typesDb = await Diet.findAll({where: {name: diets.map(e => e.name)}})
             const gol = await recipeToUpdate.setDiets(typesDb)
-            
+            recipeToUpdate.save();
          }
         res.send(recipeToUpdate)
 

@@ -25,18 +25,10 @@ function validate (input){
 const Modal = ({ setIsOpen  }) => {
     const dispatch= useDispatch();          
     
-    useEffect(()=>{
-        /* setSelected(); */
-     
-        console.log(JSON.stringify(input1))
-        dispatch(getTypes());
-        return () => setIsOpen(false) && alert("reset" )
-        
-    }, []); //eslint-disable-line
-   
+    
     const diets = useSelector((state)=> state.types)
     const details = useSelector((state)=> state.details)
-
+    
     const [error, setError] = useState({})
     const [numberStep , setNumber] = useState(1)
     const [positionStep , setPositionStep]  =  useState(0)
@@ -45,8 +37,16 @@ const Modal = ({ setIsOpen  }) => {
     const [stepEdited , setStepEdited] = useState([])
     const [input1 ,setInput1]= useState(details[0])//las diets vienen de otra forma aca
     const [dietsInput , setDietsInput] = useState( details.length > 0 ? details[0].diets.map(e => e.name): null)
-
-
+    console.log(diets ,dietsInput)
+    useEffect(()=>{
+        /* setSelected(); */
+     
+       /*  console.log(JSON.stringify(input1)) */
+        dispatch(getTypes());
+        return () => setIsOpen(false) && alert("reset" )
+        
+    }, []); //eslint-disable-line
+    
     const [input, setInput] = useState({
         name: '',
         summary:'',
@@ -77,11 +77,7 @@ const Modal = ({ setIsOpen  }) => {
             [e.target.name] : e.target.value
         }));
     }
-   /*  const handleDiet = () => {
-        const leg = input1.diets.map(e => e.name)
-        setInput1(input1.diets = [leg])
-        console.log(input1)
-    } */
+  
     function handleSelect  (e ,i) {
         
         var {defaultChecked , checked , value , name} = e.target;
@@ -174,22 +170,9 @@ const Modal = ({ setIsOpen  }) => {
         diets:[],
         })
        }
-        /* details.length > 0? setInput1({...input1, diets : [...input1.diets.map(e => e.name )]}) &&dispatch(putRec(input1)) 
-        : dispatch(postRecipe(input))
-        console.log(input1 , input)
-      
-        setInput({
-        name: '',
-        summary:'',
-        score:0,
-        healthScore:0,
-        steps:[],
-        image:'',
-        diets:[],
-        }) */
-      
+       
     } 
-/* handleDiet(); */
+
 return (
     <>
      <div className={estilos.darkBG} onClick={() => setIsOpen(false)} />
@@ -298,8 +281,8 @@ return (
                                       
                                         id={e.name + i} 
                                         name={e.name}
-                                        onChange= {input1 ? e=> handleUpdate(e, i) :e=>handleSelect(e)}
-                                        defaultChecked = {input1?  dietsInput[i] === e.name ? true : false : null}
+                                        onChange= {/* input1 ? */ e=> handleUpdate(e) /* :e=>handleSelect(e) */}
+                                        defaultChecked = {input1?  dietsInput.includes(e.name) ? true : false : null}
                                        
                                         type="checkbox" />
                                         {e.name}

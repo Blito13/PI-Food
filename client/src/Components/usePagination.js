@@ -4,10 +4,12 @@ import { useMemo } from 'react';
 export const DOTS = '...';
 
 const range = (start, end) => {
-  let length = end - start + 1;
-  return Array.from({ length }, (_, idx) => idx + start);
+  let length = end  - start +1 ;
+  const len =  Array.from({ length }, (_, idx) => idx + start  );
+  console.log(len )
+  return len ;
 };
-
+//algo anda mal en esta logia Ä┐↨u«ãg É
 
 export const usePagination = ({
     totalCount,//todos los recipes
@@ -28,6 +30,7 @@ export const usePagination = ({
          paginationComponent, we return the range [1..totalPageCount]
        */
        if (totalPageNumbers >= totalPageCount) {
+        console.log(totalPageNumbers , totalPageCount)
          return range(1, totalPageCount);
        }
        
