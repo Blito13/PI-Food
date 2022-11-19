@@ -11,7 +11,7 @@ export const GET_DETAILS = 'GET_DETAILS'
 export const ORDER_HEALTH = 'SORDER_HEALTHY'
 export const RESET_DETAILS = 'RESET_DETAILS'
 export const GET_DB_DETAILS = 'GET_DB_DETAILS'
-
+export const DELETE_REC = 'DELETE_REC'
 export function getRecipes (){
 return async function (dispatch){
     var json =  await axios.get('http://localhost:3001/recipes',{});
@@ -92,7 +92,7 @@ export function getDetail(id){
     return async function(dispatch){
         try{
             var json = await axios.get(`http://localhost:3001/recipes/${id}`);
-        
+        console.log(json.data)
         return dispatch( {
             type : "GET_DETAILS",
             payload: json.data
@@ -129,4 +129,31 @@ export function putRec (payload){
         }
     }
 }
-
+export function onDelete(id) {
+    return async function (dispatch) {
+      try {
+       var recDelete = await axios.delete(`/recipes/delete/${id}`)
+          dispatch({
+            type: 'DELETE_REC',
+            payload : recDelete
+          });
+        ;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }
+  /* export function deleteStock(id) {
+    return async function (dispatch) {
+      try {
+        await axios.delete(`/stock/${id}`).then((stock) => {
+          dispatch({
+            type: DELETE_STOCK,
+            payload: stock.data,
+          });
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  } */

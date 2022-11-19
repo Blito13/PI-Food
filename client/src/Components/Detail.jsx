@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector,  } from "react-redux";
-import { getDetail ,resetDet } from "../Redux/actions";
+import { getDetail ,resetDet , onDelete } from "../Redux/actions";
 import { useEffect } from "react";
 import Modal from "./Modal";
 import { Fragment } from "react";
@@ -31,6 +31,10 @@ export default function Detail(){
    
    ,[])    
 
+   const deleteRec = () => {
+      dispatch(onDelete(id))
+   }
+
    return(
    <div>
       <article  >
@@ -48,10 +52,10 @@ export default function Detail(){
                      <h3 className = {styles.h1}>
                      Steps:
                      </h3>
-                             {/* {detailstate[0].steps.map(e=> 
+                             {detailstate[0].steps?.map(e=> 
                               <li className = {styles.h5}>
                               {e.step}
-                              </li> )} */} 
+                              </li> )} 
                      </div>
                      <div className = {styles.divisionBar}></div>
 
@@ -86,7 +90,7 @@ export default function Detail(){
                         
                      }
                      {detailstate[0].createdINBd?
-                         <button className = {styles.boton}>Delete Recipe</button> :
+                         <button className = {styles.boton} onClick= {(e )=> deleteRec(e)}>Delete Recipe</button> :
                          null
                      }
                      </div>

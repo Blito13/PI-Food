@@ -215,6 +215,15 @@ return (
                                 {error.score && <p >{error.score}</p>}
                             </div>
                             <div>
+                                <p>URL image: </p>
+                                <input
+                                type= 'url'
+                                value={input1 ? input1.image:input.image}
+                                name='image'
+                                onChange={(e)=> handleChange(e)}/>
+                                {error.score && <p >{error.score}</p>}
+                            </div>
+                            <div>
                                 <p >Health Score: </p>
                                 <input
                                 type= 'number'
@@ -255,7 +264,7 @@ return (
                                                 type = "button" 
                                                 value={"ok"} 
                                                 className={estilos.boton1} 
-                                                onClick = {e=> handleStep(e)}
+                                                onClick = {(e)=> handleStep(e)}
                                                 >Done
                                                 </button> 
                                             </div> : 
@@ -281,7 +290,7 @@ return (
                                       
                                         id={e.name + i} 
                                         name={e.name}
-                                        onChange= {/* input1 ? */ e=> handleUpdate(e) /* :e=>handleSelect(e) */}
+                                        onChange= {input1 ? (e)=> handleUpdate(e) :(e)=>handleSelect(e)}
                                         defaultChecked = {input1?  dietsInput.includes(e.name) ? true : false : null}
                                        
                                         type="checkbox" />
