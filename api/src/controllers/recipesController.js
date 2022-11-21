@@ -119,8 +119,9 @@ const updateRec = async (req , res) =>{
     {console.log(error)}
 }
 const deleteRec = async (req, res) => {
+    const { id } = req.params;
+    console.log(id)
     try {
-      const { id } = req.params;
       await Recipe.destroy({ where: { id } });
   
       // return message "No content"
