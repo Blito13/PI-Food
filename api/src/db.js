@@ -22,7 +22,7 @@ let sequelize =
         dialectOptions: {
           ssl: {
             require: true,
-            // Ref.: https://github.com/brianc/node-postgres/issues/2009
+            // Ref.: https://api.render.com/deploy/srv-cdtdvog2i3mrfoh06mog?key=_T5c7s5m0i4
             rejectUnauthorized: false,
           },
           keepAlive: true,
