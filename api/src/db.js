@@ -20,19 +20,19 @@ let sequelize =
           idle: 10000,
         },
         dialectOptions: {
-          /* ssl: {
+          ssl: {
             require: true,
             // Ref.: https://github.com/brianc/node-postgres/issues/2009
             rejectUnauthorized: false,
-          }, */
+          },
           keepAlive: true,
         },
-        /* ssl: true, */
+        ssl: true,
       })
-    : new Sequelize(
-        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-        { logging: false, native: false }
-      );
+    : new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+});
 /* const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
