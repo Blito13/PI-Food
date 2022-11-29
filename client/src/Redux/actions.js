@@ -144,17 +144,3 @@ export function onDelete(id) {
       }
     };
   }
-  /* export function deleteStock(id) {
-    return async function (dispatch) {
-      try {
-        await axios.delete(`/stock/${id}`).then((stock) => {
-          dispatch({
-            type: DELETE_STOCK,
-            payload: stock.data,
-          });
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  } */
