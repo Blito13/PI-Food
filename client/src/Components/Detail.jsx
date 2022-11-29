@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams , useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector,  } from "react-redux";
 import { getDetail ,resetDet , onDelete } from "../Redux/actions";
 import { useEffect } from "react";
@@ -14,7 +14,8 @@ export default function Detail(){
    
 
    
-   const dispatch = useDispatch() 
+   const dispatch = useDispatch();
+   const navigate= useNavigate();
    const {id} = useParams()
    
    
@@ -32,7 +33,12 @@ export default function Detail(){
    ,[])    
 
    const deleteRec = () => {
-      dispatch(onDelete(id))
+      let respuesta = window.confirm("are you sure ?")
+      if(respuesta === true ){
+         dispatch(onDelete(id));
+         navigate('/home');
+      }
+     
    }
 
    return(

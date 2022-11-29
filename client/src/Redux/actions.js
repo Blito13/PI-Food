@@ -14,8 +14,8 @@ export const GET_DB_DETAILS = 'GET_DB_DETAILS'
 export const DELETE_REC = 'DELETE_REC'
 export function getRecipes (){
 return async function (dispatch){
-    var json =  await axios.get('http://localhost:3001/recipes',{});
-    
+    var json =  await axios.get("/recipes",{});
+    console.log(json.data)
     return dispatch({
     type : 'GET_ALL_REC', 
     payload :json.data,   
@@ -27,7 +27,7 @@ return async function (dispatch){
 export function getNameRecipes (name){ //concatenamos lo que ingresemos en el input como nombre para buscar recetas
     return async function (dispatch){
         try{
-            let json = await axios.get(`http://localhost:3001/recipes?name=${name}`)
+            let json = await axios.get(`/recipes?name=${name}`)
             return dispatch({
                 type : 'GET_NAME_RECIPE',
                 payload : json.data
@@ -66,7 +66,7 @@ export function orderByScore(payload){
 }
 export function getTypes(){
     return async function (dispatch){
-        let json = await axios.get('http://localhost:3001/diets')
+        let json = await axios.get("/diets")
         return dispatch({
             type: 'GET_TYPES',
             payload : json.data
@@ -78,7 +78,7 @@ export function postRecipe (payload){
     return async function(dispatch){
         try{
 
-            var json = await axios.post("http://localhost:3001/recipes",payload)
+            var json = await axios.post("/recipes",payload)
             console.log(json)
             return dispatch({json});
         }catch (error){
@@ -91,7 +91,7 @@ export function getDetail(id){
 
     return async function(dispatch){
         try{
-            var json = await axios.get(`http://localhost:3001/recipes/${id}`);
+            var json = await axios.get(`/recipes/${id}`);
         console.log(json.data)
         return dispatch( {
             type : "GET_DETAILS",
@@ -121,7 +121,7 @@ export function putRec (payload){
     console.log(payload)
     return async function (dispatch){
         try{
-            var update = await axios.put('http://localhost:3001/recipes/uppdate',payload)
+            var update = await axios.put("/recipes/uppdate",payload)
             console.log(update)
             return dispatch({update})
         }catch(error){
@@ -130,6 +130,7 @@ export function putRec (payload){
     }
 }
 export function onDelete(id) {
+    console.log(id)
     return async function (dispatch) {
       try {
        var recDelete = await axios.delete(`/recipes/delete/${id}`)
