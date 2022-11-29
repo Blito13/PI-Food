@@ -8,7 +8,7 @@ import store from './Redux/store';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
- axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
+ axios.defaults.baseURL = process.env.local.REACT_APP_API || 'http://localhost:3001';
 
 ReactDOM.render(
   <React.StrictMode>
