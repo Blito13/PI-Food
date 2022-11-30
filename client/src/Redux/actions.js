@@ -16,7 +16,7 @@ export function getRecipes (){
 return async function (dispatch){
     try{
 
-        var json =  await axios.get("/recipes",{});
+        var json =  await axios.get('/recipes',{});
         console.log(json.data)
         return dispatch({
         type : 'GET_ALL_REC', 
