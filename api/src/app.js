@@ -9,7 +9,7 @@ const diets = require('./routes/diets.js')
 const recipes = require('./routes/recipes.js')
 const steps = require('./routes/steps.js')
 const server = express();
-
+server.use(cors())
 server.name = 'API';
 
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
