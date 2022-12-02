@@ -15,7 +15,7 @@ export const DELETE_REC = 'DELETE_REC'
 export function getRecipes (){
 return async function (dispatch){
     try{
-
+       console.log(axios.defaults.baseURL)
         var json =  await axios.get('/recipes',{});
         console.log(json.data)
         return dispatch({
