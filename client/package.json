@@ -1,4 +1,7 @@
 {
+  
+    "homepage": "./",
+  
   "name": "client",
   "version": "0.1.0",
   "private": true,
@@ -22,6 +25,7 @@
     "redux-thunk": "^2.4.2",
     "web-vitals": "^3.1.0"
   },
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
