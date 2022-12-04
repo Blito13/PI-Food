@@ -11,9 +11,7 @@ function App() {
   const store = generateStore();
   return ( 
   <Provider store={store}>
-
-
-   
+    <div className="App">
      <Routes>
       <Route  path = '/'element ={<LandingP/>}/> 
       <Route  path='/Home' element ={<Home/>}/>
@@ -21,7 +19,7 @@ function App() {
       <Route exact path="/recipes/:id" element={<Detail/>}/>
       <Route exact path="/recipes/update" element={<Modal/>}/>
      </Routes>
-
+    </div>
   </Provider>
   );
 }
