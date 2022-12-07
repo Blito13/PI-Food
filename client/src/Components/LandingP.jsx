@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from 'react-router-dom'
 import estilos from './LandingP.module.css' 
 
-console.log(process.env.REACT_APP_BE_URL)
+
 export default function LandingPage(){
    
     return(
