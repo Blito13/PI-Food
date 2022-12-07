@@ -25,6 +25,14 @@ function validate (input){
 const Modal = ({ setIsOpen  }) => {
     const dispatch= useDispatch();          
     
+    useEffect(()=>{
+        /* setSelected(); */
+        
+       /*  console.log(JSON.stringify(input1)) */
+        dispatch(getTypes());
+        /* return () => setIsOpen(false) */
+        
+    }, []); //eslint-disable-line
     
     const diets = useSelector((state)=> state.types)
     const details = useSelector((state)=> state.details)
@@ -38,14 +46,6 @@ const Modal = ({ setIsOpen  }) => {
     const [input1 ,setInput1]= useState(details[0])//las diets vienen de otra forma aca
     const [dietsInput , setDietsInput] = useState( details.length > 0 ? details[0].diets.map(e => e.name): null)
     console.log(diets ,dietsInput)
-    useEffect(()=>{
-        /* setSelected(); */
-     
-       /*  console.log(JSON.stringify(input1)) */
-        dispatch(getTypes());
-        return () => setIsOpen(false) && alert("reset" )
-        
-    }, []); //eslint-disable-line
     
     const [input, setInput] = useState({
         name: '',

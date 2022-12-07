@@ -16,7 +16,7 @@ export default function Home(){
        
         dispatch(getRecipes());
         dispatch(getTypes());
-        return () => setIsOpen(true) && alert("carrado")
+        return () => setIsOpen(false) && alert("carrado")
     },[dispatch]) 
     const allRecipes = useSelector((state)=> state.recipes)
     const [currentPage, setCurrentPage] = useState(1);
