@@ -2,8 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const cors = require('cors');
-var path = require("path");
+
 /* const routes = require('./routes/index.js'); */
 /* require('./db.js'); */
 const diets = require('./routes/diets.js')
@@ -11,13 +10,12 @@ const diets = require('./routes/diets.js')
 const recipes = require('./routes/recipes.js')
 const steps = require('./routes/steps.js')
 const server = express();
-app.use(cors())
+
 server.name = 'API';
 
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.json({ limit: '50mb' }));
 server.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 server.use(morgan('dev'));
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
