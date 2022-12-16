@@ -12,13 +12,8 @@ import RecipeCreate from "./RecipeCreate";
 let PageSize = 9;
 export default function Home(){
     const dispatch = useDispatch();
-    useEffect(()=>{
-       
-        dispatch(getRecipes());
-        dispatch(getTypes());
-        return () => setIsOpen(false) && alert("carrado")
-    },[dispatch]) 
     const allRecipes = useSelector((state)=> state.recipes)
+    const types = useSelector(state=> state.types)
     const [currentPage, setCurrentPage] = useState(1);
     const currentTableData = useMemo(() => {
       const firstPageIndex = (currentPage -1) * PageSize;
@@ -30,6 +25,12 @@ export default function Home(){
     const [orden1, setOrden1] = useState('') 
     const [isOpen, setIsOpen] = useState(false);
     console.log(currentTableData)
+    useEffect(()=>{
+       
+        dispatch(getRecipes());
+        dispatch(getTypes());
+       
+    },[dispatch]) 
    
    /*  function afterOpenModal() {
        
@@ -52,7 +53,6 @@ export default function Home(){
     } */
 
 
-    const types = useSelector(state=> state.types)
 
     function handleFilterTypes(e){
         e.preventDefault();
