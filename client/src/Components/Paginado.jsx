@@ -47,6 +47,7 @@ const Paginado = props => {
         onClick={onPrevious}
       >
         <div className={styles.left} />
+         back
       </button>
       }
       {
@@ -80,6 +81,7 @@ const Paginado = props => {
         className={styles.container__item}
         onClick={onNext}
       >
+        foward
         <div className={styles.rigth} />
       </button>
 : null
