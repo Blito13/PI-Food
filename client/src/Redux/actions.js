@@ -14,7 +14,7 @@ export const GET_DB_DETAILS = 'GET_DB_DETAILS'
 export const DELETE_REC = 'DELETE_REC'
 
 
-export const getRecipes = async(dispatch) => {
+/* export const getRecipes = async(dispatch) => {
     var json =  await axios.get('/recipes' , {});
     console.log(json.data)
     return dispatch( {
@@ -22,23 +22,21 @@ export const getRecipes = async(dispatch) => {
         payload :json.data, 
     })
 }
-
-/* export function getRecipes (){
+ */
+export function getRecipes (){
 return async function (dispatch){
-    try{
+    
       
         var json =  await axios.get('/recipes',{});
         console.log(json.data)
-        return dispatch({
+        return {
         type : 'GET_ALL_REC', 
         payload :json.data,   
-        })
-    }catch(error){
-        console.log()
-    }
+        }
+    
 };
 
-} */
+}
 
 export function getNameRecipes (name){ //concatenamos lo que ingresemos en el input como nombre para buscar recetas
     return async function (dispatch){
