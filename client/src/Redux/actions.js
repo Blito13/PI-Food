@@ -14,13 +14,13 @@ export const GET_DB_DETAILS = 'GET_DB_DETAILS'
 export const DELETE_REC = 'DELETE_REC'
 
 
-export const getRecipes = async() => {
+export const getRecipes = async(dispatch) => {
     var json =  await axios.get('/recipes');
     console.log(json.data)
-    return {
+    return dispatch( {
         type : 'GET_ALL_REC', 
         payload :json.data, 
-    }
+    })
 }
 
 /* export function getRecipes (){
