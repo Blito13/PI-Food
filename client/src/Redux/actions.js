@@ -15,7 +15,7 @@ export const DELETE_REC = 'DELETE_REC'
 
 
 export const getRecipes = async(dispatch) => {
-    var json =  await axios.get('/recipes');
+    var json =  await axios.get('/recipes' , {});
     console.log(json.data)
     return dispatch( {
         type : 'GET_ALL_REC', 
