@@ -12,7 +12,18 @@ export const ORDER_HEALTH = 'SORDER_HEALTHY'
 export const RESET_DETAILS = 'RESET_DETAILS'
 export const GET_DB_DETAILS = 'GET_DB_DETAILS'
 export const DELETE_REC = 'DELETE_REC'
-export function getRecipes (){
+
+
+export const getRecipes = async() => {
+    var json =  await axios.get('/recipes');
+    console.log(json.data)
+    return {
+        type : 'GET_ALL_REC', 
+        payload :json.data, 
+    }
+}
+
+/* export function getRecipes (){
 return async function (dispatch){
     try{
       
@@ -27,7 +38,7 @@ return async function (dispatch){
     }
 };
 
-}
+} */
 
 export function getNameRecipes (name){ //concatenamos lo que ingresemos en el input como nombre para buscar recetas
     return async function (dispatch){
