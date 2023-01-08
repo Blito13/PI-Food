@@ -24,16 +24,20 @@ export const DELETE_REC = 'DELETE_REC'
 }
  */
 export function getRecipes (){
+    console.log("gola")
 return async function (dispatch){
     
+      try{
+
+          var json =  await axios.get('/recipes',{});
+          console.log(json.data)
+          return dispatch({
+          type : 'GET_ALL_REC', 
+          payload :json.data,   
+          })
       
-        var json =  await axios.get('/recipes',{});
-        console.log(json.data)
-        return {
-        type : 'GET_ALL_REC', 
-        payload :json.data,   
-        }
-    
+      }catch(error){
+        console.log(error)}
 };
 
 }
