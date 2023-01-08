@@ -12,6 +12,12 @@ import RecipeCreate from "./RecipeCreate";
 let PageSize = 9;
 export default function Home(){
     const dispatch = useDispatch();
+    useEffect(()=>{
+       
+        dispatch(getRecipes());
+        dispatch(getTypes());
+       
+    },[dispatch]) 
     const allRecipes = useSelector((state)=> state.recipes)
     const types = useSelector(state=> state.types)
     const [currentPage, setCurrentPage] = useState(1);
@@ -25,12 +31,6 @@ export default function Home(){
     const [orden1, setOrden1] = useState('') 
     const [isOpen, setIsOpen] = useState(false);
     console.log(currentTableData)
-    useEffect(()=>{
-       
-        dispatch(getRecipes());
-        dispatch(getTypes());
-       
-    },[dispatch]) 
    
    /*  function afterOpenModal() {
        
