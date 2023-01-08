@@ -8,7 +8,7 @@
 export default store;  */
 import {combineReducers,compose,applyMiddleware, legacy_createStore} from "redux"
 import thunk from "redux-thunk"
-import rootR from "./reducers/"
+import rootR from "./reducers.js"
 
 const reducer = combineReducers ({
     rootR,
