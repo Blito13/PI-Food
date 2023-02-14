@@ -42,15 +42,21 @@ export default function Detail(){
    }
 
    return(
-   <div>
-      <article  >
-
+   
       
-         {detailstate.length > 0 ? 
          
-         <div className = {styles.container}> 
-           <div  className = {styles.container}>
-           
+      <div className = {styles.container}> 
+        
+      
+         {!detailstate.length  ? (
+            <div className={styles.gifLoad}>
+           <img src="https://icon-library.com/images/load-icon-gif/load-icon-gif-18.jpg" />
+            </div>
+      
+      
+         )
+             :(
+            <>
                   <div className={styles.column}>
                      <h1 className = {styles.h1}> {detailstate[0].name} 
                      </h1>
@@ -67,7 +73,7 @@ export default function Detail(){
 
                      <div className={styles.column}>
                      
-                     {<img src={detailstate[0].image} alt = 'fot' className = {styles.img}/>}
+                     <img src={detailstate[0].image} alt = 'fot' className = {styles.img}/>
                     
                      <h1 className = {styles.h1}>
                      Diets: {
@@ -77,29 +83,43 @@ export default function Detail(){
                      Health Level:
                      <li className={styles.text}>{detailstate[0].healthScore}</li>
                      </h1>
-                     <h1 className = {styles.h1}>
-                     Ingredients: {/* { 
+                     
+                        { detailstate[0].createdINBd?(null):(
+                           <h1 className = {styles.h1}>
+                           Ingredients: { 
                         detailstate[0].steps.map(e => e.ingredients.map(e => 
-                        <li className={styles.text} key = {e.name}>{e.name}</li>))} */}
-                     </h1>
+                        <li className={styles.text} key = {e.name}>{e.name}</li>))}
+                        
+                        </h1>
+                        )
+                     }
                      <br />
+                     <div className={styles.column}>
+
                      <div className={styles.h1}>
 
                      <Link to='/home'><button className = {styles.boton} >Back to Home </button></Link>
                   
                      {
-                        detailstate[0].createdINBd?
-                        <button className = {styles.boton} onClick={() => setIsOpen(true)}>Update</button>
+                        detailstate[0].createdINBd? (
+                           <>
+                           <button className = {styles.boton} onClick={() => setIsOpen(true)}>Update</button>
+                           <button className = {styles.boton} onClick= {(e )=> deleteRec(e)}>Delete Recipe</button> :
+                           </>
+                        )
                        
                          :
-                        null
+                       (<>
+                    
+                       </>)
                         
                      }
-                     {detailstate[0].createdINBd?
-                         <button className = {styles.boton} onClick= {(e )=> deleteRec(e)}>Delete Recipe</button> :
-                         null
-                     }
+                    
                      </div>
+                     </div>
+                     </div>     
+                    
+
                     { isOpen &&
                     <Fragment>
                         <Modal 
@@ -108,18 +128,10 @@ export default function Detail(){
                              
                     </Fragment> 
                     }
-                   </div>     
-          </div>
-          <div>
-    
-
-          </div>
-         </div> :
+                     
+            
+         </>) } 
        
-       <div className={styles.divLoading}>
-       <img src="https://thumbs.gfycat.com/PepperyMediumBrahmancow-size_restricted.gif" />
-     </div> 
-        }          
-   </article>
-</div>
+      </div>
+   
    )}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { usePagination, DOTS } from './usePagination';
-import styles from './pagination.css';
+import styles from './Pagination.module.css';
 const Paginado = props => {
   const {
     onPageChange,
@@ -43,7 +43,7 @@ const Paginado = props => {
        null
        :
       <button
-        className={styles.container__item}
+        className={styles.container__items}
         onClick={onPrevious}
       >
         <div className={styles.left} />
@@ -57,7 +57,7 @@ const Paginado = props => {
         // If the pageItem is a DOT, render the DOTS unicode character
         if (pageNumber === DOTS) {
 
-          return <button className={styles.container__item}>&#8230;</button>;
+          return <button className={styles.container__items}>&#8230;</button>;
         }
         
 		
@@ -66,7 +66,7 @@ const Paginado = props => {
 
          return (
            <button
-             className={styles.container__item}
+             className={styles.container__items}
              onClick={() => onPageChange(pageNumber)}
            >
              {pageNumber}
@@ -78,7 +78,7 @@ const Paginado = props => {
       {
         currentPage !== lastPage ?
       <button
-        className={styles.container__item}
+        className={styles.container__items}
         onClick={onNext}
       >
         foward

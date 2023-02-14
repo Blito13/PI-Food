@@ -24,7 +24,7 @@ export const DELETE_REC = 'DELETE_REC'
 }
  */
 export function getRecipes (){
-    console.log("gola")
+    
 return async function (dispatch){
     
       try{

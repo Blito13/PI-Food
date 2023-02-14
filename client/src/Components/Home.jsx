@@ -78,8 +78,7 @@ export default function Home(){
    console.log(allRecipes)
     return(
         <div className={estilos.contenedor}>
-         {/*    <Link to= '/recipe' className={estilos.recipeCreate}><button className={estilos.boton1}>Create Recipe</button></Link>
-             <h1 className={estilos.h1}>Recipes</h1>    */}                    
+                      
                 <div className={estilos.check}>
                  <button className={estilos.primaryBtn} onClick={() => setIsOpen(true)}>
                 Create!

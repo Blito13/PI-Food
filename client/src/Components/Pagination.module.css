@@ -1,6 +1,9 @@
 .container {
   display: flex;
   list-style-type: none;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
 }
   .container__items {
     padding: 0 12px;
@@ -16,9 +19,12 @@
     line-height: 1.43;
     font-size: 13px;
     min-width: 32px;
+    align-self: center;
+    background-color: black;
+   
   }
     .container_items , .dots {
-      background-color: transparent;
+      background-color: black;
       cursor: default;
     }
     .dots:hover {
