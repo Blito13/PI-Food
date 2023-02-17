@@ -29,6 +29,7 @@
     margin-top: 2px;    
     position: relative;
 }
+
 .ñaña{
    height: min-content ;
 }
@@ -95,6 +96,7 @@
     flex-wrap: wrap;
     position: relative;
 }
+
 .primaryBtn {
     margin: 20px 10px;
     cursor: pointer;

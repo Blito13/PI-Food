@@ -4,30 +4,20 @@ import {useState } from "react";
 import { Link } from "react-router-dom";
  function Card({img, name, diets , id}){
 
-   const [diet ,setDiet] = useState([])
-   const mostrar = (e) => {
-    e.preventDefault()
-    setDiet(diets)
-    }
-   const ocultar = (e) =>{
-        setDiet([])
-    }
+   
+   
     return(
-        <div className={estilos.contenedor}onMouseLeave = {e => ocultar(e)}>
-            <h2 className={estilos.titulo} key = {"2"+id} onMouseMove= {e =>mostrar(e)} >{name}</h2>
-            {diet?.map(e=> <h2 className={estilos.h4} key = {"9"+id}>{Object.values(e)}</h2>)}
-                
-          {/*   <Link className={estilos.titulo} to={`/recipes/${id}`} key={id}> */}
-
-            <img className={estilos.img}src= {img} alt='img'>
-
-                </img>                        
-             {/* </Link>   */}
-            
-                <div>
-
-                </div>
+       <div  className={estilos.flip}>
+        <div className={estilos.flip1}>
+        <h2 className={estilos.titulo}>{name}</h2>
+        <img className={estilos.img}src= {img} alt='img'></img>
         </div>
+        <div className={estilos.flip2}>
+        {
+        diets?.map(e=> <h2 className={estilos.h4} key = {"9"+id}>{Object.values(e)}</h2>)
+        }
+        </div>
+       </div>
     );
 }
 export default Card
