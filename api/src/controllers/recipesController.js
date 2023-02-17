@@ -42,15 +42,15 @@ const getDB = async () =>{
          
       })
 }   
-const getAllrecipes = async ()=>{
+const getAllrecipes = async (req , res )=>{
         const apInfo = await getApi();
         const dbInfo = await getDB();
         console.log(dbInfo)
-        const infoTotal = [...apInfo, ...dbInfo]; 
-     
-        /* res.status(200).send(infoTotal)  */
-       return(infoTotal)
-        /* return infoTotal */
+        var infoTotal = [...apInfo, ...dbInfo]; 
+     console.log(apInfo ,dbInfo)
+        res.status(200).send(infoTotal)
+      /*  returnsend(infoTotal) */
+        return infoTotal
 };
 const getById =  async (req, res)=>{
     /* DRYDRYDRY */
@@ -67,11 +67,11 @@ const getById =  async (req, res)=>{
 };
 const getByName =  async (req, res)=>{
     const {name} = req.query
-    const recipesTotal = await getAllrecipes() 
+    const recipesTotal = await getAllrecipes() ;
     if (name) { 
         let recipeName = recipesTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
                                                       
-        recipeName.length ?
+        recipeName.length >1?
             res.status(200).send(recipeName) :
             res.status(404).send("Recipe doesn't exist")
         } else {

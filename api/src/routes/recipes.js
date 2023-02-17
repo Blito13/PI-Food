@@ -6,7 +6,7 @@ const {getAllrecipes , getById , getByName , postRecipe , updateRec ,deleteRec} 
 /* const router = Router(); */
 var express = require('express');
 var router = express.Router();
-router.get('/recipes',getAllrecipes )
+router.get('/recipes',getAllrecipes)
 router.get('/recipes/:id',getById)
 router.get('/recipes?name=',getByName)
 router.post('/recipes',postRecipe);
