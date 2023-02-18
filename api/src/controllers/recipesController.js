@@ -49,7 +49,7 @@ const getAllrecipes = async (req , res )=>{
         var infoTotal = [...apInfo, ...dbInfo]; 
      console.log(apInfo ,dbInfo)
         res.status(200).send(infoTotal)
-      /*  returnsend(infoTotal) */
+       return infoTotal
         
 };
 const getById =  async (req, res)=>{
