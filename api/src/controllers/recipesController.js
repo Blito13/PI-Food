@@ -74,9 +74,7 @@ const getByName =  async (req, res)=>{
         recipeName.length >1?
             res.status(200).send(recipeName) :
             res.status(404).send("Recipe doesn't exist")
-        } else {
-        res.status(200).send(recipesTotal) /////////////cambio
-    }
+        } 
 }
 const postRecipe = async (req , res) =>{
     
