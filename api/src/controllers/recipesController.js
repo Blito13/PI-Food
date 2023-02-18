@@ -50,7 +50,7 @@ const getAllrecipes = async (req , res )=>{
      console.log(apInfo ,dbInfo)
         res.status(200).send(infoTotal)
       /*  returnsend(infoTotal) */
-        return infoTotal
+        
 };
 const getById =  async (req, res)=>{
     /* DRYDRYDRY */
