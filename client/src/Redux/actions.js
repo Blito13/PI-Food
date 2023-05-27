@@ -26,10 +26,12 @@ export const DELETE_REC = 'DELETE_REC'
 export function getRecipes (){
     
 return async function (dispatch){
-    
+    let headers: {
+            	'Access-Control-Allow-Origin': '*',
+        	}
       try{
 
-          var json =  await axios.get('/recipes',{});
+          var json =  await axios.get('/recipes',{headers :headers});
           console.log(json.data)
           return dispatch({
           type : 'GET_ALL_REC', 
