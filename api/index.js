@@ -20,7 +20,7 @@
 const server = require('./src/app.js');
 const { conn  } = require('./src/db.js');
 const port =  process.env.PORT
-console.log(port)
+console.log(port , "gl");
 // Syncing all the models at once.
 conn.sync({ force:false}).then(() => {
   server.listen(process.env.PORT, () => {
