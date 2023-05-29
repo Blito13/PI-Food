@@ -48,8 +48,8 @@ const getAllrecipes = async (req , res )=>{
         console.log(dbInfo)
         var infoTotal = [...apInfo, ...dbInfo]; 
      console.log(apInfo ,dbInfo)
-        res.status(200).send(infoTotal)
-       return infoTotal
+      
+       return (infoTotal)
         
 };
 const getById =  async (req, res)=>{
@@ -71,10 +71,12 @@ const getByName =  async (req, res)=>{
     if (name) { 
         let recipeName = recipesTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
                                                       
-        recipeName.length >1?
+        recipeName.length?
             res.status(200).send(recipeName) :
             res.status(404).send("Recipe doesn't exist")
-        } 
+        } else {
+        res.status(200).send(recipesTotal);
+        }
 }
 const postRecipe = async (req , res) =>{
     
